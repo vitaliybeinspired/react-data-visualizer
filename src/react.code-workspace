@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../react-essentials"
+		},
+		{
+			"path": "../public"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
