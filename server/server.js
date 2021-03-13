@@ -1,10 +1,6 @@
-// import npm packages
 const express =  require('express');
 const morgan = require('morgan');
-//const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-//const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const date_to_week = require('./date_to_week');
@@ -24,6 +20,7 @@ const database_type =(
 
 var query_data = [];
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 8080;
 
 //Database UserName: REACT
@@ -36,7 +33,6 @@ const week = "09/01/2019";
 const country = "Costa_Rica";
 const database = "Historic";
 
-
 async function run(week, country, database) {
     try {
         await client.connect();
@@ -46,7 +42,7 @@ async function run(week, country, database) {
             console.log("No " + country + " " + database + " Documents");
         }
 
-        await cursor.forEach(function(data) {query_data.push(data)});
+        await cursor.forEach(function(items) {query_data.push(items)});
         //await cursor.toArray(query_data);
 
         console.log("data: " + query_data.length);
@@ -56,7 +52,6 @@ async function run(week, country, database) {
     }
 }
 
-//module.exports = query_data;
 
 run(date_to_week[week], country, database).catch(console.dir);
 
