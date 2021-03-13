@@ -1,17 +1,31 @@
 import './App.css';
+import './index.css';
 import React from 'react';
-import Nicaragua from './components/Nicaragua.js'
-import Map from './components/Mexico'
-import Button from './components/Buttons'
-
+import Nicaragua from './components/Nicaragua.js';
+import Map from './components/Mexico';
+import Button from './components/Buttons';
+import Select from './components/Select';
+const axios = require('axios');
 
 class App extends React.Component {
+
+    state = {queriedData: []};
+
     constructor(props) {
         super(props);
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.state = {isLoggedIn: false};
     }
+
+    componentDidMount() {
+        axios.get(`http://localhost:8080/QueryData`)
+          .then(res => {
+            const queriedData = res.data;
+            this.setState({ queriedData });
+          })
+    }
+
 
     handleLoginClick() {
         this.setState({isLoggedIn: true});
@@ -22,6 +36,9 @@ class App extends React.Component {
     }
 
     render() {
+
+        console.log(this.state);
+
         const isLoggedIn = this.state.isLoggedIn;
         let button;
 
@@ -35,10 +52,12 @@ class App extends React.Component {
             <div>
                 <Greeting isLoggedIn={isLoggedIn} />
                 {button}
+                <Select />
+                <makeGetRequest />
             </div>
         );
     }
-}
+};
 
 function UserGreeting() {
     return <h1> Nicaragua Interactive Graph </h1>;
