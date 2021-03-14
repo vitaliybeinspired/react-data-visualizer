@@ -1,2 +1,10 @@
+to install:
 npm install
 npm run install
+
+to run both:
+npm run dev
+
+otherwise:
+npm run client
+npm run server

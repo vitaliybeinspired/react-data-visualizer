@@ -2,6 +2,8 @@
   "scripts": {
     "server-install": "cd server && npm install",
     "client-install": "cd client && npm install",
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
     "dev": "cd server && npm run dev",
     "install": "concurrently \"npm run server-install\" \"npm run client-install\""
   },
