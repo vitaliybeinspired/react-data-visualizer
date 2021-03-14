@@ -1,6 +1,5 @@
 to install:
 npm install
-npm run install
 
 to run both:
 npm run dev

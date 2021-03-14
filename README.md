@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# IGNORE BELLOW INSTRUCTIONS; THEY ARE PLACEHOLDER
+
+To install simply run `npm install`
+
+To run use `npm run dev`
+
+or 
+
+Run the client and server seperately with:
+ - `npm run server`
+ - `npm run client`
+
 ## Available Scripts
 
 In the project directory, you can run:
