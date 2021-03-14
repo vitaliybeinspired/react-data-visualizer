@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# IGNORE BELLOW INSTRUCTIONS; THEY ARE PLACEHOLDER
+# IGNORE BELOW INSTRUCTIONS; THEY ARE PLACEHOLDER
 
 To install simply run `npm install`
 
