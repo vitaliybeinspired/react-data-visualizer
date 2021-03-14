@@ -1,35 +1,12 @@
 {
-  "name": "React",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server\\server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server\\server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently -n 'server,client' -c 'red,green' \"nodemon server\\server.js\" \"npm run client\""
+    "server-install": "cd server && npm install",
+    "client-install": "cd client && npm install",
+    "dev": "cd server && npm run dev",
+    "install": "concurrently \"npm run server-install\" \"npm run client-install\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "assert": "^2.0.0",
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.6.0",
     "concurrently": "^6.0.0",
-    "cors": "^2.8.5",
-    "d3": "^6.5.0",
-    "express": "^4.17.1",
-    "mongod": "^2.0.0",
-    "mongodb": "^3.6.4",
-    "mongoose": "^5.11.15",
-    "morgan": "^1.10.0",
-    "plotly.js": "^1.58.4",
-    "react-plotly": "^1.0.0",
-    "react-plotly.js": "^2.5.1",
-    "react-router-dom": "^5.2.0",
-    "routes": "^2.1.0"
-  },
-  "secure": false
+    "npm": "^7.6.3"
+  }
 }
