@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# IGNORE BELOW INSTRUCTIONS; THEY ARE PLACEHOLDER
+# THESE ARE THE ONLY CURRENT INSTRUCTIONS
 
 To install simply run `npm install`
 
@@ -13,6 +13,8 @@ or
 Run the client and server seperately with:
  - `npm run server`
  - `npm run client`
+ 
+# IGNORE BELOW INSTRUCTIONS; THEY ARE PLACEHOLDER
 
 ## Available Scripts
 
