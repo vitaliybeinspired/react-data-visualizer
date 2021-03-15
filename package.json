@@ -5,7 +5,7 @@
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "dev": "cd server && npm run dev",
-    "install": "concurrently \"npm run server-install\" \"npm run client-install\""
+    "install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
   },
   "dependencies": {
     "concurrently": "^6.0.0",
