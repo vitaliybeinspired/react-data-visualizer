@@ -7,6 +7,8 @@ import Button from './components/Buttons';
 import Select from './components/Select';
 const axios = require('axios');
 
+
+
 class App extends React.Component {
 
     state = {queriedData: []};
@@ -37,6 +39,9 @@ class App extends React.Component {
 
     render() {
 
+        const data = 'This is data';
+
+
         console.log(this.state);
 
         const isLoggedIn = this.state.isLoggedIn;
@@ -50,6 +55,8 @@ class App extends React.Component {
 
         return (
             <div>
+                <Nicaragua data={data} />
+
                 <Greeting isLoggedIn={isLoggedIn} />
                 {button}
                 <Select />
@@ -57,7 +64,7 @@ class App extends React.Component {
             </div>
         );
     }
-};
+}
 
 function UserGreeting() {
     return <h1> Nicaragua Interactive Graph </h1>;

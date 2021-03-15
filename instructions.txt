@@ -1,0 +1,9 @@
+to install:
+npm install
+
+to run both:
+npm run dev
+
+otherwise:
+npm run client
+npm run server
