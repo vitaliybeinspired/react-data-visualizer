@@ -26,6 +26,17 @@ export default class Costa_Rica_Historic extends React.Component {
             for(let k of Object.values(data)){
                 y.push(k);
             }
+            
+            // TODO
+            // we should have an array of types
+            // and make a general purpose utility class/func
+            //
+            // psuedo code:
+            // if type not in array
+            //      //create new dict for type
+            //      dict[type] = [value]
+            // if type in array
+            //      dict[type].push(value)
 
             for(let k of y){
                 for(let i of k){
