@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const MongoClient = require('mongodb').MongoClient;
 const path = require('path');
 const cors = require('cors');
-const date_to_week = require('./date_to_week');
+const {date_to_week, date_to_weekUS}  = require('./date_to_week');
 //const routes = require('./routes');
 
 const country_database = (
@@ -43,6 +43,7 @@ const MONGODB_URI = 'mongodb+srv://REACT:WattTime2021@cluster0.tbh2o.mongodb.net
 
 const client = new MongoClient(MONGODB_URI);
 
+// 'MM/DD/YYYY' format for US
 const week = "09/01/2019";
 const country = "Costa_Rica";
 const database = "Historic";
@@ -78,15 +79,18 @@ async function run(week, country, database) {
             console.log("No Costa Rica Historic Documents");
         //}if ((await cr_f_cursor.count()) === 0) {
         //    console.log("No Costa Rica Forecast Documents");
-        }if ((await el_h_cursor.count()) === 0) {
+        }
+        if ((await el_h_cursor.count()) === 0) {
             console.log("No El Salvador Historic Documents");
         //}if ((await el_f_cursor.count()) === 0) {
         //    console.log("No El Salvador Forecast Documents");
-        }if ((await n_h_cursor.count()) === 0) {
+        }
+        if ((await n_h_cursor.count()) === 0) {
             console.log("No Nicaragua Historic Documents");
         //}if ((await n_f_cursor.count()) === 0) {
          //   console.log("No Nicaragua Forecast Documents");
-        }if ((await m_h_cursor.count()) === 0) {
+        }
+        if ((await m_h_cursor.count()) === 0) {
             console.log("No Mexico Historic Documents");
         //}if ((await m_f_cursor.count()) === 0) {
         //    console.log("No Mexico Forecast Documents");
@@ -116,7 +120,7 @@ async function run(week, country, database) {
 }
 
 
-run(date_to_week[week], country, database).catch(console.dir);
+run(date_to_weekUS(week), country, database).catch(console.dir);
 
 // Routes
 app.get('/CostaRica/Historic', (req, res) => {
