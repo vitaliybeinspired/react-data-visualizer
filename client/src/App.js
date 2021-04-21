@@ -1,11 +1,10 @@
 import './App.css';
 import './index.css';
-import React from 'react';
 import Costa_Rica_Historic from './components/Costa_Rica_Historic.js';
 import Button from './components/Buttons';
 import Select from './components/Select';
+import React from 'react';
 const axios = require('axios');
-
 
 class App extends React.Component {
 
@@ -14,8 +13,7 @@ class App extends React.Component {
         this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
         this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
         this.state = {
-            isViewMexicoButton: false,
-            data: null
+            isViewMexicoButton: false
         }
     }
 
@@ -46,10 +44,9 @@ class App extends React.Component {
             config
         );
         if(res.status === 200) {
-            this.setState({data: res.data});
+            this.setState({costa_rica_data: res.data});
         }
     }
-
 
     handleViewMexicoClick() {
         this.setState({isViewMexicoButton: true});
@@ -60,25 +57,26 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state.data);
-
-        if(this.state.data){
-
+        if(this.state.costa_rica_data){
             const isViewMexico = this.state.isViewMexicoButton;
-            let button;
+            let currentData;
+            let selectViewButton;
 
+            // logic to change states
             if (isViewMexico) {
-                button = <ViewNicaraguaButton onClick={this.handleViewNicaraguaClick} />;
+                selectViewButton = <ViewNicaraguaButton onClick={this.handleViewNicaraguaClick} />;
+                currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
+
             } else {
-                button = <ViewMexicoButton onClick={this.handleViewMexicoClick} />;
+                selectViewButton = <ViewMexicoButton onClick={this.handleViewMexicoClick} />;
             }
 
             return (
                 <div>
-                    <Greeting isViewMexicoButton={isViewMexico} />
-                    {button}
+                    <Main isViewMexicoButton={isViewMexico} />
+                    {selectViewButton}
                     <Select />
-                    <Costa_Rica_Historic dataFromParent = {this.state.data} />
+                    {currentData}
                 </div>
             );
         }
@@ -88,24 +86,25 @@ class App extends React.Component {
     }
 }
 
-function UserGreeting() {
-    return <h1> Nicaragua Interactive Graph </h1>;
+function RenderComponentNicaragua() {
+    return <h1> This is a component that renders from view Nicaragua button </h1>;
 }
 
-function GuestGreeting() {
-    return <h1> Energy Data</h1>;
+function RenderComponentMexico() {
+    return <h1> This is a component that renders from view Mexico button </h1>;
 }
 
-function Greeting(props) {
+
+function Main(props) {
     const isViewMexicoButton = props.isViewMexicoButton;
     if (isViewMexicoButton) {
         return <>
-            <UserGreeting />
+            <RenderComponentNicaragua />
             <Button />
             </>
     }
     return <>
-        <GuestGreeting />
+        <RenderComponentMexico />
         <Button />
 
     </>
@@ -126,5 +125,4 @@ function ViewNicaraguaButton(props) {
         </button>
     );
 }
-
 export default App;
