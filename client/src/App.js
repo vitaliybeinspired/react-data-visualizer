@@ -7,7 +7,7 @@ function App() {
     <div className='App'>
         <Router>
           <Route exact path ='/' component = {LandingPage}/>
-          //we can add more path's here
+          {/*we can add more path's here*/}
         </Router>      
     </div>    
   );
