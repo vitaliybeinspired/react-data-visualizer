@@ -19,12 +19,32 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        axios.get(`http://localhost:8080/CostaRica/Historic`)
-          .then(res => {
-            this.setState({ data: res.data });
-            console.log(this.state.data);
-          })
+    async componentDidMount() {
+        const config = {
+            'Content-Type':'application/json'
+        }
+        // use one or the other
+        // dateUS -> 'mm/dd/yyyy'
+        // date -> 'dd/mm/yyyy'
+        //
+        // one way to get the formated date string is like this:
+        // let year = date.getFullYear();
+        // let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        // let day = date.getDate().toString().padStart(2, '0');
+        
+        // var date_str =  month + '/' + day + '/' + year;
+        
+        const body  = {
+            dateUS: '01/09/2019'
+        }
+        const res = await axios.post(
+            `query/CostaRica/Historic`,
+            body,
+            config
+        );
+        if(res.status === 200) {
+            this.setState({data: res.data});
+        }
     }
 
 

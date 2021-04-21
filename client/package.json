@@ -1,5 +1,6 @@
 {
   "name": "react-essentials",
+  "proxy": "http://127.0.0.1:8080",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,6 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://localhost:8080"
+  }
 }
