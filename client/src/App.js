@@ -6,8 +6,6 @@ import Button from './components/Buttons';
 import Select from './components/Select';
 const axios = require('axios');
 
-
-
 class App extends React.Component {
 
     constructor(props) {
@@ -25,6 +23,14 @@ class App extends React.Component {
         // use one or the other
         // dateUS -> 'mm/dd/yyyy'
         // date -> 'dd/mm/yyyy'
+        //
+        // one way to get the formated date string is like this:
+        // let year = date.getFullYear();
+        // let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        // let day = date.getDate().toString().padStart(2, '0');
+        
+        // var date_str =  month + '/' + day + '/' + year;
+        
         const body  = {
             dateUS: '01/09/2019'
         }
