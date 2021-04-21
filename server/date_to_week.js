@@ -17,6 +17,22 @@ module.exports.date_to_weekUS = (date_str) => {
 }
 
 /**
+ * Converts **JS date object** to needed doc ID 
+ * @param {*} date 
+ */
+ module.exports.date_to_weekJS = (date) => {
+    const start = new Date(start_date);
+    const current = new Date(date);
+    const diffTime = Math.abs(current - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) % 7; 
+    current.setDate(current.getDate() - diffDays);
+    var year = Intl.DateTimeFormat('en', {year: 'numeric'}).format(current);
+    var month = Intl.DateTimeFormat('en', {month: '2-digit'}).format(current);
+    var day = Intl.DateTimeFormat('en', {day: '2-digit'}).format(current);
+    return `${day}/${month}/${year}`
+}
+
+/**
  * Converts **dd/mm/yyyy** date to needed doc ID 
  * @param {*} date_str 
  */
