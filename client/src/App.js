@@ -18,13 +18,24 @@ class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-        axios.get(`http://localhost:8080/CostaRica/Historic`)
-          .then(res => {
-            const data = res.data;
-            this.setState({ data });
-            console.log(this.state.data);
-          })
+    async componentDidMount() {
+        const config = {
+            'Content-Type':'application/json'
+        }
+        // use one or the other
+        // dateUS -> 'mm/dd/yyyy'
+        // date -> 'dd/mm/yyyy'
+        const body  = {
+            dateUS: '01/09/2019'
+        }
+        const res = await axios.post(
+            `query/CostaRica/Historic`,
+            body,
+            config
+        );
+        if(res.status === 200) {
+            this.setState({data: res.data});
+        }
     }
 
 
