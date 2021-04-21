@@ -14,7 +14,9 @@ export default class Costa_Rica_Historic extends React.Component {
         let other = [];
         let interchange = [];
 
-        var data = this.props.dataFromParent;
+       var data = this.props.dataFromParent
+        //var data = this.state.data
+
         if(data){
             delete data['_id'];
             console.log(data)
