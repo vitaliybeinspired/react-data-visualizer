@@ -1,41 +1,51 @@
+const start_date = "12/27/2016"
 
-const date_to_week = {
-    "01/01/2019" : "01/01/2019",
-    "02/01/2019" : "01/01/2019",
-    "03/01/2019" : "01/01/2019",
-    "04/01/2019" : "01/01/2019",
-    "05/01/2019" : "01/01/2019",
-    "06/01/2019" : "01/01/2019",
-    "07/01/2019" : "01/01/2019",
-    "08/01/2019" : "08/01/2019",
-    "09/01/2019" : "08/01/2019",
-    "10/01/2019" : "08/01/2019",
-    "11/01/2019" : "08/01/2019",
-    "12/01/2019" : "08/01/2019",
-    "13/01/2019" : "08/01/2019",
-    "14/01/2019" : "08/01/2019",
-    "15/01/2019" : "15/01/2019",
-    "16/01/2019" : "15/01/2019",
-    "17/01/2019" : "15/01/2019",
-    "18/01/2019" : "15/01/2019",
-    "19/01/2019" : "15/01/2019",
-    "20/01/2019" : "15/01/2019",
-    "21/01/2019" : "15/01/2019",
-    "22/01/2019" : "22/01/2019",
-    "23/01/2019" : "22/01/2019",
-    "24/01/2019" : "22/01/2019",
-    "25/01/2019" : "22/01/2019",
-    "26/01/2019" : "22/01/2019",
-    "27/01/2019" : "22/01/2019",
-    "28/01/2019" : "22/01/2019",
-    "29/01/2019" : "29/01/2019",
-    "30/01/2019" : "29/01/2019",
-    "31/01/2019" : "29/01/2019",
-    "01/02/2019" : "29/01/2019",
-    "02/02/2019" : "29/01/2019",
-    "03/02/2019" : "29/01/2019",
-    "04/02/2019" : "29/01/2019"
+/**
+ * Converts **en-US mm/dd/yyyy** date to needed doc ID 
+ * @param {*} date_str 
+ */
+module.exports.date_to_weekUS = (date_str) => {
+    const start = new Date(start_date);
+    const current = new Date(date_str);
+    const diffTime = Math.abs(current - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) % 7; 
+    current.setDate(current.getDate() - diffDays);
+    var year = Intl.DateTimeFormat('en', {year: 'numeric'}).format(current);
+    var month = Intl.DateTimeFormat('en', {month: '2-digit'}).format(current);
+    var day = Intl.DateTimeFormat('en', {day: '2-digit'}).format(current);
+    return `${day}/${month}/${year}`
 }
 
+/**
+ * Converts **JS date object** to needed doc ID 
+ * @param {*} date 
+ */
+ module.exports.date_to_weekJS = (date) => {
+    const start = new Date(start_date);
+    const current = new Date(date);
+    const diffTime = Math.abs(current - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) % 7; 
+    current.setDate(current.getDate() - diffDays);
+    var year = Intl.DateTimeFormat('en', {year: 'numeric'}).format(current);
+    var month = Intl.DateTimeFormat('en', {month: '2-digit'}).format(current);
+    var day = Intl.DateTimeFormat('en', {day: '2-digit'}).format(current);
+    return `${day}/${month}/${year}`
+}
 
-module.exports = date_to_week;
+/**
+ * Converts **dd/mm/yyyy** date to needed doc ID 
+ * @param {*} date_str 
+ */
+module.exports.date_to_week = (date_str) => {
+    const start = new Date(start_date);
+    const dateParts = date_str.split("/");
+    // month is 0-based, that's why we need dataParts[1] - 1
+    const current = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
+    const diffTime = Math.abs(current - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) % 7; 
+    current.setDate(current.getDate() - diffDays);
+    var year = Intl.DateTimeFormat('en', {year: 'numeric'}).format(current);
+    var month = Intl.DateTimeFormat('en', {month: '2-digit'}).format(current);
+    var day = Intl.DateTimeFormat('en', {day: '2-digit'}).format(current);
+    return `${day}/${month}/${year}`
+}

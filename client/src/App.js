@@ -17,11 +17,35 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        axios.get(`http://localhost:8080/CostaRica/Historic`)
-          .then(res => {
-            this.setState({ costa_rica_data: res.data });
-          })
+    async componentDidMount() {
+        const config = {
+            'Content-Type':'application/json'
+        }
+        
+        // Use one of these in this body
+        // dateUS -> 'mm/dd/yyyy'
+        // date -> 'dd/mm/yyyy'
+        // dateJS -> JS Date object
+
+        // These are all equivalent
+        const body  = {
+            dateUS: '01/09/2019'
+        }
+        // const body  = {
+        //     date: '09/01/2019'
+        // }
+        // const body  = {
+        //     dateJS: new Date(2019, 1, 9)
+        // }
+
+        const res = await axios.post(
+            `query/CostaRica/Historic`,
+            body,
+            config
+        );
+        if(res.status === 200) {
+            this.setState({costa_rica_data: res.data});
+        }
     }
 
     handleViewMexicoClick() {
@@ -101,6 +125,4 @@ function ViewNicaraguaButton(props) {
         </button>
     );
 }
-
-
 export default App;
