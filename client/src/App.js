@@ -6,14 +6,17 @@ import Button from './components/Buttons';
 import Select from './components/Select';
 const axios = require('axios');
 
+
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.state = {isLoggedIn: false,
-        };
+        this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
+        this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
+        this.state = {
+            isViewMexicoButton: false,
+            data: null
+        }
     }
 
     async componentDidMount() {
@@ -45,37 +48,31 @@ class App extends React.Component {
     }
 
 
-    handleLoginClick() {
-        this.setState({isLoggedIn: true});
+    handleViewMexicoClick() {
+        this.setState({isViewMexicoButton: true});
     }
 
-    handleLogoutClick() {
-        this.setState({isLoggedIn: false});
+    handleViewNicaraguaClick() {
+        this.setState({isViewMexicoButton: false});
     }
 
     render() {
         console.log(this.state.data);
 
-        while(!this.state.data){
-
-            return <div>Loading...</div>;
-            sleep(1000);
-        }
-
         if(this.state.data){
 
-            const isLoggedIn = this.state.isLoggedIn;
+            const isViewMexico = this.state.isViewMexicoButton;
             let button;
 
-            if (isLoggedIn) {
-                button = <LogoutButton onClick={this.handleLogoutClick} />;
+            if (isViewMexico) {
+                button = <ViewNicaraguaButton onClick={this.handleViewNicaraguaClick} />;
             } else {
-                button = <LoginButton onClick={this.handleLoginClick} />;
+                button = <ViewMexicoButton onClick={this.handleViewMexicoClick} />;
             }
 
             return (
                 <div>
-                    <Greeting isLoggedIn={isLoggedIn} />
+                    <Greeting isViewMexicoButton={isViewMexico} />
                     {button}
                     <Select />
                     <Costa_Rica_Historic dataFromParent = {this.state.data} />
@@ -88,10 +85,6 @@ class App extends React.Component {
     }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
 function UserGreeting() {
     return <h1> Nicaragua Interactive Graph </h1>;
 }
@@ -101,8 +94,8 @@ function GuestGreeting() {
 }
 
 function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
+    const isViewMexicoButton = props.isViewMexicoButton;
+    if (isViewMexicoButton) {
         return <>
             <UserGreeting />
             <Button />
@@ -115,7 +108,7 @@ function Greeting(props) {
     </>
 }
 
-function LoginButton(props) {
+function ViewMexicoButton(props) {
     return (
         <button onClick={props.onClick}>
             View Nicaragua
@@ -123,7 +116,7 @@ function LoginButton(props) {
     );
 }
 
-function LogoutButton(props) {
+function ViewNicaraguaButton(props) {
     return (
         <button onClick={props.onClick}>
             View Mexico
