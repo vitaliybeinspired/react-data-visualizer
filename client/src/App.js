@@ -23,20 +23,23 @@ class App extends React.Component {
         const config = {
             'Content-Type':'application/json'
         }
-        // use one or the other
+        
+        // Use one of these in this body
         // dateUS -> 'mm/dd/yyyy'
         // date -> 'dd/mm/yyyy'
-        //
-        // one way to get the formated date string is like this:
-        // let year = date.getFullYear();
-        // let month = (1 + date.getMonth()).toString().padStart(2, '0');
-        // let day = date.getDate().toString().padStart(2, '0');
-        
-        // var date_str =  month + '/' + day + '/' + year;
-        
+        // dateJS -> JS Date object
+
+        // These are all equivalent
         const body  = {
             dateUS: '01/09/2019'
         }
+        // const body  = {
+        //     date: '09/01/2019'
+        // }
+        // const body  = {
+        //     dateJS: new Date(2019, 1, 9)
+        // }
+
         const res = await axios.post(
             `query/CostaRica/Historic`,
             body,
