@@ -54,12 +54,12 @@ export function MyGlobe() {
  
   // simple and extensive options to configure globe
   const options = {
-    ambientLightColor: 'red',
-    cameraRotateSpeed: 0.5,
+    ambientLightColor: 'none',
+    cameraRotateSpeed: 0.15,
     focusAnimationDuration: 2000,
     focusEasingFunction: ['Linear', 'None'],
-    pointLightColor: 'gold',
-    pointLightIntensity: 1.5,
+    pointLightColor: 'white',
+    pointLightIntensity: 0.5,
     globeGlowColor: 'blue',
     markerTooltipRenderer: marker => `${marker.city} (${marker.value})`,
   };
