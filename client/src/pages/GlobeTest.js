@@ -78,7 +78,9 @@ const options = {
     markerType: 'dot',
     markerTooltipRenderer: marker => `${marker.city} (${marker.value})`,
 };
-
+/**
+ * Use the prop `markerClick` to get a return OUT of the component
+ */
 export class SimpleGlobe extends React.Component {
     // support rendering markers with simple data
     constructor(props) {
@@ -102,11 +104,11 @@ export class SimpleGlobe extends React.Component {
                     markers={markers}
                     options={options}
                     width="100%"
-                    onClickMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
+                    onClickMarker={this.props.markerClick}
                     // onGetGlobe={(globe) => this.setState({globe: globe})}
-                    onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
+                    // onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
                     onGlobeTextureLoaded={() => console.log('globe loaded')}
-                    onMouseOverMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
+                    // onMouseOverMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
                 />
             </div>
         )
