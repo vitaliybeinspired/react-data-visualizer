@@ -1,10 +1,13 @@
 import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
+import {SimpleGlobe} from './GlobeTest'
 import Button from '../components/Buttons';
 import Select from '../components/Select';
 import React from 'react';
 const axios = require('axios');
+
+const globe = new SimpleGlobe().render();
 
 export class LandingPage extends React.Component {
 
@@ -77,6 +80,7 @@ export class LandingPage extends React.Component {
                     {selectViewButton}
                     <Select />
                     {currentData}
+                    {globe}
                 </div>
             );
         }

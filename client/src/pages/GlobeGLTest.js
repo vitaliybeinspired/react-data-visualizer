@@ -9,9 +9,7 @@ import Globe from 'react-globe.gl';
 //https://github.com/chrisrzhou/react-globe/tree/main/textures
 //https://unpkg.com/browse/three-globe@2.18.0/example/img/
 export class MyGlobe extends React.Component {
-  constructor(props) {
-    super(props);
-}
+  
   render(){
       return (
       <Globe
