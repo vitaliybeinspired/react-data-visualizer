@@ -89,6 +89,7 @@ export function SimpleGlobe() {
     return (
         <ReactGlobe
             height="100vh"
+            //TODO we should download and copy these for our server to use
             globeBackgroundTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png"
             globeCloudsTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/clouds.png"
             globeTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/globe.jpg"
