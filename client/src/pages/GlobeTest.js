@@ -4,7 +4,7 @@ import ReactGlobe from 'react-globe';
 /*  IMPORTANT
     it is worth noting that this demo only works with Three.js 0.118 thru 0.124
     
-    There is a regex DDos vulnerability https://www.npmjs.com/advisories/1639 fixed in 0.125
+    There is a regex Dos (ReDos) vulnerability https://www.npmjs.com/advisories/1639 fixed in 0.125
     soooo TL;DR don't let the user pick colors of the globe and we should be okay. 
 */
 
