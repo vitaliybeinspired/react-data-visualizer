@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import ReactGlobe from 'react-globe';
 
+/*  IMPORTANT
+    it is worth noting that this demo only works with Three.js 0.118 thru 0.124
+    
+    There is a regex DDos vulnerability https://www.npmjs.com/advisories/1639 fixed in 0.125
+    soooo TL;DR don't let the user pick colors of the globe and we should be okay. 
+*/
+
+
 // import optional tippy styles for tooltip support
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
