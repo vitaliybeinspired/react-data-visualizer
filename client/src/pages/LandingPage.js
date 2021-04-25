@@ -1,10 +1,12 @@
 import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
+import {SimpleGlobe} from './GlobeTest'
 import Button from '../components/Buttons';
 import Select from '../components/Select';
 import React from 'react';
 const axios = require('axios');
+
 
 export class LandingPage extends React.Component {
 
@@ -13,11 +15,25 @@ export class LandingPage extends React.Component {
         this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
         this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
         this.state = {
-            isViewMexicoButton: false
+            isViewMexicoButton: false,
+            clicked: "none",
         }
+        this.onClickMarker = this.onClickMarker.bind(this);
+    }
+
+    onClickMarker(marker, markerObject, event) {
+        console.log(marker, markerObject, event)
+        const city = marker['city'];
+        console.log(city)
+        this.setState({
+            clicked: city
+        });
     }
 
     async componentDidMount() {
+        this.setState({
+            globe: new SimpleGlobe({markerClick: this.onClickMarker}).render()
+        })
         const config = {
             'Content-Type':'application/json'
         }
@@ -77,6 +93,11 @@ export class LandingPage extends React.Component {
                     {selectViewButton}
                     <Select />
                     {currentData}
+                    <div>
+                        <p>The last marker clicked was: {this.state.clicked}
+                        </p>
+                    </div>
+                    {this.state.globe}
                 </div>
             );
         }
