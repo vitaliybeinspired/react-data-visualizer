@@ -1,7 +1,7 @@
 {
   "scripts": {
     "server-install": "cd server && npm install --legacy-peer-deps",
-    "client-install": "cd client && npm install",
+    "client-install": "cd client && npm install --legacy-peer-deps",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "dev": "cd server && npm run dev",
