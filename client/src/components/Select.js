@@ -21,10 +21,10 @@ class Select extends React.Component {
         event.preventDefault();
     
         const payload = {
-          country: this.state.country,
           data_type: this.state.data_type,
           date: this.state.date
         };
+        console.log({payload: payload})
     }
 
     getState(){
@@ -34,18 +34,8 @@ class Select extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2></h2>
+            <div className="selection-form">
                 <form onSubmit={this.submit}>
-                <div className="form-input">
-                    <input
-                    type="text"
-                    name="country"
-                    placeholder="Country Name"
-                    value={this.state.country}
-                    onChange={this.handleChange}
-                    />
-                </div>
                 <div className="form-input">
                     <input
                     type="text"

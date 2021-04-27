@@ -1,7 +1,7 @@
 import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
-import {SimpleGlobe} from './GlobeTest'
+import {SimpleGlobe} from '../components/Globe'
 import Button from '../components/Buttons';
 import Select from '../components/Select';
 import React from 'react';
@@ -15,25 +15,95 @@ export class LandingPage extends React.Component {
         this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
         this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
         this.state = {
-            isViewMexicoButton: false,
+            loading: true,
             clicked: "none",
+            //GLOBE settings
+            //value is abitrary and represents size
+            globe_markers: [
+                {
+                    id: 'ElSalvador',
+                    country: 'El Salvador',
+                    color: 'red',
+                    coordinates: [13.598871, -88.909731],
+                    value: 20,
+                },
+                {
+                    id: 'Nicaragua',
+                    country: 'Nicaragua',
+                    color: 'gold',
+                    coordinates: [12.793830, -84.854074],
+                    value: 20,
+                },
+                {
+                    id: 'Mexico',
+                    country: 'Mexico',
+                    color: 'orange',
+                    coordinates: [23.502654, -102.227797],
+                    value: 20,
+                },
+                {
+                    id: 'CostaRica',
+                    country: 'Costa Rica',
+                    color: 'green',
+                    coordinates: [10.031846, -83.896692],
+                    value: 20,
+                }
+            ],
+            // simple and extensive options to configure globe here:
+            // https://github.com/chrisrzhou/react-globe/blob/main/docs/props.mdx
+            globe_options: {
+                ambientLightColor: 'white',
+                ambientLightIntensity: 0.6,
+                enableDefocus: false,
+                cameraRotateSpeed: 0.25,
+                cameraZoomSpeed: 1.5,
+                cameraAutoRotateSpeed: 0.05,
+                focusAnimationDuration: 2000,
+                focusEasingFunction: ['Quintic', 'Out'],
+                globeGlowPower: 5,
+                enableMarkerGlow: true,
+                markerEnterAnimationDuration: 0.4,
+                markerGlowCoefficient: 0.5,
+                markerGlowPower: 1.2,
+                pointLightColor: 'gold',
+                pointLightIntensity: 0.15,
+                markerType: 'dot',
+                markerTooltipRenderer: marker => `${marker.country}`,
+            },
         }
         this.onClickMarker = this.onClickMarker.bind(this);
     }
 
+    /**
+     * 'onClick' event for globe
+     * gets a marker, object, and event
+     * @param {*} marker 
+     * @param {*} markerObject 
+     * @param {*} event 
+     */
     onClickMarker(marker, markerObject, event) {
         console.log(marker, markerObject, event)
-        const city = marker['city'];
-        console.log(city)
+        const country = marker['country'];
+        console.log(country)
         this.setState({
-            clicked: city
+            clicked: country
         });
     }
 
     async componentDidMount() {
+        //establishing the globe function
         this.setState({
-            globe: new SimpleGlobe({markerClick: this.onClickMarker}).render()
-        })
+            globe: new SimpleGlobe(
+                {
+                    markerClick: this.onClickMarker,
+                    markers: this.state.globe_markers,
+                    options: this.state.globe_options,
+                    initialCoordinates: [17.4921, -84.0852]
+                }
+            ).getGlobe()
+        });
+
+        //making queries
         const config = {
             'Content-Type':'application/json'
         }
@@ -59,9 +129,12 @@ export class LandingPage extends React.Component {
             body,
             config
         );
+
         if(res.status === 200) {
             this.setState({costa_rica_data: res.data});
         }
+        
+        this.setState({loading: false})
     }
 
     handleViewMexicoClick() {
@@ -72,25 +145,27 @@ export class LandingPage extends React.Component {
         this.setState({isViewMexicoButton: false});
     }
 
+    ViewMexicoButton(props) {
+        return (
+            <button onClick={props.onClick}>
+                View Nicaragua
+            </button>
+        );
+    }
+    
+    ViewNicaraguaButton(props) {
+        return (
+            <button onClick={props.onClick}>
+                View Mexico
+            </button>
+        );
+    }
+
     render() {
-        if(this.state.costa_rica_data){
-            const isViewMexico = this.state.isViewMexicoButton;
-            let currentData;
-            let selectViewButton;
-
-            // logic to change states
-            if (isViewMexico) {
-                selectViewButton = <ViewNicaraguaButton onClick={this.handleViewNicaraguaClick} />;
-                currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
-
-            } else {
-                selectViewButton = <ViewMexicoButton onClick={this.handleViewMexicoClick} />;
-            }
-
+        if(!this.state.loading){
+            let currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
             return (
                 <div>
-                    <Main isViewMexicoButton={isViewMexico} />
-                    {selectViewButton}
                     <Select />
                     {currentData}
                     <div>
@@ -105,46 +180,6 @@ export class LandingPage extends React.Component {
             return <div>Loading........</div>;
         }
     }
-}
-
-function RenderComponentNicaragua() {
-    return <h1> This is a component that renders from view Nicaragua button </h1>;
-}
-
-function RenderComponentMexico() {
-    return <h1> This is a component that renders from view Mexico button </h1>;
-}
-
-
-function Main(props) {
-    const isViewMexicoButton = props.isViewMexicoButton;
-    if (isViewMexicoButton) {
-        return <>
-            <RenderComponentNicaragua />
-            <Button />
-            </>
-    }
-    return <>
-        <RenderComponentMexico />
-        <Button />
-
-    </>
-}
-
-function ViewMexicoButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            View Nicaragua
-        </button>
-    );
-}
-
-function ViewNicaraguaButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            View Mexico
-        </button>
-    );
 }
 
 export default LandingPage
