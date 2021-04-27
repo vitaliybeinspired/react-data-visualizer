@@ -7,13 +7,12 @@ import Select from '../components/Select';
 import DateTimePicker from '../components/DateTimePicker'
 import React from 'react';
 
-
 import ReactAudioPlayer from 'react-audio-player';
 
-
-
-
 const axios = require('axios');
+
+let audio = new Audio("audio/zoom_in.mp3")
+
 
 
 export class LandingPage extends React.Component {
@@ -29,7 +28,10 @@ export class LandingPage extends React.Component {
         this.onClickMarker = this.onClickMarker.bind(this);
     }
 
+
+
     onClickMarker(marker, markerObject, event) {
+        audio.play();
         console.log(marker, markerObject, event)
         const city = marker['city'];
         console.log(city)
