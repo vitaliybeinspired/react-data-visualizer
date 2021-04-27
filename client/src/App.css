@@ -3,11 +3,10 @@
 }
 
 div.globe {
-  width: 50vh;
+  width: 100vh - 2em;
   height: 50vh;
   padding: 1em;
 }
-
 
 div.selection-form{
   padding: 1em;

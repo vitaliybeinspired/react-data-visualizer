@@ -2,7 +2,6 @@ import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
 import {SimpleGlobe} from '../components/Globe'
-import Select from '../components/Select';
 import DateTimePicker from '../components/DateTimePicker'
 import React from 'react';
 
@@ -10,16 +9,10 @@ import ReactAudioPlayer from 'react-audio-player';
 
 const axios = require('axios');
 
-let audio = new Audio("audio/zoom_in.mp3")
-
-
-
 export class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
-        this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
         this.state = {
             loading: true,
             clicked: "none",
@@ -64,8 +57,8 @@ export class LandingPage extends React.Component {
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
                 cameraAutoRotateSpeed: 0.05,
-                focusAnimationDuration: 2000,
-                focusEasingFunction: ['Quintic', 'Out'],
+                focusAnimationDuration: 1500,
+                focusEasingFunction: ['Quintic', 'InOut'],
                 globeGlowPower: 5,
                 enableMarkerGlow: true,
                 markerEnterAnimationDuration: 0.4,
@@ -88,6 +81,7 @@ export class LandingPage extends React.Component {
      * @param {*} event 
      */
     onClickMarker(marker, markerObject, event) {
+        let audio = new Audio("audio/wind.mp3")
         audio.play();
         console.log(marker, markerObject, event)
         const country = marker['country'];
@@ -144,36 +138,11 @@ export class LandingPage extends React.Component {
         this.setState({loading: false})
     }
 
-    handleViewMexicoClick() {
-        this.setState({isViewMexicoButton: true});
-    }
-
-    handleViewNicaraguaClick() {
-        this.setState({isViewMexicoButton: false});
-    }
-
-    ViewMexicoButton(props) {
-        return (
-            <button onClick={props.onClick}>
-                View Nicaragua
-            </button>
-        );
-    }
-    
-    ViewNicaraguaButton(props) {
-        return (
-            <button onClick={props.onClick}>
-                View Mexico
-            </button>
-        );
-    }
-
     render() {
         if(!this.state.loading){
             let currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
             return (
                 <div>
-                    <Select />
                     {currentData}
                     <DateTimePicker />
                     <ReactAudioPlayer
