@@ -4,7 +4,15 @@ import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
 import {SimpleGlobe} from './GlobeTest'
 import Button from '../components/Buttons';
 import Select from '../components/Select';
+import DateTimePicker from '../components/DateTimePicker'
 import React from 'react';
+
+
+import ReactAudioPlayer from 'react-audio-player';
+
+
+
+
 const axios = require('axios');
 
 
@@ -93,6 +101,12 @@ export class LandingPage extends React.Component {
                     {selectViewButton}
                     <Select />
                     {currentData}
+                    <DateTimePicker />
+                    <ReactAudioPlayer
+                        src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
+                        autoPlay
+                        controls
+                    />
                     <div>
                         <p>The last marker clicked was: {this.state.clicked}
                         </p>
