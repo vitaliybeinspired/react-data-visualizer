@@ -2,10 +2,16 @@ import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
 import {SimpleGlobe} from '../components/Globe'
-import Button from '../components/Buttons';
 import Select from '../components/Select';
+import DateTimePicker from '../components/DateTimePicker'
 import React from 'react';
+
+import ReactAudioPlayer from 'react-audio-player';
+
 const axios = require('axios');
+
+let audio = new Audio("audio/zoom_in.mp3")
+
 
 
 export class LandingPage extends React.Component {
@@ -82,6 +88,7 @@ export class LandingPage extends React.Component {
      * @param {*} event 
      */
     onClickMarker(marker, markerObject, event) {
+        audio.play();
         console.log(marker, markerObject, event)
         const country = marker['country'];
         console.log(country)
@@ -168,6 +175,12 @@ export class LandingPage extends React.Component {
                 <div>
                     <Select />
                     {currentData}
+                    <DateTimePicker />
+                    <ReactAudioPlayer
+                        src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
+                        autoPlay
+                        controls
+                    />
                     <div>
                         <p>The last marker clicked was: {this.state.clicked}
                         </p>
