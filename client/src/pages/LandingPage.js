@@ -177,6 +177,7 @@ export class LandingPage extends React.Component {
                     <ReactAudioPlayer
                         src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
                         autoPlay
+                        loop
                         controls
                     />
                     <div>
