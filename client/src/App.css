@@ -10,7 +10,7 @@ div.date-time-picker{
   position: absolute;
   left: 0;
   padding-left: 5px;
-  padding-top: 5px;
+  margin-top: 50px;
 }
 
 div.country-plotly{
@@ -24,7 +24,18 @@ div.country-plotly{
 div.globe {
   position: relative;
   width: 100vh - 4vh;
-  height: 96vh;
+  height: 100vh;
+}
+
+.Title {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: top;
+  background-color: rgb(24, 196, 167);
+  color: rgb(0, 0, 0);
 }
 
 /*Here is an example on animations*/

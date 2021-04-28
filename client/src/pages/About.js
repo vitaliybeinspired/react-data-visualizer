@@ -2,6 +2,7 @@ import '../index.css';
 import '../App.css';
 import React from 'react';
 import Max from "../images/MaxAyala.jpg";
+import Title from "../components/Title"
 import Vitaliy from "../images/MaxAyala.jpg";
 import Andre from "../images/MaxAyala.jpg";
 import Naoki from "../images/MaxAyala.jpg";
@@ -10,6 +11,7 @@ export class About extends React.Component {
   render() {
   	return (
 			<div>
+			<Title />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/*
 				I got rid of this bc it was messing with nav bar

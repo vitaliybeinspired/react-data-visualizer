@@ -1,7 +1,7 @@
 .Title {
     box-sizing: border-box;
     width: 100%;
-    height: 4vh;
+    height: 45px;
     display: flex;
     align-items: top;
     background-color: rgb(24, 196, 167);
