@@ -64,12 +64,11 @@ export default class Costa_Rica_Historic extends React.Component {
             }
         }
         else{
-            return <div>Loading...</div>;
+            return <div className="country-plotly">Loading...</div>;
         }
 
         return (
-            <>
-                <h1>{}</h1>
+            <div className="country-plotly">
                 <Plot
                     data={[
                         {
@@ -119,9 +118,31 @@ export default class Costa_Rica_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'Costa Rica Historic'} }
+                    layout={ 
+                        {
+                            width: 800, 
+                            height: 500,
+                            yaxis:{
+                                title: "MWh",
+                                // showticklabels: false,
+                                gridcolor: "#FFFFFF55"
+                            },
+                            xaxis:{
+                                title: "Time",
+                                showticklabels: false,
+                                gridcolor: "#FFFFFF55"
+                            },
+                            plot_bgcolor:"#FFFFFF99",
+                            paper_bgcolor:"#00000000",
+                            font: 
+                                {
+                                    color: "#FFFFFF",
+                                },
+                            title: 'Costa Rica Historic'
+                        }
+                    }
                 />
-            </>
+            </div>
         );
     }
 }

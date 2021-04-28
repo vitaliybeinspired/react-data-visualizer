@@ -3,15 +3,14 @@ import { enGB } from 'date-fns/locale'
 import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates'
 import 'react-nice-dates/build/style.css'
 
-
-{/*Add this as props to not be able to select past days and only from current day
+/*Add this as props to not be able to select past days and only from current day
 
 minimumDate={new Date()}
 
 So we can click and drag or type or select date ranges.
 Need hour filter?
 
-*/}
+*/
 
 function DateRangePickerExample() {
     const [startDate, setStartDate] = useState()

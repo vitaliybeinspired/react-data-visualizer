@@ -1,25 +1,20 @@
 import '../index.css';
 import '../App.css';
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
-import {SimpleGlobe} from '../components/Globe';
-import Select from '../components/Select';
-import DateTimePicker from '../components/DateTimePicker';
+import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
+import Mexico_Historic from '../components/Mexico_Historic.js';
+import El_Salvador_Historic from '../components/El_Salvador_Historic.js'
+import {SimpleGlobe} from '../components/Globe'
+import DateTimePicker from '../components/DateTimePicker'
 import React from 'react';
-
 import ReactAudioPlayer from 'react-audio-player';
 
 const axios = require('axios');
-
-let audio = new Audio("audio/zoom_in.mp3")
-
-
 
 export class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleViewMexicoClick = this.handleViewMexicoClick.bind(this);
-        this.handleViewNicaraguaClick = this.handleViewNicaraguaClick.bind(this);
         this.state = {
             loading: true,
             clicked: "none",
@@ -59,22 +54,29 @@ export class LandingPage extends React.Component {
             // https://github.com/chrisrzhou/react-globe/blob/main/docs/props.mdx
             globe_options: {
                 ambientLightColor: 'white',
-                ambientLightIntensity: 0.6,
+                ambientLightIntensity: 0.15,
                 enableDefocus: false,
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
-                cameraAutoRotateSpeed: 0.05,
-                focusAnimationDuration: 2000,
-                focusEasingFunction: ['Quintic', 'Out'],
+                cameraAutoRotateSpeed: 0.025,
+                focusAnimationDuration: 1750,
+                focusEasingFunction: ['Quintic', 'InOut'],
                 globeGlowPower: 5,
                 enableMarkerGlow: true,
                 markerEnterAnimationDuration: 0.4,
                 markerGlowCoefficient: 0.5,
                 markerGlowPower: 1.2,
-                pointLightColor: 'gold',
-                pointLightIntensity: 0.15,
+                pointLightColor: 'white',
+                pointLightIntensity: 1.0,
+                pointLightPositionRadiusScales: [-1500, 500, 1500],
                 markerType: 'dot',
                 markerTooltipRenderer: marker => `${marker.country}`,
+            },
+            country_data: {
+                "ElSalvador" : null,
+                "Mexico" : null,
+                "Nicaragua" : null,
+                "CostaRica" : null,
             },
         }
         this.onClickMarker = this.onClickMarker.bind(this);
@@ -88,31 +90,16 @@ export class LandingPage extends React.Component {
      * @param {*} event 
      */
     onClickMarker(marker, markerObject, event) {
+        let audio = new Audio("audio/wind.mp3")
         audio.play();
         console.log(marker, markerObject, event)
-        const country = marker['country'];
-        console.log(country)
-        this.setState({
-            clicked: country
-        });
+        const country_id = marker['id'];
+        this.queryData(country_id, '01/09/2019')
+        this.setState({clicked: country_id});
     }
 
-    
-
-    async componentDidMount() {
-        //establishing the globe function
-        this.setState({
-            globe: new SimpleGlobe(
-                {
-                    markerClick: this.onClickMarker,
-                    markers: this.state.globe_markers,
-                    options: this.state.globe_options,
-                    initialCoordinates: [17.4921, -84.0852]
-                }
-            ).getGlobe()
-        });
-
-        //making queries
+    async queryData(country_string, date_string)
+    {
         const config = {
             'Content-Type':'application/json'
         }
@@ -124,7 +111,7 @@ export class LandingPage extends React.Component {
 
         // These are all equivalent
         const body  = {
-            dateUS: '01/09/2019'
+            dateUS: date_string
         }
         // const body  = {
         //     date: '09/01/2019'
@@ -134,60 +121,74 @@ export class LandingPage extends React.Component {
         // }
 
         const res = await axios.post(
-            `query/CostaRica/Historic`,
+            `query/${country_string}/Historic`,
             body,
             config
         );
 
         if(res.status === 200) {
-            this.setState({costa_rica_data: res.data});
+            let copy = this.state.country_data
+            copy[country_string] = res.data
+            this.setState({country_data: copy});
         }
-        
+    }
+
+    componentDidMount() {
+        this.setState({
+            globe: new SimpleGlobe(
+                {
+                    markerClick: this.onClickMarker,
+                    markers: this.state.globe_markers,
+                    options: this.state.globe_options,
+                    initialCoordinates: [17.4921, -84.0852]
+                }
+            ).getGlobe()
+        });
         this.setState({loading: false})
     }
 
-    handleViewMexicoClick() {
-        this.setState({isViewMexicoButton: true});
-    }
-
-    handleViewNicaraguaClick() {
-        this.setState({isViewMexicoButton: false});
-    }
-
-    ViewMexicoButton(props) {
-        return (
-            <button onClick={props.onClick}>
-                View Nicaragua
-            </button>
-        );
-    }
-    
-    ViewNicaraguaButton(props) {
-        return (
-            <button onClick={props.onClick}>
-                View Mexico
-            </button>
-        );
+    graph(){
+        if(this.state.clicked === "Mexico"){
+            return(
+                <Mexico_Historic dataFromParent={this.state.country_data['Mexico']}/>
+            )
+        }
+        else if(this.state.clicked === "ElSalvador"){
+            return(
+                <El_Salvador_Historic dataFromParent={this.state.country_data['ElSalvador']}/>
+            )
+        }
+        else if(this.state.clicked === "CostaRica"){
+            return(
+                <Costa_Rica_Historic dataFromParent={this.state.country_data['CostaRica']}/>
+            )
+        }
+        else if(this.state.clicked === "Nicaragua"){
+            return(
+                <Nicaragua_Historic dataFromParent={this.state.country_data['Nicaragua']}/>
+            )
+        }
+        else{
+            return <div className="country-plotly"/>
+        }
     }
 
     render() {
         if(!this.state.loading){
-            let currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
             return (
                 <div>
-                    <Select />
-                    {currentData}
                     <DateTimePicker />
                     <ReactAudioPlayer
-                        src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
-                        autoPlay
+                        src="audio/Distant-Mountains.mp3"
+                        id="bgm-audio-player"
                         controls
+                        autoPlay
+                        loop
                     />
-                    <div>
-                        <p>The last marker clicked was: {this.state.clicked}
-                        </p>
+                    <div className="globe">
+                        {this.graph()}
+                        {this.state.globe}
                     </div>
-                    {this.state.globe}
                 </div>
             );
         }

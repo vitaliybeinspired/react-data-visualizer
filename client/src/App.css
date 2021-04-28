@@ -1,16 +1,15 @@
-.App {
-  text-align: left;
+div.country-plotly{
+  position: absolute;
+  height: 0;
+  width: 0;
+  bottom: 0;
+  transform: translate(0, -500px);
 }
 
 div.globe {
-  width: 50vh;
-  height: 50vh;
-  padding: 1em;
-}
-
-
-div.selection-form{
-  padding: 1em;
+  position: relative;
+  width: 100vh - 2em;
+  height: 100vh;
 }
 
 /*Here is an example on animations*/
