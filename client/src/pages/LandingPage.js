@@ -198,7 +198,6 @@ export class LandingPage extends React.Component {
         if(!this.state.loading){
             return (
                 <div>
-                    <Select />
                     <DateTimePicker />
                     <ReactAudioPlayer
                         src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
