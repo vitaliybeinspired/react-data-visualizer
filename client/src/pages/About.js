@@ -1,10 +1,10 @@
 import '../index.css';
 import '../App.css';
 import React from 'react';
-import Max from "../images/MaxAyala.jpg";
-import Vitaliy from "../images/MaxAyala.jpg";
-import Andre from "../images/MaxAyala.jpg";
-import Naoki from "../images/MaxAyala.jpg";
+import Max from "../images/Max.jpg";
+import Vitaliy from "../images/Vitaliy.jpeg";
+import Andre from "../images/Andre.jpg";
+import Naoki from "../images/Naoki.jpg";
 
 export class About extends React.Component {
   render() {
