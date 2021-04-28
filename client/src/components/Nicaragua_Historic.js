@@ -106,7 +106,7 @@ export default class Nicaragua_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'Nicaragua Historic'} }
+                    layout={ {width: 600, height: 350, title: 'Nicaragua Historic'} }
                 />
             </div>
         );

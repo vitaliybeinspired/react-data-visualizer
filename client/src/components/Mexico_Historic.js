@@ -128,7 +128,7 @@ export default class Mexico_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'Mexico Historic'} }
+                    layout={ {width: 600, height: 350, title: 'Mexico Historic'} }
                 />
             </div>
         );

@@ -118,7 +118,7 @@ export default class Costa_Rica_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'Costa Rica Historic'} }
+                    layout={ {width: 600, height: 350, title: 'Costa Rica Historic'} }
                 />
             </div>
         );

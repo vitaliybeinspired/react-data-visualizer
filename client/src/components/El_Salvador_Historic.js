@@ -121,7 +121,7 @@ export default class El_Salvador_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'El Salvador Historic'} }
+                    layout={ {width: 600, height: 350, title: 'El Salvador Historic'} }
                 />
             </div>
         );

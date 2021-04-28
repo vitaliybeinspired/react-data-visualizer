@@ -185,12 +185,12 @@ export class LandingPage extends React.Component {
                         autoPlay
                         loop
                     />
-                    <div>
+                    <div className="globe">
                         <p>
                             {this.graph()}
                         </p>
+                        {this.state.globe}
                     </div>
-                    {this.state.globe}
                 </div>
             );
         }
