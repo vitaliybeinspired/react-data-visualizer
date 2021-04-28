@@ -1,9 +1,9 @@
 import '../index.css';
-import '../App.css'
+import '../App.css';
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
-import {SimpleGlobe} from '../components/Globe'
+import {SimpleGlobe} from '../components/Globe';
 import Select from '../components/Select';
-import DateTimePicker from '../components/DateTimePicker'
+import DateTimePicker from '../components/DateTimePicker';
 import React from 'react';
 
 import ReactAudioPlayer from 'react-audio-player';
@@ -96,6 +96,8 @@ export class LandingPage extends React.Component {
             clicked: country
         });
     }
+
+    
 
     async componentDidMount() {
         //establishing the globe function
