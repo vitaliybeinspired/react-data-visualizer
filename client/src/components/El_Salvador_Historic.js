@@ -70,6 +70,15 @@ export default class El_Salvador_Historic extends React.Component {
                         {
 
                             type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'yellow'},
+                            name: 'solar',
+                            x: x,
+                            y: solar,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'blue'},
                             name: 'hydro',
                             x: x,
@@ -77,6 +86,15 @@ export default class El_Salvador_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'green'},
+                            name: 'biomass',
+                            x: x,
+                            y: biomass
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'black'},
                             name: 'interchange',
                             x: x,
@@ -85,14 +103,7 @@ export default class El_Salvador_Historic extends React.Component {
                         {
 
                             type: 'line',
-                            marker: {color: 'yellow'},
-                            name: 'solar',
-                            x: x,
-                            y: solar,
-                        },
-                        {
-
-                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'red'},
                             name: 'thermal',
                             x: x,
@@ -100,6 +111,7 @@ export default class El_Salvador_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'cyan'},
                             name: 'wind',
                             x: x,
@@ -107,17 +119,11 @@ export default class El_Salvador_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'orange'},
                             name: 'geothermal',
                             x: x,
                             y: geothermal
-                        },
-                        {
-                            type: 'line',
-                            marker: {color: 'green'},
-                            name: 'biomass',
-                            x: x,
-                            y: biomass
                         },
 
                     ]}

@@ -72,49 +72,55 @@ export default class Costa_Rica_Historic extends React.Component {
                 <Plot
                     data={[
                         {
-
                             type: 'line',
-                            marker: {color: 'blue'},
-                            name: 'hydro',
+                            stackgroup: 'one',
+                            marker: {color: 'orange'},
+                            name: 'other',
                             x: x,
-                            y: hydro,
-                        },
-                        {
-                            type: 'line',
-                            marker: {color: 'black'},
-                            name: 'interchange',
-                            x: x,
-                            y: interchange,
+                            y: other
                         },
                         {
 
                             type: 'line',
-                            marker: {color: 'yellow'},
-                            name: 'solar',
-                            x: x,
-                            y: solar,
-                        },
-                        {
-
-                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'red'},
                             name: 'thermal',
                             x: x,
                             y: thermal
                         },
                         {
+
                             type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'yellow'},
+                            name: 'solar',
+                            x: x,
+                            y: solar,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'black'},
+                            name: 'interchange',
+                            x: x,
+                            y: interchange,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'cyan'},
                             name: 'wind',
                             x: x,
                             y: wind
                         },
                         {
+
                             type: 'line',
-                            marker: {color: 'orange'},
-                            name: 'other',
+                            stackgroup: 'one',
+                            marker: {color: 'blue'},
+                            name: 'hydro',
                             x: x,
-                            y: other
+                            y: hydro,
                         },
 
                     ]}
