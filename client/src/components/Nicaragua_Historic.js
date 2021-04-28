@@ -56,8 +56,7 @@ export default class Nicaragua_Historic extends React.Component {
         }
 
         return (
-            <>
-                <h1>{}</h1>
+            <div className="country-plotly">
                 <Plot
                     data={[
                         {
@@ -109,7 +108,7 @@ export default class Nicaragua_Historic extends React.Component {
                     ]}
                     layout={ {width: 800, height: 400, title: 'Nicaragua Historic'} }
                 />
-            </>
+            </div>
         );
     }
 }
