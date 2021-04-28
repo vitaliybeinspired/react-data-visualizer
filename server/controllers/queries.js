@@ -12,9 +12,8 @@ const {date_to_week, date_to_weekUS, date_to_weekJS}  = require('../date_to_week
 //Database password: WattTime2021
 const MONGODB_URI = 'mongodb+srv://REACT:WattTime2021@cluster0.tbh2o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
-
 exports.CostaR_historic = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -44,9 +43,13 @@ exports.CostaR_historic = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.Nic_historic = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -77,9 +80,13 @@ exports.Nic_historic = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.ElSalv_historic = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -110,9 +117,13 @@ exports.ElSalv_historic = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.Mex_historic = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -143,9 +154,13 @@ exports.Mex_historic = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.CostaR_forecast = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -176,9 +191,13 @@ exports.CostaR_forecast = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.Nic_forecast = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -209,9 +228,13 @@ exports.Nic_forecast = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        await client.close();
+    }
 }
 
 exports.ElSalv_forecast = async (req, res) => {
+    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -241,5 +264,8 @@ exports.ElSalv_forecast = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({err: err});
+    }
+    if(client.isConnected()){
+        await client.close();
     }
 }
