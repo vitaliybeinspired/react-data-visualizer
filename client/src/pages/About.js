@@ -51,8 +51,6 @@ export class About extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="row">
 					<div className="column">
 						<div className="card">
 							<img src={Naoki} alt="Naoki" style={{width: '100%'}} />
