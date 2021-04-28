@@ -60,7 +60,7 @@ export default class El_Salvador_Historic extends React.Component {
             }
         }
         else{
-            return <div>Loading...</div>;
+            return <div className="country-plotly">Loading...</div>;
         }
 
         return (

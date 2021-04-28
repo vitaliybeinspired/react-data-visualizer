@@ -2,6 +2,11 @@
   text-align: left;
 }
 
+div.country-plotly{
+  height: 35vh;
+  width: 100%;
+}
+
 div.globe {
   width: 100vh - 2em;
   height: 50vh;

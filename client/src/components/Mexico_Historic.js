@@ -61,7 +61,7 @@ export default class Mexico_Historic extends React.Component {
             }
         }
         else{
-            return <div>Loading...</div>;
+            return <div className="country-plotly">Loading...</div>;
         }
 
         return (
