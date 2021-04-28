@@ -25,7 +25,7 @@ export class SimpleGlobe extends React.Component {
     getGlobe() { 
         return (
             <ReactGlobe
-                initialCameraDistanceRadiusScale="2.75"
+                initialCameraDistanceRadiusScale="3.25"
                 //TODO we should download and copy these for our server to use
                 globeBackgroundTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png"
                 globeCloudsTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/clouds.png"
