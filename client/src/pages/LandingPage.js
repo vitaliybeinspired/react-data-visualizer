@@ -1,5 +1,5 @@
 import '../index.css';
-import '../App.css'
+import '../App.css';
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
 import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
 import Mexico_Historic from '../components/Mexico_Historic.js';
