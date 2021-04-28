@@ -5,11 +5,12 @@
 div.country-plotly{
   height: 30vh;
   width: 100%;
+  position: absolute;
 }
 
 div.globe {
   width: 100vh - 2em;
-  height: 60vh;
+  height: 90vh;
 }
 
 div.selection-form{
