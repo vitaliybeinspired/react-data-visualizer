@@ -1,0 +1,38 @@
+audio{
+    position: absolute;
+    right: 0;
+    margin-top: 3.5em;
+    margin-right: 1em;
+  }
+  
+  div.date-time-picker{
+    position: absolute;
+    left: 0;
+    margin-left: 5px;
+    margin-top: 50px;
+  }
+  
+  div.country-plotly{
+    position: absolute;
+    height: 0;
+    width: 0;
+    bottom: 0;
+    transform: translate(0, -500px);
+  }
+  
+  div.globe {
+    position: relative;
+    width: 100vh - 4vh;
+    height: 100vh;
+  }
+  
+  .NavBar {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: top;
+    background-color: rgb(24, 196, 167);
+    color: rgb(0, 0, 0);
+  }
