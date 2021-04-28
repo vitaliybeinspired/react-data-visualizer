@@ -6,7 +6,7 @@ import Mexico_Historic from '../components/Mexico_Historic.js';
 import El_Salvador_Historic from '../components/El_Salvador_Historic.js'
 import {SimpleGlobe} from '../components/Globe'
 import DateTimePicker from '../components/DateTimePicker'
-import Title from '../components/Title'
+import NavBar from '../components/NavBar'
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 
@@ -185,7 +185,7 @@ export class LandingPage extends React.Component {
             return (
                 <div>
                     <div className="globe">
-                        <Title />
+                        <NavBar />
                         <DateTimePicker />
                         <ReactAudioPlayer
                             src="audio/Distant-Mountains.mp3"

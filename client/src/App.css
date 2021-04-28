@@ -1,7 +1,7 @@
 audio{
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 3.5em;
   margin-right: 1em;
   margin-bottom: 1em;
 }

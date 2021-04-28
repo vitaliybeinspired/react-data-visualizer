@@ -1,12 +1,12 @@
 import React from 'react';
-import './Title.css';
+import './NavBar.css';
 import { NavLink } from 'react-router-dom';
 
 
 
-function Title() {
+function NavBar() {
     return (
-        <div className="Title">
+        <div className="NavBar">
             <h1>CFV</h1>    
             <div className="nav-bar">
                 <NavLink
@@ -32,4 +32,4 @@ function Title() {
     )
 }
 
-export default Title
+export default NavBar

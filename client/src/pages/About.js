@@ -2,7 +2,7 @@ import '../index.css';
 import '../App.css';
 import React from 'react';
 import Max from "../images/Max.jpg";
-import Title from "../components/Title"
+import NavBar from "../components/NavBar"
 import Vitaliy from "../images/Vitaliy.jpeg";
 import Andre from "../images/Andre.jpg";
 import Naoki from "../images/Naoki.jpg";
@@ -11,7 +11,7 @@ export class About extends React.Component {
   render() {
   	return (
 			<div>
-			<Title />
+			<NavBar />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/*
 				I got rid of this bc it was messing with nav bar
@@ -51,8 +51,6 @@ export class About extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="row">
 					<div className="column">
 						<div className="card">
 							<img src={Naoki} alt="Naoki" style={{width: '100%'}} />
