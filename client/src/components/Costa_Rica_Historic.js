@@ -19,7 +19,6 @@ export default class Costa_Rica_Historic extends React.Component {
 
         if(data){
             delete data['_id'];
-            console.log(data)
 
             for(let k in data){
                 x.push(k);
@@ -64,64 +63,91 @@ export default class Costa_Rica_Historic extends React.Component {
             }
         }
         else{
-            return <div>Loading...</div>;
+            return <div className="country-plotly">Loading...</div>;
         }
 
         return (
-            <>
-                <h1>{}</h1>
+            <div className="country-plotly">
                 <Plot
                     data={[
                         {
-
                             type: 'line',
-                            marker: {color: 'blue'},
-                            name: 'hydro',
+                            stackgroup: 'one',
+                            marker: {color: 'orange'},
+                            name: 'other',
                             x: x,
-                            y: hydro,
-                        },
-                        {
-                            type: 'line',
-                            marker: {color: 'black'},
-                            name: 'interchange',
-                            x: x,
-                            y: interchange,
+                            y: other
                         },
                         {
 
                             type: 'line',
-                            marker: {color: 'yellow'},
-                            name: 'solar',
-                            x: x,
-                            y: solar,
-                        },
-                        {
-
-                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'red'},
                             name: 'thermal',
                             x: x,
                             y: thermal
                         },
                         {
+
                             type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'yellow'},
+                            name: 'solar',
+                            x: x,
+                            y: solar,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'black'},
+                            name: 'interchange',
+                            x: x,
+                            y: interchange,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'cyan'},
                             name: 'wind',
                             x: x,
                             y: wind
                         },
                         {
+
                             type: 'line',
-                            marker: {color: 'orange'},
-                            name: 'other',
+                            stackgroup: 'one',
+                            marker: {color: 'blue'},
+                            name: 'hydro',
                             x: x,
-                            y: other
+                            y: hydro,
                         },
 
                     ]}
-                    layout={ {width: 800, height: 400, title: 'Costa Rica Historic'} }
+                    layout={ 
+                        {
+                            width: 800, 
+                            height: 500,
+                            yaxis:{
+                                title: "MWh",
+                                // showticklabels: false,
+                                gridcolor: "#FFFFFF55"
+                            },
+                            xaxis:{
+                                title: "Time",
+                                showticklabels: false,
+                                gridcolor: "#FFFFFF55"
+                            },
+                            plot_bgcolor:"#FFFFFF99",
+                            paper_bgcolor:"#00000000",
+                            font: 
+                                {
+                                    color: "#FFFFFF",
+                                },
+                            title: 'Costa Rica Historic'
+                        }
+                    }
                 />
-            </>
+            </div>
         );
     }
 }

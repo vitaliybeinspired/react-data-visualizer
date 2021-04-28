@@ -1,0 +1,33 @@
+.NavBar {
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: top;
+    background-color: rgb(24, 196, 167);
+    color: rgb(0, 0, 0);
+}
+
+h1 {
+    margin-top: 0;
+    padding-right: 0.5em;
+    padding-left: 10px;
+}
+
+.NavBar .nav-link {
+    display: inline-block;
+    padding-top: 0.65em;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    color: rgba(255, 255, 255, 0.835);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.NavBar .nav-link-active {
+    padding-left: 1em;
+    padding-right: 1em;
+    color: #fff;
+    border-bottom: 2px solid;
+}

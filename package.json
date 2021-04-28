@@ -1,7 +1,7 @@
 {
   "scripts": {
     "server-install": "cd server && npm install --legacy-peer-deps",
-    "client-install": "cd client && npm install",
+    "client-install": "cd client && npm install --legacy-peer-deps",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "dev": "cd server && npm run dev",
@@ -12,16 +12,11 @@
     "@date-io/date-fns": "^1.3.13",
     "concurrently": "^6.0.0",
     "install": "^0.13.0",
-    "moment": "^2.29.1",
     "nodemon": "^2.0.7",
     "npm": "^7.6.3",
     "react": "^16.14.0",
-    "react-audio-player": "^0.17.0",
-    "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",
-    "react-globe": "^2.0.1",
     "react-router-dom": "^5.2.0",
-    "react-with-direction": "^1.3.1",
-    "three": "^0.128.0"
+    "react-with-direction": "^1.3.1"
   }
 }
