@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
         <Router>
-        <Title />
+          <Title />
           <Route exact path ='/' component = {LandingPage}/>
           <Route exact path ='/about' component = {About}/>
           <Route exact path ='/exportdata' component = {ExportData}/>

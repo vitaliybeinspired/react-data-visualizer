@@ -16,31 +16,33 @@ function DateRangePickerExample() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
     return (
-        <DateRangePicker
-            startDate={startDate}
-            endDate={endDate}
-            onStartDateChange={setStartDate}
-            onEndDateChange={setEndDate}
-            minimumLength={1}
-            format='MMMMMMMMMM dd, yyyy'
-            locale={enGB}
-        >
-            {({ startDateInputProps, endDateInputProps, focus }) => (
-                <div className='date-range'>
-                    <input
-                        className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                        {...startDateInputProps}
-                        placeholder='Start date'
-                    />
-                    <span className='date-range_arrow' />
-                    <input
-                        className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                        {...endDateInputProps}
-                        placeholder='End date'
-                    />
-                </div>
-            )}
-        </DateRangePicker>
+        <div className="date-time-picker">
+            <DateRangePicker
+                startDate={startDate}
+                endDate={endDate}
+                onStartDateChange={setStartDate}
+                onEndDateChange={setEndDate}
+                minimumLength={1}
+                format='MMMMMMMMMM dd, yyyy'
+                locale={enGB}
+            >
+                {({ startDateInputProps, endDateInputProps, focus }) => (
+                    <div className='date-range'>
+                        <input
+                            className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                            {...startDateInputProps}
+                            placeholder='Start date'
+                        />
+                        <span className='date-range_arrow' />
+                        <input
+                            className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                            {...endDateInputProps}
+                            placeholder='End date'
+                        />
+                    </div>
+                )}
+            </DateRangePicker>
+        </div>
     )
 }
 

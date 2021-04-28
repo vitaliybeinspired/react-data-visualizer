@@ -107,14 +107,14 @@ export default class Mexico_Historic extends React.Component {
                         },
                         {
                             type: 'line',
-                            marker: {color: 'grey'},
+                            marker: {color: 'yellow'},
                             name: 'nuclear power',
                             x: x,
                             y: nuclear_power
                         },
                         {
                             type: 'line',
-                            marker: {color: 'grey'},
+                            marker: {color: 'pink'},
                             name: 'turbo gas',
                             x: x,
                             y: turbo_gas
