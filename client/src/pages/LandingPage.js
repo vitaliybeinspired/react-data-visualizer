@@ -53,12 +53,12 @@ export class LandingPage extends React.Component {
             // simple and extensive options to configure globe here:
             // https://github.com/chrisrzhou/react-globe/blob/main/docs/props.mdx
             globe_options: {
-                ambientLightColor: 'white',
-                ambientLightIntensity: 0.6,
+                ambientLightColor: 'yellow',
+                ambientLightIntensity: 0.1,
                 enableDefocus: false,
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
-                cameraAutoRotateSpeed: 0.05,
+                cameraAutoRotateSpeed: 0.025,
                 focusAnimationDuration: 1750,
                 focusEasingFunction: ['Quintic', 'InOut'],
                 globeGlowPower: 5,
@@ -66,8 +66,9 @@ export class LandingPage extends React.Component {
                 markerEnterAnimationDuration: 0.4,
                 markerGlowCoefficient: 0.5,
                 markerGlowPower: 1.2,
-                pointLightColor: 'gold',
-                pointLightIntensity: 0.15,
+                pointLightColor: 'white',
+                pointLightIntensity: 0.95,
+                pointLightPositionRadiusScales: [-1500, 500, 800],
                 markerType: 'dot',
                 markerTooltipRenderer: marker => `${marker.country}`,
             },
@@ -147,22 +148,22 @@ export class LandingPage extends React.Component {
     }
 
     graph(){
-        if(this.state.clicked == "Mexico"){
+        if(this.state.clicked === "Mexico"){
             return(
                 <Mexico_Historic dataFromParent={this.state.country_data['Mexico']}/>
             )
         }
-        else if(this.state.clicked == "ElSalvador"){
+        else if(this.state.clicked === "ElSalvador"){
             return(
                 <El_Salvador_Historic dataFromParent={this.state.country_data['ElSalvador']}/>
             )
         }
-        else if(this.state.clicked == "CostaRica"){
+        else if(this.state.clicked === "CostaRica"){
             return(
                 <Costa_Rica_Historic dataFromParent={this.state.country_data['CostaRica']}/>
             )
         }
-        else if(this.state.clicked == "Nicaragua"){
+        else if(this.state.clicked === "Nicaragua"){
             return(
                 <Nicaragua_Historic dataFromParent={this.state.country_data['Nicaragua']}/>
             )
