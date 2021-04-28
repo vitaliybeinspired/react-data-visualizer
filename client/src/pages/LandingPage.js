@@ -53,8 +53,8 @@ export class LandingPage extends React.Component {
             // simple and extensive options to configure globe here:
             // https://github.com/chrisrzhou/react-globe/blob/main/docs/props.mdx
             globe_options: {
-                ambientLightColor: 'yellow',
-                ambientLightIntensity: 0.1,
+                ambientLightColor: 'white',
+                ambientLightIntensity: 0.15,
                 enableDefocus: false,
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
@@ -67,8 +67,8 @@ export class LandingPage extends React.Component {
                 markerGlowCoefficient: 0.5,
                 markerGlowPower: 1.2,
                 pointLightColor: 'white',
-                pointLightIntensity: 0.95,
-                pointLightPositionRadiusScales: [-1500, 500, 800],
+                pointLightIntensity: 1.0,
+                pointLightPositionRadiusScales: [-1500, 500, 1500],
                 markerType: 'dot',
                 markerTooltipRenderer: marker => `${marker.country}`,
             },
