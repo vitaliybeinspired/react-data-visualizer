@@ -1,6 +1,9 @@
 import '../index.css';
 import '../App.css'
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
+import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
+import Mexico_Historic from '../components/Mexico_Historic.js';
+import El_Salvador_Historic from '../components/El_Salvador_Historic.js'
 import {SimpleGlobe} from '../components/Globe'
 import Select from '../components/Select';
 import DateTimePicker from '../components/DateTimePicker'
@@ -131,14 +134,44 @@ export class LandingPage extends React.Component {
         //     dateJS: new Date(2019, 1, 9)
         // }
 
-        const res = await axios.post(
+        const resCRH = await axios.post(
             `query/CostaRica/Historic`,
             body,
             config
         );
 
-        if(res.status === 200) {
-            this.setState({costa_rica_data: res.data});
+        if(resCRH.status === 200) {
+            this.setState({costa_rica_data: resCRH.data});
+        }
+
+        const resNH = await axios.post(
+            `query/Nicaragua/Historic`,
+            body,
+            config
+        );
+
+        if(resNH.status === 200) {
+            this.setState({nicaragua_data: resNH.data});
+        }
+
+        const resMH = await axios.post(
+            `query/Mexico/Historic`,
+            body,
+            config
+        );
+
+        if(resMH.status === 200) {
+            this.setState({mexico_data: resMH.data});
+        }
+
+        const resELH = await axios.post(
+            `query/ElSalvador/Historic`,
+            body,
+            config
+        );
+
+        if(resELH.status === 200) {
+            this.setState({el_salvador_data: resELH.data});
         }
         
         this.setState({loading: false})
@@ -168,13 +201,34 @@ export class LandingPage extends React.Component {
         );
     }
 
+    Graph(props){
+        if(this.state.clicked == "Mexico"){
+            return(
+                <Mexico_Historic dataFromParent={this.state.mexico_data}/>
+            )
+        }
+        if(this.state.clicked == "El Salvador"){
+            return(
+                <El_Salvador_Historic dataFromParent={this.state.el_salvador_data}/>
+            )
+        }
+        if(this.state.clicked == "Costa Rica"){
+            return(
+                <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
+            )
+        }
+        if(this.state.clicked == "Nicaragua"){
+            return(
+                <Nicaragua_Historic dataFromParent={this.state.nicaragua_data}/>
+            )
+        }
+    }
+
     render() {
         if(!this.state.loading){
-            let currentData = <Costa_Rica_Historic dataFromParent={this.state.costa_rica_data}/>
             return (
                 <div>
                     <Select />
-                    {currentData}
                     <DateTimePicker />
                     <ReactAudioPlayer
                         src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
@@ -182,7 +236,7 @@ export class LandingPage extends React.Component {
                         controls
                     />
                     <div>
-                        <p>The last marker clicked was: {this.state.clicked}
+                        <p>{this.Graph()}
                         </p>
                     </div>
                     {this.state.globe}
