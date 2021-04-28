@@ -7,8 +7,8 @@ export class ExportData extends React.Component {
     render() {
         return (
             <div>
-            <NavBar />
-                <h1>Hello World</h1>
+                <NavBar />
+                <h1><br/>coming soon...</h1>
             </div>
         );
     }
