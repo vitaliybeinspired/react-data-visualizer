@@ -71,6 +71,7 @@ export default class Mexico_Historic extends React.Component {
                         {
 
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'blue'},
                             name: 'hydro',
                             x: x,
@@ -78,6 +79,7 @@ export default class Mexico_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'black'},
                             name: 'internal combustion',
                             x: x,
@@ -86,6 +88,7 @@ export default class Mexico_Historic extends React.Component {
                         {
 
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'red'},
                             name: 'thermal',
                             x: x,
@@ -93,6 +96,7 @@ export default class Mexico_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'cyan'},
                             name: 'wind',
                             x: x,
@@ -100,6 +104,7 @@ export default class Mexico_Historic extends React.Component {
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'orange'},
                             name: 'biomass',
                             x: x,
@@ -107,20 +112,23 @@ export default class Mexico_Historic extends React.Component {
                         },
                         {
                             type: 'line',
-                            marker: {color: 'grey'},
+                            stackgroup: 'one',
+                            marker: {color: 'yellow'},
                             name: 'nuclear power',
                             x: x,
                             y: nuclear_power
                         },
                         {
                             type: 'line',
-                            marker: {color: 'grey'},
+                            stackgroup: 'one',
+                            marker: {color: 'pink'},
                             name: 'turbo gas',
                             x: x,
                             y: turbo_gas
                         },
                         {
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'green'},
                             name: 'geothermal electric',
                             x: x,

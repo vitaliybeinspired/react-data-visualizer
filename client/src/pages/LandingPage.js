@@ -177,15 +177,15 @@ export class LandingPage extends React.Component {
         if(!this.state.loading){
             return (
                 <div>
-                    <DateTimePicker />
-                    <ReactAudioPlayer
-                        src="audio/Distant-Mountains.mp3"
-                        id="bgm-audio-player"
-                        controls
-                        autoPlay
-                        loop
-                    />
                     <div className="globe">
+                        <DateTimePicker />
+                        <ReactAudioPlayer
+                            src="audio/Distant-Mountains.mp3"
+                            id="bgm-audio-player"
+                            controls
+                            autoPlay
+                            loop
+                        />
                         {this.graph()}
                         {this.state.globe}
                     </div>

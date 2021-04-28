@@ -60,15 +60,8 @@ export default class Nicaragua_Historic extends React.Component {
                 <Plot
                     data={[
                         {
-
                             type: 'line',
-                            marker: {color: 'blue'},
-                            name: 'hydro',
-                            x: x,
-                            y: hydro,
-                        },
-                        {
-                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'black'},
                             name: 'interchange',
                             x: x,
@@ -77,6 +70,7 @@ export default class Nicaragua_Historic extends React.Component {
                         {
 
                             type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'yellow'},
                             name: 'solar',
                             x: x,
@@ -85,6 +79,24 @@ export default class Nicaragua_Historic extends React.Component {
                         {
 
                             type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'blue'},
+                            name: 'hydro',
+                            x: x,
+                            y: hydro,
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'cyan'},
+                            name: 'wind',
+                            x: x,
+                            y: wind
+                        },
+                        {
+
+                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'red'},
                             name: 'thermal',
                             x: x,
@@ -92,13 +104,7 @@ export default class Nicaragua_Historic extends React.Component {
                         },
                         {
                             type: 'line',
-                            marker: {color: 'cyan'},
-                            name: 'wind',
-                            x: x,
-                            y: wind
-                        },
-                        {
-                            type: 'line',
+                            stackgroup: 'one',
                             marker: {color: 'orange'},
                             name: 'other',
                             x: x,
