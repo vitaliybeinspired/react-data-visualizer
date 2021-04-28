@@ -60,7 +60,7 @@ export class LandingPage extends React.Component {
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
                 cameraAutoRotateSpeed: 0.05,
-                focusAnimationDuration: 1500,
+                focusAnimationDuration: 1750,
                 focusEasingFunction: ['Quintic', 'InOut'],
                 globeGlowPower: 5,
                 enableMarkerGlow: true,
