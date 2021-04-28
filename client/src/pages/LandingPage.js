@@ -175,10 +175,11 @@ export class LandingPage extends React.Component {
                 <div>
                     <DateTimePicker />
                     <ReactAudioPlayer
-                        src="http://soundimage.org/wp-content/uploads/2014/07/Distant-Mountains.mp3"
+                        src="audio/Distant-Mountains.mp3"
+                        id="bgm-audio-player"
+                        controls
                         autoPlay
                         loop
-                        controls
                     />
                     <div>
                         <p>
