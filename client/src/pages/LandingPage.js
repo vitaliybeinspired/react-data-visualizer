@@ -152,20 +152,23 @@ export class LandingPage extends React.Component {
                 <Mexico_Historic dataFromParent={this.state.country_data['Mexico']}/>
             )
         }
-        if(this.state.clicked == "ElSalvador"){
+        else if(this.state.clicked == "ElSalvador"){
             return(
                 <El_Salvador_Historic dataFromParent={this.state.country_data['ElSalvador']}/>
             )
         }
-        if(this.state.clicked == "CostaRica"){
+        else if(this.state.clicked == "CostaRica"){
             return(
                 <Costa_Rica_Historic dataFromParent={this.state.country_data['CostaRica']}/>
             )
         }
-        if(this.state.clicked == "Nicaragua"){
+        else if(this.state.clicked == "Nicaragua"){
             return(
                 <Nicaragua_Historic dataFromParent={this.state.country_data['Nicaragua']}/>
             )
+        }
+        else{
+            return <div className="country-plotly"/>
         }
     }
 
