@@ -185,15 +185,16 @@ export class LandingPage extends React.Component {
             return (
                 <div>
                     <div className="globe">
-                        <NavBar />
-                        <DateTimePicker />
+                        <NavBar/>
+                        <DateTimePicker/>
                         <ReactAudioPlayer
                             src="audio/Distant-Mountains.mp3"
                             controls
                             autoPlay
                             loop
+                            muted={false}
                             volume={this.state.volume}
-                            onVolumeChanged={(e) => this.volumeChangeEvent(e['path'][0].volume)}
+                            onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
                         />
                         {this.graph()}
                         {this.state.globe}

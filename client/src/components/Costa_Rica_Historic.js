@@ -19,7 +19,6 @@ export default class Costa_Rica_Historic extends React.Component {
 
         if(data){
             delete data['_id'];
-            console.log(data)
 
             for(let k in data){
                 x.push(k);

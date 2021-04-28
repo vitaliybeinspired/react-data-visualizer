@@ -18,10 +18,8 @@ export default class Mexico_Historic extends React.Component {
 
         var data = this.props.dataFromParent;
 
-        console.log(data);
         if(data){
             delete data['_id'];
-            console.log(data)
 
             for(let k in data){
                 x.push(k);

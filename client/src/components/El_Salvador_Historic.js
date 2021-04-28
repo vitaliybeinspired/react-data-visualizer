@@ -20,7 +20,6 @@ export default class El_Salvador_Historic extends React.Component {
         if(data){
             let dataDict = data;
             delete dataDict['_id'];
-            console.log(dataDict)
 
             for(let k in dataDict){
                 x.push(k);
