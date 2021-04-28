@@ -106,7 +106,27 @@ export default class Nicaragua_Historic extends React.Component {
                         },
 
                     ]}
-                    layout={ {width: 600, height: 350, title: 'Nicaragua Historic'} }
+                    layout={{
+                        width: 600, 
+                        height: 350,
+                        yaxis:{
+                            title: "MWh",
+                            // showticklabels: false,
+                            gridcolor: "#FFFFFF55"
+                        },
+                        xaxis:{
+                            title: "Time",
+                            showticklabels: false,
+                            gridcolor: "#FFFFFF55"
+                        },
+                        plot_bgcolor:"#FFFFFF99",
+                        paper_bgcolor:"#00000000",
+                        font: 
+                            {
+                                color: "#FFFFFF",
+                            },
+                        title: 'Nicaragua Historic'
+                    }}
                 />
             </div>
         );
