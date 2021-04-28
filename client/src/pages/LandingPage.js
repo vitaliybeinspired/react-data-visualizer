@@ -21,6 +21,7 @@ export class LandingPage extends React.Component {
             clicked: "none",
             //GLOBE settings
             //value is abitrary and represents size
+            volume: 0.33,
             globe_markers: [
                 {
                     id: 'ElSalvador',
@@ -92,6 +93,7 @@ export class LandingPage extends React.Component {
      */
     onClickMarker(marker, markerObject, event) {
         let audio = new Audio("audio/wind.mp3")
+        audio.volume = this.state.volume
         audio.play();
         console.log(marker, markerObject, event)
         const country_id = marker['id'];
@@ -132,6 +134,10 @@ export class LandingPage extends React.Component {
             copy[country_string] = res.data
             this.setState({country_data: copy});
         }
+    }
+
+    volumeChangeEvent(volume){
+        this.setState({volume: volume});
     }
 
     componentDidMount() {
@@ -183,10 +189,11 @@ export class LandingPage extends React.Component {
                         <DateTimePicker />
                         <ReactAudioPlayer
                             src="audio/Distant-Mountains.mp3"
-                            id="bgm-audio-player"
                             controls
                             autoPlay
                             loop
+                            volume={this.state.volume}
+                            onVolumeChanged={(e) => this.volumeChangeEvent(e['path'][0].volume)}
                         />
                         {this.graph()}
                         {this.state.globe}
