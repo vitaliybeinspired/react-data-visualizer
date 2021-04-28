@@ -1,14 +1,15 @@
 div.country-plotly{
-  padding: 1em;
-  height: 10vh;
-  width: 50vh;
   position: absolute;
+  height: 0;
+  width: 0;
+  bottom: 0;
+  transform: translate(0, -500px);
 }
 
 div.globe {
-  align-items: right;
+  position: relative;
   width: 100vh - 2em;
-  height: 90vh;
+  height: 100vh;
 }
 
 /*Here is an example on animations*/

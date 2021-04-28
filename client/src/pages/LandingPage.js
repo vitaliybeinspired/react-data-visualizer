@@ -186,9 +186,7 @@ export class LandingPage extends React.Component {
                         loop
                     />
                     <div className="globe">
-                        <p>
-                            {this.graph()}
-                        </p>
+                        {this.graph()}
                         {this.state.globe}
                     </div>
                 </div>

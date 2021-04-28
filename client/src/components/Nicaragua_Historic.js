@@ -107,8 +107,8 @@ export default class Nicaragua_Historic extends React.Component {
 
                     ]}
                     layout={{
-                        width: 600, 
-                        height: 350,
+                        width: 800, 
+                        height: 500,
                         yaxis:{
                             title: "MWh",
                             // showticklabels: false,
