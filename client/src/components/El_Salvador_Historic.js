@@ -30,31 +30,36 @@ export default class El_Salvador_Historic extends React.Component {
             }
 
             for(let k of y){
+                let solar_push = false
                 for(let i of k){
                     if(i.type === 'HydroElectric'){
                         hydro.push(i.value)
                     }
-                    if(i.type === 'Interconnection'){
+                    else if(i.type === 'Interconnection'){
                         interchange.push(i.value)
                     }
-                    if(i.type === 'Other'){
+                    else if(i.type === 'Other'){
                         other.push(i.value)
                     }
-                    if(i.type === 'Solar'){
-                        solar.push(i.value)
-                    }
-                    if(i.type === 'Thermal'){
+                    else if(i.type === 'Thermal'){
                         thermal.push(i.value)
                     }
-                    if(i.type === 'Wind'){
+                    else if(i.type === 'Wind'){
                         wind.push(i.value)
                     }
-                    if(i.type === 'Biomass'){
+                    else if(i.type === 'Biomass'){
                         biomass.push(i.value)
                     }
-                    if(i.type === 'Geothermal'){
+                    else if(i.type === 'Geothermal'){
                         geothermal.push(i.value)
                     }
+                    else if(i.type === 'Solar'){
+                        solar.push(i.value);
+                        solar_push = true;
+                    }
+                }
+                if (!solar_push){
+                    solar.push(0);
                 }
             }
         }
@@ -67,21 +72,12 @@ export default class El_Salvador_Historic extends React.Component {
                 <Plot
                     data={[
                         {
-
                             type: 'line',
                             stackgroup: 'one',
-                            marker: {color: 'yellow'},
-                            name: 'solar',
+                            marker: {color: 'cyan'},
+                            name: 'wind',
                             x: x,
-                            y: solar,
-                        },
-                        {
-                            type: 'line',
-                            stackgroup: 'one',
-                            marker: {color: 'blue'},
-                            name: 'hydro',
-                            x: x,
-                            y: hydro,
+                            y: wind
                         },
                         {
                             type: 'line',
@@ -94,10 +90,18 @@ export default class El_Salvador_Historic extends React.Component {
                         {
                             type: 'line',
                             stackgroup: 'one',
-                            marker: {color: 'black'},
-                            name: 'interchange',
+                            marker: {color: 'orange'},
+                            name: 'geothermal',
                             x: x,
-                            y: interchange,
+                            y: geothermal
+                        },
+                        {
+                            type: 'line',
+                            stackgroup: 'one',
+                            marker: {color: 'yellow'},
+                            name: 'solar',
+                            x: x,
+                            y: solar,
                         },
                         {
 
@@ -111,18 +115,18 @@ export default class El_Salvador_Historic extends React.Component {
                         {
                             type: 'line',
                             stackgroup: 'one',
-                            marker: {color: 'cyan'},
-                            name: 'wind',
+                            marker: {color: 'black'},
+                            name: 'interchange',
                             x: x,
-                            y: wind
+                            y: interchange,
                         },
                         {
                             type: 'line',
                             stackgroup: 'one',
-                            marker: {color: 'orange'},
-                            name: 'geothermal',
+                            marker: {color: 'blue'},
+                            name: 'hydro',
                             x: x,
-                            y: geothermal
+                            y: hydro,
                         },
 
                     ]}
