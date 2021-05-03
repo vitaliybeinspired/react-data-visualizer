@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import {str_to_date} from './DateToWeek';
 
 export default class Nicaragua_Historic extends React.Component {
 
@@ -14,18 +15,31 @@ export default class Nicaragua_Historic extends React.Component {
         let other = [];
         let interchange = [];
 
-        var data = this.props.dataFromParent;
-        if(data){
-            let dataDict = data;
-            delete dataDict['_id'];
-
-            for(let k in dataDict){
-                x.push(k);
-            }
-
-            for(let k of Object.values(dataDict)){
-                y.push(k);
-            }
+        var data = this.props.dataFromParent['Historic'];
+        var start = this.props.startDate;
+        var end = this.props.endDate;
+ 
+         if(data){
+             var keys = Object.getOwnPropertyNames(data);
+             keys.sort(function(a, b){
+                 return str_to_date(a) - str_to_date(b);
+             });
+ 
+             for(let i = 0; i < keys.length; ++i){
+                 let dateVal = str_to_date(keys[i]);
+                 if (dateVal < start || dateVal > end){
+                     continue;
+                 }
+                 x.push(keys[i]);
+             }
+ 
+             for(let k of keys){
+                 let dateVal = str_to_date(k);
+                 if (dateVal < start || dateVal > end){
+                     continue;
+                 }
+                 y.push(data[k]);
+             }
 
             for(let k of y){
                 for(let i of k){
@@ -120,7 +134,7 @@ export default class Nicaragua_Historic extends React.Component {
                             gridcolor: "#FFFFFF55"
                         },
                         xaxis:{
-                            title: "Time",
+                            title: "Time (HH-dd/mm/yyyy)",
                             showticklabels: false,
                             gridcolor: "#FFFFFF55"
                         },

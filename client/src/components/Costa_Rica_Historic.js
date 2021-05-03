@@ -1,3 +1,4 @@
+import {str_to_date} from './DateToWeek';
 import React from 'react';
 import Plot from 'react-plotly.js';
 
@@ -14,30 +15,31 @@ export default class Costa_Rica_Historic extends React.Component {
         let other = [];
         let interchange = [];
 
-       var data = this.props.dataFromParent
-        //var data = this.state.data
+       var data = this.props.dataFromParent['Historic'];
+       var start = this.props.startDate;
+       var end = this.props.endDate;
 
         if(data){
-            delete data['_id'];
+            var keys = Object.getOwnPropertyNames(data);
+            keys.sort(function(a, b){
+                return str_to_date(a) - str_to_date(b);
+            });
 
-            for(let k in data){
-                x.push(k);
+            for(let i = 0; i < keys.length; ++i){
+                let dateVal = str_to_date(keys[i]);
+                if (dateVal < start || dateVal > end){
+                    continue;
+                }
+                x.push(keys[i]);
             }
 
-            for(let k of Object.values(data)){
-                y.push(k);
+            for(let k of keys){
+                let dateVal = str_to_date(k);
+                if (dateVal < start || dateVal > end){
+                    continue;
+                }
+                y.push(data[k]);
             }
-            
-            // TODO
-            // we should have an array of types
-            // and make a general purpose utility class/func
-            //
-            // psuedo code:
-            // if type not in array
-            //      //create new dict for type
-            //      dict[type] = [value]
-            // if type in array
-            //      dict[type].push(value)
 
             for(let k of y){
                 for(let i of k){
@@ -133,7 +135,7 @@ export default class Costa_Rica_Historic extends React.Component {
                                 gridcolor: "#FFFFFF55"
                             },
                             xaxis:{
-                                title: "Time",
+                                title: "Time (HH-dd/mm/yyyy)",
                                 showticklabels: false,
                                 gridcolor: "#FFFFFF55"
                             },
