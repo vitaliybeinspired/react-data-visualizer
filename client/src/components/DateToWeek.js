@@ -51,19 +51,29 @@ module.exports.date_to_week = (date_str) => {
 }
 
 module.exports.date_to_stringUS = (date) => {
-    var dd = String(date.getDate()).padStart(2, '0');
-    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = date.getFullYear();
-
-    return (mm + '/' + dd + '/' + yyyy);
+    try{
+        var dd = String(date.getDate()).padStart(2, '0');
+        var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = date.getFullYear();
+    
+        return (mm + '/' + dd + '/' + yyyy);
+    }catch (err){
+        console.log(err)
+        return null
+    }
 }
 
 module.exports.date_to_string = (date) => {
-    var dd = String(date.getDate()).padStart(2, '0');
-    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = date.getFullYear();
+    try{
+        var dd = String(date.getDate()).padStart(2, '0');
+        var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = date.getFullYear();
 
-    return (dd + '/' + mm + '/' + yyyy);
+        return (dd + '/' + mm + '/' + yyyy);
+    }catch (err){
+        console.log(err)
+        return null
+    }
 }
 
 /**

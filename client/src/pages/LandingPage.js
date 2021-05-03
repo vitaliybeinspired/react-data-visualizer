@@ -139,6 +139,10 @@ export class LandingPage extends React.Component {
      */
     changeStartDate(date){
         this.setState({startDate: date});
+        if(this.state.clicked != "none"){
+            this.queryData(this.state.clicked, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+        }
+        
     }
 
     /**
@@ -147,6 +151,9 @@ export class LandingPage extends React.Component {
      */
     changeEndDate(date){
         this.setState({endDate: date});
+        if(this.state.clicked != "none"){
+            this.queryData(this.state.clicked, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+        }
     }
 
     async queryData(country_string, start_date, end_date)
