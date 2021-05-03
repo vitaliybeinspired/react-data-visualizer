@@ -1,6 +1,8 @@
 import '../index.css';
 import '../App.css';
 import '../components/Globe.css'
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
 import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
 import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
 import Mexico_Historic from '../components/Mexico_Historic.js';
@@ -10,6 +12,7 @@ import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+const {date_to_string, date_to_stringUS, date_to_week, date_to_weekUS, date_to_weekJS}  = require('../components/DateToWeek');
 
 const axios = require('axios');
 
@@ -17,6 +20,19 @@ export class LandingPage extends React.Component {
 
     constructor(props) {
         super(props);
+
+        let today = new Date();
+        today.setDate(today.getDate() - 14);
+        var todaySTR = date_to_weekUS(today.toLocaleDateString());
+        var dateParts = todaySTR.split("/");
+        var start = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
+        let nextWeek = new Date()
+        nextWeek.setDate(nextWeek.getDate() - 7)
+        nextWeek = date_to_weekUS(nextWeek.toLocaleDateString())
+        dateParts = nextWeek.split("/");
+        var end = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
         this.state = {
             loading: true,
             clicked: "none",
@@ -63,10 +79,11 @@ export class LandingPage extends React.Component {
                 cameraZoomSpeed: 1.5,
                 cameraAutoRotateSpeed: 0.025,
                 focusAnimationDuration: 1750,
+                focusDistanceRadiusScale: 1.75,
                 focusEasingFunction: ['Quintic', 'InOut'],
                 globeGlowPower: 5,
+                globeCloudsOpacity: 0.8,
                 enableMarkerGlow: true,
-                markerEnterAnimationDuration: 0.4,
                 markerGlowCoefficient: 0.5,
                 markerGlowPower: 1.2,
                 pointLightColor: 'white',
@@ -81,8 +98,12 @@ export class LandingPage extends React.Component {
                 "Nicaragua" : null,
                 "CostaRica" : null,
             },
+            startDate: start,
+            endDate: end
         }
         this.onClickMarker = this.onClickMarker.bind(this);
+        this.changeStartDate = this.changeStartDate.bind(this);
+        this.changeEndDate = this.changeEndDate.bind(this);
     }
 
     /**
@@ -96,13 +117,28 @@ export class LandingPage extends React.Component {
         let audio = new Audio("audio/wind.mp3")
         audio.volume = this.state.volume
         audio.play();
-        console.log(marker, markerObject, event)
         const country_id = marker['id'];
-        this.queryData(country_id, '01/09/2019')
+        this.queryData(country_id, date_to_stringUS(this.state.startDate))
         this.setState({clicked: country_id});
     }
 
-    async queryData(country_string, date_string)
+    /**
+     * event passing for datepicker
+     * @param {*} date 
+     */
+    changeStartDate(date){
+        this.setState({startDate: date});
+    }
+
+    /**
+     * event passing for datepicker
+     * @param {*} date 
+     */
+    changeEndDate(date){
+        this.setState({endDate: date});
+    }
+
+    async queryData(country_string, date)
     {
         const config = {
             'Content-Type':'application/json'
@@ -115,8 +151,11 @@ export class LandingPage extends React.Component {
 
         // These are all equivalent
         const body  = {
-            dateUS: date_string
+            dateUS: date
         }
+        // const body  = {
+        //     dateUS: '01/09/2019'
+        // }
         // const body  = {
         //     date: '09/01/2019'
         // }
@@ -187,7 +226,7 @@ export class LandingPage extends React.Component {
                 <div>
                     <div className="globe">
                         <NavBar/>
-                        <DateTimePicker/>
+                        {DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
                         <ReactAudioPlayer
                             src="audio/Distant-Mountains.mp3"
                             controls
