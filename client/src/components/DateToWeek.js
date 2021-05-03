@@ -65,3 +65,21 @@ module.exports.date_to_string = (date) => {
 
     return (dd + '/' + mm + '/' + yyyy);
 }
+
+/**
+ * Simple helper to turn our 'hh-dd/mm/yyyy' formated date strings
+ * into date objects
+ * 
+ * @param {*} string 
+ * @returns 
+ */
+ module.exports.str_to_date = (string) => {
+    let split = string.split('-');
+    var hh = parseInt(split[0]);
+    var date_str = split[1];
+    var date_split = date_str.split('/');
+    var dd = parseInt(date_split[0]);
+    var mm = parseInt(date_split[1] - 1);
+    var yyyy = parseInt(date_split[2]);
+    return new Date(yyyy, mm, dd, hh)
+}
