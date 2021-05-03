@@ -49,3 +49,38 @@ module.exports.date_to_week = (date_str) => {
     var day = Intl.DateTimeFormat('en', {day: '2-digit'}).format(current);
     return `${day}/${month}/${year}`
 }
+
+module.exports.date_to_stringUS = (date) => {
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = date.getFullYear();
+
+    return (mm + '/' + dd + '/' + yyyy);
+}
+
+module.exports.date_to_string = (date) => {
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = date.getFullYear();
+
+    return (dd + '/' + mm + '/' + yyyy);
+}
+
+/**
+ * returns an array of doc ids for the needed range
+ * @param {*} start date string in US format
+ * @param {*} end date string in US format
+ * @returns 
+ */
+module.exports.date_rangeUS = (start, end) => {
+    var start_range = new Date(this.date_to_weekUS(start))
+    var end_range = new Date(this.date_to_weekUS(end))
+    let emergency_break = 1;
+    var list = []
+    while (start_range <= end_range && emergency_break < 1000) {
+        list.push(this.date_to_weekUS(start_range))
+        start_range.setDate(start_range.getDate() + 7);
+        emergency_break += 1;
+    }
+    return list;
+}
