@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactGlobe from 'react-globe';
 
-// import optional tippy styles for tooltip support
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-
 /*  IMPORTANT
     it is worth noting that this demo only works with Three.js 0.118 thru 0.124
     
