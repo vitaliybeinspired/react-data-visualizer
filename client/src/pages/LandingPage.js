@@ -22,23 +22,21 @@ export class LandingPage extends React.Component {
         super(props);
 
         let today = new Date();
-        today.setDate(today.getDate() - 14);
+        today.setDate(today.getDate() - 7);
         var todaySTR = date_to_weekUS(today.toLocaleDateString());
         var dateParts = todaySTR.split("/");
         var start = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
 
-        let nextWeek = new Date()
-        nextWeek.setDate(nextWeek.getDate() - 7)
-        nextWeek = date_to_weekUS(nextWeek.toLocaleDateString())
-        dateParts = nextWeek.split("/");
-        var end = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+        var end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6)
 
         this.state = {
             loading: true,
+            //Used to indicate whether new data is being processed or not
+            fetchingData: false,
             clicked: "none",
+            volume: 0.33,
             //GLOBE settings
             //value is abitrary and represents size
-            volume: 0.33,
             globe_markers: [
                 {
                     id: 'ElSalvador',
@@ -93,10 +91,22 @@ export class LandingPage extends React.Component {
                 markerTooltipRenderer: marker => `${marker.country}`,
             },
             country_data: {
-                "ElSalvador" : null,
-                "Mexico" : null,
-                "Nicaragua" : null,
-                "CostaRica" : null,
+                "ElSalvador" : {
+                    "Historic" : null,
+                    "Forecast" : null,
+                },
+                "Mexico" : {
+                    "Historic" : null,
+                    "Forecast" : null,
+                },
+                "Nicaragua" : {
+                    "Historic" : null,
+                    "Forecast" : null,
+                },
+                "CostaRica" : {
+                    "Historic" : null,
+                    "Forecast" : null,
+                },
             },
             startDate: start,
             endDate: end
@@ -114,11 +124,12 @@ export class LandingPage extends React.Component {
      * @param {*} event 
      */
     onClickMarker(marker, markerObject, event) {
+        this.setState({fetchingData: true})
         let audio = new Audio("audio/wind.mp3")
         audio.volume = this.state.volume
         audio.play();
         const country_id = marker['id'];
-        this.queryData(country_id, date_to_stringUS(this.state.startDate))
+        this.queryData(country_id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate))
         this.setState({clicked: country_id});
     }
 
@@ -138,21 +149,25 @@ export class LandingPage extends React.Component {
         this.setState({endDate: date});
     }
 
-    async queryData(country_string, date)
+    async queryData(country_string, start_date, end_date)
     {
         const config = {
             'Content-Type':'application/json'
         }
         
+        // date_range example:
+        // This expects both parameters to be in the form:
+        //  MM/DD/YYYY
+        const body  = {
+            date_range: [start_date, end_date]
+        }
+
         // Use one of these in this body
         // dateUS -> 'mm/dd/yyyy'
         // date -> 'dd/mm/yyyy'
         // dateJS -> JS Date object
 
         // These are all equivalent
-        const body  = {
-            dateUS: date
-        }
         // const body  = {
         //     dateUS: '01/09/2019'
         // }
@@ -164,16 +179,20 @@ export class LandingPage extends React.Component {
         // }
 
         const res = await axios.post(
-            `query/${country_string}/Historic`,
+            `query/${country_string}`,
             body,
             config
         );
 
         if(res.status === 200) {
             let copy = this.state.country_data
-            copy[country_string] = res.data
+            let hist = res.data['Historic'];
+            let forecast = res.data['Forecast'];
+            copy[country_string]['Historic'] = hist;
+            copy[country_string]['Forecast'] = forecast;
             this.setState({country_data: copy});
         }
+        this.setState({fetchingData: false})
     }
 
     volumeChangeEvent(volume){
@@ -197,22 +216,38 @@ export class LandingPage extends React.Component {
     graph(){
         if(this.state.clicked === "Mexico"){
             return(
-                <Mexico_Historic dataFromParent={this.state.country_data['Mexico']}/>
+                <Mexico_Historic
+                    dataFromParent={this.state.country_data['Mexico']}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                />
             )
         }
         else if(this.state.clicked === "ElSalvador"){
             return(
-                <El_Salvador_Historic dataFromParent={this.state.country_data['ElSalvador']}/>
+                <El_Salvador_Historic
+                    dataFromParent={this.state.country_data['ElSalvador']}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                />
             )
         }
         else if(this.state.clicked === "CostaRica"){
             return(
-                <Costa_Rica_Historic dataFromParent={this.state.country_data['CostaRica']}/>
+                <Costa_Rica_Historic
+                    dataFromParent={this.state.country_data['CostaRica']}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                />
             )
         }
         else if(this.state.clicked === "Nicaragua"){
             return(
-                <Nicaragua_Historic dataFromParent={this.state.country_data['Nicaragua']}/>
+                <Nicaragua_Historic
+                    dataFromParent={this.state.country_data['Nicaragua']}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                />
             )
         }
         else{
