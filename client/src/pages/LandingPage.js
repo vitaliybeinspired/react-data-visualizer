@@ -14,6 +14,8 @@ import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 const {date_to_string, date_to_stringUS, date_to_week, date_to_weekUS, date_to_weekJS}  = require('../components/DateToWeek');
 
+const SERVER = "http://localhost:8080"
+
 const axios = require('axios');
 
 export class LandingPage extends React.Component {
@@ -186,7 +188,7 @@ export class LandingPage extends React.Component {
         // }
 
         const res = await axios.post(
-            `query/${country_string}`,
+            `${SERVER}/query/${country_string}`,
             body,
             config
         );
