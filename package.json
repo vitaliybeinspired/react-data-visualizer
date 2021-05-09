@@ -4,7 +4,8 @@
     "client-install": "cd client && npm install --legacy-peer-deps --no-audit",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "build": "npm run build --prefix client",
+    "build": "npm run build --prefix client && npm config set cache \"./client/node_modules\" --global ",
+    "start": "npm start --prefix server",
     "dev": "cd server && npm run dev",
     "install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
   },
