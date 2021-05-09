@@ -5,7 +5,9 @@
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "build": "npm run build --prefix client && npm config set cache \"./client/node_modules\" --global ",
-    "start": "npm run dev",
+    "start": "concurrently -n 'server,client' -c 'red,green' \"npm start --prefix server\" \"npm start --prefix client\"",
+    "cache" : "npm cache --prefix client",
+    "prune" : "npm prune --prefix client",
     "dev": "cd server && npm run dev",
     "install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
   },
