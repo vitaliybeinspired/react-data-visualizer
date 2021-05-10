@@ -7,11 +7,8 @@
     "build": "npm run build --prefix client",
     "start": "npm run start-client",
     "start-client": "npm install -g serve && serve client\\build -l $PORT",
-    "cache" : "npm cache --prefix client",
-    "prune" : "npm prune --prefix client",
     "dev": "cd server && npm run dev",
-    "install" : "npm run client-install",
-    "multi-install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
+    "install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
   },
   "dependencies": {
     "@babel/runtime": "^7.13.17",
