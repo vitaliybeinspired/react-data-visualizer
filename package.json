@@ -4,13 +4,14 @@
     "client-install": "cd client && npm install --legacy-peer-deps --no-audit",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "build": "npm run build --prefix client && npm config set cache \"./client/node_modules\" --global ",
-    "start": "concurrently -n 'server,client' -c 'red,green' \"npm run server\" \"npm run start-client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm run start-client",
     "start-client": "npm install -g serve && serve client\\build -l $PORT",
     "cache" : "npm cache --prefix client",
     "prune" : "npm prune --prefix client",
     "dev": "cd server && npm run dev",
-    "install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
+    "install" : "npm run client-install",
+    "multi-install": "concurrently -n 'server-installation,client-installation' -c 'red,green' \"npm run server-install\" \"npm run client-install\""
   },
   "dependencies": {
     "@babel/runtime": "^7.13.17",
