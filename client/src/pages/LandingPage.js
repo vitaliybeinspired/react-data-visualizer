@@ -207,6 +207,12 @@ export class LandingPage extends React.Component {
     }
 
     componentDidMount() {
+
+        this.queryData('ElSalvador', this.state.startDate, this.state.endDate)
+        this.queryData('Mexico', this.state.startDate, this.state.endDate)
+        this.queryData('CostaRica', this.state.startDate, this.state.endDate)
+        this.queryData('Nicaragua', this.state.startDate, this.state.endDate)
+        
         this.setState({
             globe: new SimpleGlobe(
                 {
