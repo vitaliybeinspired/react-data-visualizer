@@ -72,7 +72,7 @@ export class LandingPage extends React.Component {
             globe_options: {
                 ambientLightColor: 'white',
                 ambientLightIntensity: 0.15,
-                enableDefocus: false,
+                enableDefocus: true,
                 cameraRotateSpeed: 0.25,
                 cameraZoomSpeed: 1.5,
                 cameraAutoRotateSpeed: 0.025,
@@ -129,7 +129,7 @@ export class LandingPage extends React.Component {
         audio.volume = this.state.volume
         audio.play();
         const country_id = marker['id'];
-        this.queryData(country_id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate))
+        // this.queryData(country_id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate))
         this.setState({clicked: country_id});
     }
 
@@ -139,9 +139,9 @@ export class LandingPage extends React.Component {
      */
     changeStartDate(date){
         this.setState({startDate: date});
-        if(this.state.clicked != "none"){
-            this.queryData(this.state.clicked, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
-        }
+        this.state.globe_markers.forEach(element => {
+            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+        });
         
     }
 
@@ -151,9 +151,9 @@ export class LandingPage extends React.Component {
      */
     changeEndDate(date){
         this.setState({endDate: date});
-        if(this.state.clicked != "none"){
-            this.queryData(this.state.clicked, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
-        }
+        this.state.globe_markers.forEach(element => {
+            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+        });
     }
 
     async queryData(country_string, start_date, end_date)
@@ -198,6 +198,7 @@ export class LandingPage extends React.Component {
             copy[country_string]['Historic'] = hist;
             copy[country_string]['Forecast'] = forecast;
             this.setState({country_data: copy});
+            console.log(this.state.country_data)
         }
         this.setState({fetchingData: false})
     }
