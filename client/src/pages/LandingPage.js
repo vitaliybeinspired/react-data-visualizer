@@ -3,10 +3,10 @@ import '../App.css';
 import '../components/Globe.css'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
-import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
-import Mexico_Historic from '../components/Mexico_Historic.js';
-import El_Salvador_Historic from '../components/El_Salvador_Historic.js'
+import Costa_Rica from '../components/Costa_Rica.js';
+import Nicaragua from '../components/Nicaragua.js';
+import Mexico from '../components/Mexico.js';
+import El_Salvador from '../components/El_Salvador.js'
 import {SimpleGlobe} from '../components/Globe'
 import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
@@ -230,7 +230,7 @@ export class LandingPage extends React.Component {
     graph(){
         if(this.state.clicked === "Mexico"){
             return(
-                <Mexico_Historic
+                <Mexico
                     dataFromParent={this.state.country_data['Mexico']}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
@@ -239,7 +239,7 @@ export class LandingPage extends React.Component {
         }
         else if(this.state.clicked === "ElSalvador"){
             return(
-                <El_Salvador_Historic
+                <El_Salvador
                     dataFromParent={this.state.country_data['ElSalvador']}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
@@ -248,7 +248,7 @@ export class LandingPage extends React.Component {
         }
         else if(this.state.clicked === "CostaRica"){
             return(
-                <Costa_Rica_Historic
+                <Costa_Rica
                     dataFromParent={this.state.country_data['CostaRica']}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
@@ -257,7 +257,7 @@ export class LandingPage extends React.Component {
         }
         else if(this.state.clicked === "Nicaragua"){
             return(
-                <Nicaragua_Historic
+                <Nicaragua
                     dataFromParent={this.state.country_data['Nicaragua']}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
