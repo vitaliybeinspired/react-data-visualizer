@@ -11,9 +11,13 @@ const {date_to_week, date_to_weekUS, date_to_weekJS, date_rangeUS}  = require('.
 //Database UserName: REACT
 //Database password: WattTime2021
 const MONGODB_URI = 'mongodb+srv://REACT:WattTime2021@cluster0.tbh2o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const client = new MongoClient(MONGODB_URI, { 
+    useUnifiedTopology: true,
+    connectTimeoutMS: 15000,
+    socketTimeoutMS: 15000,
+});
 
 exports.CostaRica = async (req, res) => {
-    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -72,13 +76,9 @@ exports.CostaRica = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
-    if(client.isConnected()){
-        await client.close(true);
-    }
 }
 
 exports.Nicaragua = async (req, res) => {
-    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -138,13 +138,9 @@ exports.Nicaragua = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
-    if(client.isConnected()){
-        await client.close(true);
-    }
 }
 
 exports.ElSalvador = async (req, res) => {
-    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -204,13 +200,9 @@ exports.ElSalvador = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
-    if(client.isConnected()){
-        await client.close(true);
-    }
 }
 
 exports.Mexico = async (req, res) => {
-    const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     if(!client.isConnected()){
         await client.connect();
     }
@@ -258,8 +250,5 @@ exports.Mexico = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({err: err});
-    }
-    if(client.isConnected()){
-        await client.close(true);
     }
 }
