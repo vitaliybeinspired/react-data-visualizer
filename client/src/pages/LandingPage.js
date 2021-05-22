@@ -10,6 +10,8 @@ import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import ProSidebar from '../components/ProSidebar';
+
 
 const axios = require('axios');
 
@@ -184,7 +186,7 @@ export class LandingPage extends React.Component {
     render() {
         if(!this.state.loading){
             return (
-                <div>
+                <>
                     <div className="globe">
                         <NavBar/>
                         <DateTimePicker/>
@@ -197,10 +199,15 @@ export class LandingPage extends React.Component {
                             volume={this.state.volume}
                             onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
                         />
-                        {this.graph()}
+                        <ProSidebar graphFromParent={this.graph()}> />
+
+
+                        </ProSidebar>
                         {this.state.globe}
+
+
                     </div>
-                </div>
+                </>
             );
         }
         else{

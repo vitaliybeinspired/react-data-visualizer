@@ -17,6 +17,7 @@ function DateRangePickerExample() {
     const [endDate, setEndDate] = useState()
     return (
         <div className="date-time-picker">
+
             <DateRangePicker
                 startDate={startDate}
                 endDate={endDate}
