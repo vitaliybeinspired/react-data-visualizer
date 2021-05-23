@@ -12,16 +12,14 @@ Need hour filter?
 
 */
 
-function DateRangePickerExample() {
-    const [startDate, setStartDate] = useState()
-    const [endDate, setEndDate] = useState()
+function DateRangePickerExample(startDate, endDate, changeStartDate, changeEndDate) {
     return (
         <div className="date-time-picker">
             <DateRangePicker
                 startDate={startDate}
                 endDate={endDate}
-                onStartDateChange={setStartDate}
-                onEndDateChange={setEndDate}
+                onStartDateChange={(date) => changeStartDate(date )}
+                onEndDateChange={(date) => changeEndDate(date)}
                 minimumLength={1}
                 format='MMMMMMMMMM dd, yyyy'
                 locale={enGB}
