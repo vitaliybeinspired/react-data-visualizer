@@ -12,8 +12,8 @@ import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import ProSidebar from '../components/ProSidebar';
 const {date_to_string, date_to_stringUS, date_to_week, date_to_weekUS, date_to_weekJS}  = require('../components/DateToWeek');
-
 const axios = require('axios');
 
 export class LandingPage extends React.Component {
@@ -272,7 +272,7 @@ export class LandingPage extends React.Component {
     render() {
         if(!this.state.loading){
             return (
-                <div>
+                <>
                     <div className="globe">
                         <NavBar/>
                         {DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
@@ -285,10 +285,15 @@ export class LandingPage extends React.Component {
                             volume={this.state.volume}
                             onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
                         />
-                        {this.graph()}
+                        <ProSidebar graphFromParent={this.graph()}> />
+
+
+                        </ProSidebar>
                         {this.state.globe}
+
+
                     </div>
-                </div>
+                </>
             );
         }
         else{
