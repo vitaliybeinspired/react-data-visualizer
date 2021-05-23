@@ -30,6 +30,7 @@ export class SimpleGlobe extends React.Component {
                 markers={this.props.markers}
                 options={this.props.options}
                 onClickMarker={this.props.markerClick}
+                onDefocus={this.props.defocusHandler}
                 // onGetGlobe={(globe) => this.setState({globe: globe})}
                 // onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
                 onGlobeTextureLoaded={() => console.log('globe loaded')}

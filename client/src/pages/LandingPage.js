@@ -109,11 +109,14 @@ export class LandingPage extends React.Component {
                 },
             },
             startDate: start,
-            endDate: end
+            endDate: end,
+            renderSideBar: false,
         }
         this.onClickMarker = this.onClickMarker.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
+        this.defocusHandle = this.defocusHandle.bind(this);
+        this.toggleSidebarHandle = this.toggleSidebarHandle.bind(this)
     }
 
     /**
@@ -124,7 +127,10 @@ export class LandingPage extends React.Component {
      * @param {*} event 
      */
     onClickMarker(marker, markerObject, event) {
-        this.setState({fetchingData: true})
+        this.setState({
+            fetchingData: true,
+            renderSideBar: true
+        })
         let audio = new Audio("audio/wind.mp3")
         audio.volume = this.state.volume
         audio.play();
@@ -207,6 +213,18 @@ export class LandingPage extends React.Component {
         this.setState({volume: volume});
     }
 
+    defocusHandle(){
+        this.setState({
+            renderSideBar: false
+        });
+    }
+
+    toggleSidebarHandle() {
+        this.setState({
+            renderSideBar: !this.state.renderSideBar
+        });
+    }
+
     componentDidMount() {
 
         this.queryData('ElSalvador', this.state.startDate, this.state.endDate)
@@ -218,6 +236,7 @@ export class LandingPage extends React.Component {
             globe: new SimpleGlobe(
                 {
                     markerClick: this.onClickMarker,
+                    defocusHandler: this.defocusHandle,
                     markers: this.state.globe_markers,
                     options: this.state.globe_options,
                     initialCoordinates: [17.4921, -84.0852]
@@ -285,13 +304,8 @@ export class LandingPage extends React.Component {
                             volume={this.state.volume}
                             onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
                         />
-                        <ProSidebar graphFromParent={this.graph()}> />
-
-
-                        </ProSidebar>
+                        <ProSidebar toggleCollapseHandle={this.toggleSidebarHandle} collapsed={!this.state.renderSideBar} graphFromParent={this.graph()}/>
                         {this.state.globe}
-
-
                     </div>
                 </>
             );

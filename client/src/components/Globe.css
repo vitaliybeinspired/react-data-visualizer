@@ -13,11 +13,8 @@ audio{
   }
   
   div.country-plotly{
-    position: absolute;
-    height: 0;
-    width: 0;
-    bottom: 0;
-    transform: translate(0, -500px);
+    display: flex;
+    flex-direction: column;
   }
   
   div.globe {
