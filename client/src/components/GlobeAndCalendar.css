@@ -6,10 +6,28 @@ audio{
   }
   
   div.date-time-picker{
-    position: absolute;
-    left: 0;
-    margin-left: 5px;
-    margin-top: 50px;
+    position: relative;
+    display: flex;
+    margin: 10px;
+    height: 500px;
+  }
+
+  div.date-range{
+    display: flex;
+    max-width: 400px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  a.nice-dates-navigation_previous::before{
+    margin-left: 50%;
+    margin-top: 40%;
+  }
+
+  a.nice-dates-navigation_next::before{
+    margin-left: 10%;
+    margin-top: 40%;
   }
   
   div.country-plotly{
