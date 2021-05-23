@@ -15,7 +15,6 @@ Need hour filter?
 function DateRangePickerExample(startDate, endDate, changeStartDate, changeEndDate) {
     return (
         <div className="date-time-picker">
-
             <DateRangePicker
                 startDate={startDate}
                 endDate={endDate}
@@ -25,21 +24,21 @@ function DateRangePickerExample(startDate, endDate, changeStartDate, changeEndDa
                 format='MMMMMMMMMM dd, yyyy'
                 locale={enGB}
             >
-                {({ startDateInputProps, endDateInputProps, focus }) => (
-                    <div className='date-range'>
-                        <input
-                            className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                            {...startDateInputProps}
-                            placeholder='Start date'
-                        />
-                        <span className='date-range_arrow' />
-                        <input
-                            className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                            {...endDateInputProps}
-                            placeholder='End date'
-                        />
-                    </div>
-                )}
+            {({ startDateInputProps, endDateInputProps, focus }) => (
+                <div className='date-range'>
+                    <input
+                        className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                        {...startDateInputProps}
+                        placeholder='Start date'
+                    />
+                    <span className='date-range' />
+                    <input
+                        className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                        {...endDateInputProps}
+                        placeholder='End date'
+                    />
+                </div>
+            )}
             </DateRangePicker>
         </div>
     )

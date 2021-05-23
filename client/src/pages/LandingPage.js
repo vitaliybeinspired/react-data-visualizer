@@ -1,6 +1,6 @@
 import '../index.css';
 import '../App.css';
-import '../components/Globe.css'
+import '../components/GlobeAndCalendar.css'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 import Costa_Rica from '../components/Costa_Rica.js';
@@ -294,7 +294,6 @@ export class LandingPage extends React.Component {
                 <>
                     <div className="globe">
                         <NavBar/>
-                        {DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
                         <ReactAudioPlayer
                             src="audio/Distant-Mountains.mp3"
                             controls
@@ -304,7 +303,12 @@ export class LandingPage extends React.Component {
                             volume={this.state.volume}
                             onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
                         />
-                        <ProSidebar toggleCollapseHandle={this.toggleSidebarHandle} collapsed={!this.state.renderSideBar} graphFromParent={this.graph()}/>
+                        <ProSidebar 
+                            toggleCollapseHandle={this.toggleSidebarHandle}
+                            collapsed={!this.state.renderSideBar}
+                            calendar={DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
+                            graphFromParent={this.graph()}
+                        />
                         {this.state.globe}
                     </div>
                 </>

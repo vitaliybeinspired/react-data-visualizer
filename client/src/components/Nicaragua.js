@@ -476,7 +476,7 @@ export default class Nicaragua extends React.Component {
                                 {
                                     color: "#FFFFFF",
                                 },
-                            title: 'Forecasted'
+                            title: 'Forecast'
                         }}
                     />
                 </div>
