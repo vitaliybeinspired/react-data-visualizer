@@ -14,6 +14,9 @@
   80% {
     transform: rotate(-5deg); } }
 
+div.dashboard-container{
+  min-height: 500px;
+}
 .pro-sidebar {
   color: #adadad;
   margin-top: 45px;

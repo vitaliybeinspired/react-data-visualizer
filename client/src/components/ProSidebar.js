@@ -13,10 +13,10 @@ export default class ProSideBar extends React.Component {
                         <MenuItem onClick={this.props.toggleCollapseHandle}>Dashboard</MenuItem>
                         {this.props.collapsed ? 
                             null : 
-                            <>
+                            <div className="dashboard-container">
                             {this.props.calendar}
                             {this.props.graphFromParent}
-                            </>
+                            </div>
                         }
                         <SubMenu title="Components" >
                             <MenuItem>Component 1</MenuItem>
