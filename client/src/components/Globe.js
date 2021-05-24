@@ -1,27 +1,68 @@
 import React from 'react';
 import ReactGlobe from 'react-globe';
-
 // import optional tippy styles for tooltip support
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 
 /*  IMPORTANT
     it is worth noting that this demo only works with Three.js 0.118 thru 0.124
-    
     There is a regex Dos (ReDos) vulnerability https://www.npmjs.com/advisories/1639 fixed in 0.125
     soooo TL;DR don't let the user pick colors of the globe and we should be okay. 
 */
 
-export class SimpleGlobe extends React.Component {
-    // support rendering markers with simple data
-    constructor(props) {
-        super(props);
-        this.state = {
-            globe: null,
-        }
+const markers = [
+    {
+        id: 'ElSalvador',
+        country: 'El Salvador',
+        color: 'red',
+        coordinates: [13.598871, -88.909731],
+        value: 20,
+    },
+    {
+        id: 'Nicaragua',
+        country: 'Nicaragua',
+        color: 'gold',
+        coordinates: [12.793830, -84.854074],
+        value: 20,
+    },
+    {
+        id: 'Mexico',
+        country: 'Mexico',
+        color: 'orange',
+        coordinates: [23.502654, -102.227797],
+        value: 20,
+    },
+    {
+        id: 'CostaRica',
+        country: 'Costa Rica',
+        color: 'green',
+        coordinates: [10.031846, -83.896692],
+        value: 20,
     }
+];
 
-    // simple component usage
+const options = {
+    ambientLightColor: 'white',
+    ambientLightIntensity: 0.15,
+    enableDefocus: true,
+    cameraRotateSpeed: 0.25,
+    cameraZoomSpeed: 1.5,
+    cameraAutoRotateSpeed: 0.025,
+    focusAnimationDuration: 1750,
+    focusEasingFunction: ['Quintic', 'InOut'],
+    globeGlowPower: 5,
+    enableMarkerGlow: true,
+    markerEnterAnimationDuration: 0.4,
+    markerGlowCoefficient: 0.5,
+    markerGlowPower: 1.2,
+    pointLightColor: 'white',
+    pointLightIntensity: 1.0,
+    pointLightPositionRadiusScales: [-1500, 500, 1500],
+    markerType: 'dot',
+    markerTooltipRenderer: marker => `${marker.country}`,
+};
+
+export class Globe extends React.Component {
     getGlobe() { 
         return (
             <ReactGlobe
@@ -30,9 +71,9 @@ export class SimpleGlobe extends React.Component {
                 globeBackgroundTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png"
                 globeCloudsTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/clouds.png"
                 globeTexture="https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/globe.jpg"
-                initialCoordinates={this.props.initialCoordinates}
-                markers={this.props.markers}
-                options={this.props.options}
+                initialCoordinates={[17.4921, -84.0852]}
+                markers={markers}
+                options={options}
                 onClickMarker={this.props.markerClick}
                 // onGetGlobe={(globe) => this.setState({globe: globe})}
                 // onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}

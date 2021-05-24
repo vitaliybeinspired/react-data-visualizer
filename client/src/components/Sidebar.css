@@ -16,13 +16,14 @@
 
 .pro-sidebar {
   color: #adadad;
-  height: 100%;
-  width: 200px;
+  margin-top: 80px;
+  height: 85%;
+  width: 600px;
   min-width: 270px;
   text-align: left;
   transition: width, left, right, 0.3s;
   position: absolute;
-  z-index: 1009; }
+  z-index: 1; }
   .pro-sidebar > .pro-sidebar-inner {
     background: #1d1d1d;
     height: 100%;

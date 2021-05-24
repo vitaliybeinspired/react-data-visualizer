@@ -1,17 +1,12 @@
 import '../index.css';
 import '../App.css';
 import '../components/Globe.css'
-import Costa_Rica_Historic from '../components/Costa_Rica_Historic.js';
-import Nicaragua_Historic from '../components/Nicaragua_Historic.js';
-import Mexico_Historic from '../components/Mexico_Historic.js';
-import El_Salvador_Historic from '../components/El_Salvador_Historic.js'
-import {SimpleGlobe} from '../components/Globe'
+import {Globe} from '../components/Globe.js'
 import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
-import ReactAudioPlayer from 'react-audio-player';
-import ProSidebar from '../components/ProSidebar';
-
+import Sound from 'react-sound';
+import Sidebar from '../components/Sidebar';
 
 const axios = require('axios');
 
@@ -22,61 +17,6 @@ export class LandingPage extends React.Component {
         this.state = {
             loading: true,
             clicked: "none",
-            //GLOBE settings
-            //value is abitrary and represents size
-            volume: 0.33,
-            globe_markers: [
-                {
-                    id: 'ElSalvador',
-                    country: 'El Salvador',
-                    color: 'red',
-                    coordinates: [13.598871, -88.909731],
-                    value: 20,
-                },
-                {
-                    id: 'Nicaragua',
-                    country: 'Nicaragua',
-                    color: 'gold',
-                    coordinates: [12.793830, -84.854074],
-                    value: 20,
-                },
-                {
-                    id: 'Mexico',
-                    country: 'Mexico',
-                    color: 'orange',
-                    coordinates: [23.502654, -102.227797],
-                    value: 20,
-                },
-                {
-                    id: 'CostaRica',
-                    country: 'Costa Rica',
-                    color: 'green',
-                    coordinates: [10.031846, -83.896692],
-                    value: 20,
-                }
-            ],
-            // simple and extensive options to configure globe here:
-            // https://github.com/chrisrzhou/react-globe/blob/main/docs/props.mdx
-            globe_options: {
-                ambientLightColor: 'white',
-                ambientLightIntensity: 0.15,
-                enableDefocus: false,
-                cameraRotateSpeed: 0.25,
-                cameraZoomSpeed: 1.5,
-                cameraAutoRotateSpeed: 0.025,
-                focusAnimationDuration: 1750,
-                focusEasingFunction: ['Quintic', 'InOut'],
-                globeGlowPower: 5,
-                enableMarkerGlow: true,
-                markerEnterAnimationDuration: 0.4,
-                markerGlowCoefficient: 0.5,
-                markerGlowPower: 1.2,
-                pointLightColor: 'white',
-                pointLightIntensity: 1.0,
-                pointLightPositionRadiusScales: [-1500, 500, 1500],
-                markerType: 'dot',
-                markerTooltipRenderer: marker => `${marker.country}`,
-            },
             country_data: {
                 "ElSalvador" : null,
                 "Mexico" : null,
@@ -87,16 +27,9 @@ export class LandingPage extends React.Component {
         this.onClickMarker = this.onClickMarker.bind(this);
     }
 
-    /**
-     * 'onClick' event for globe
-     * gets a marker, object, and event
-     * @param {*} marker 
-     * @param {*} markerObject 
-     * @param {*} event 
-     */
     onClickMarker(marker, markerObject, event) {
         let audio = new Audio("audio/wind.mp3")
-        audio.volume = this.state.volume
+        audio.volume = 0.1
         audio.play();
         console.log(marker, markerObject, event)
         const country_id = marker['id'];
@@ -139,80 +72,36 @@ export class LandingPage extends React.Component {
         }
     }
 
-    volumeChangeEvent(volume){
-        this.setState({volume: volume});
-    }
-
     componentDidMount() {
         this.setState({
-            globe: new SimpleGlobe(
+            globe: new Globe(
                 {
                     markerClick: this.onClickMarker,
-                    markers: this.state.globe_markers,
-                    options: this.state.globe_options,
-                    initialCoordinates: [17.4921, -84.0852]
                 }
             ).getGlobe()
         });
         this.setState({loading: false})
     }
 
-    graph(){
-        if(this.state.clicked === "Mexico"){
-            return(
-                <Mexico_Historic dataFromParent={this.state.country_data['Mexico']}/>
-            )
-        }
-        else if(this.state.clicked === "ElSalvador"){
-            return(
-                <El_Salvador_Historic dataFromParent={this.state.country_data['ElSalvador']}/>
-            )
-        }
-        else if(this.state.clicked === "CostaRica"){
-            return(
-                <Costa_Rica_Historic dataFromParent={this.state.country_data['CostaRica']}/>
-            )
-        }
-        else if(this.state.clicked === "Nicaragua"){
-            return(
-                <Nicaragua_Historic dataFromParent={this.state.country_data['Nicaragua']}/>
-            )
-        }
-        else{
-            return <div className="country-plotly"/>
-        }
-    }
-
     render() {
-        if(!this.state.loading){
-            return (
-                <>
-                    <div className="globe">
-                        <NavBar/>
-                        <DateTimePicker/>
-                        <ReactAudioPlayer
-                            src="audio/Distant-Mountains.mp3"
-                            controls
-                            autoPlay
-                            loop
-                            muted={false}
-                            volume={this.state.volume}
-                            onVolumeChanged={(e) => e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}
-                        />
-                        <ProSidebar graphFromParent={this.graph()}> />
-
-
-                        </ProSidebar>
-                        {this.state.globe}
-
-
-                    </div>
-                </>
-            );
-        }
-        else{
+        if(this.state.loading){
             return <div>Loading........</div>;
         }
+        
+        return (
+            <div className="globe">
+                <NavBar/>
+                <DateTimePicker/>
+                <Sound
+                    url="audio/Distant-Mountains.mp3"
+                    playStatus={Sound.status.PLAYING}
+                    volume={0}
+                    loop={true}
+                />
+                <Sidebar data={this.state.country_data[this.state.clicked]}/>
+                {this.state.globe}
+            </div>
+        );
     }
 }
 

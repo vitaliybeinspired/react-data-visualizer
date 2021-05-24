@@ -36,6 +36,7 @@
     "react-pro-sidebar": "^0.6.0",
     "react-scripts": "^4.0.3",
     "react-side-sheet": "^0.1.19",
+    "react-sound": "^1.2.0",
     "resize-observer-polyfill": "^1.5.1",
     "style-loader": "^2.0.0",
     "three": "0.124.0",

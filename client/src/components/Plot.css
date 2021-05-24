@@ -1,0 +1,17 @@
+.e-gen-plot {
+    background-color: rgb(44, 44, 44);
+}
+
+.country-plotly h1 {
+    background-color: rgb(44, 44, 44);
+    margin-top: 10px;
+    padding-right: 0.5em;
+    padding-left: 10px;
+    color: rgb(184, 182, 182);
+}
+
+.country-plotly {
+    margin-top: 0px;
+    margin-left: 0px;
+    background-color: lightblue;
+}
