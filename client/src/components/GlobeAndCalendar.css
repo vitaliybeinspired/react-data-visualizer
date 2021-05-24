@@ -9,7 +9,11 @@ audio{
     position: relative;
     display: flex;
     margin: 10px;
-    height: 500px;
+  }
+
+  audio{
+    width: 250px;
+    height: 40px;
   }
 
   div.date-range{
