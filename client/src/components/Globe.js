@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactGlobe from 'react-globe';
-// import optional tippy styles for tooltip support
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
 
 /*  IMPORTANT
     it is worth noting that this demo only works with Three.js 0.118 thru 0.124
@@ -75,6 +72,7 @@ export class Globe extends React.Component {
                 markers={markers}
                 options={options}
                 onClickMarker={this.props.markerClick}
+                onDefocus={this.props.defocusHandler}
                 // onGetGlobe={(globe) => this.setState({globe: globe})}
                 // onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
                 onGlobeTextureLoaded={() => console.log('globe loaded')}

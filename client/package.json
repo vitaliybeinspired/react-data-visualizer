@@ -1,6 +1,5 @@
 {
   "name": "react-essentials",
-  "proxy": "http://127.0.0.1:8080",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,6 +33,7 @@
     "react-nice-dates": "^3.1.0",
     "react-plotly.js": "^2.5.1",
     "react-pro-sidebar": "^0.6.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-side-sheet": "^0.1.19",
     "react-sound": "^1.2.0",
