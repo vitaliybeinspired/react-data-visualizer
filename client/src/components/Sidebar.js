@@ -17,9 +17,9 @@ export default class SideBar extends React.Component {
                     <MenuItem onClick={this.props.toggleCollapseHandle}>Electrical Data</MenuItem>
                     {this.props.collapsed ? 
                         null : 
-                        <>
+                        <div className="dashboard-container">
                         <Plot data={this.props.hist}/>
-                        </>
+                        </div>
                     }
                     <MenuItem onClick={this.props.toggleCollapseHandle}>Forecast</MenuItem>
                     {this.props.collapsed ? 
