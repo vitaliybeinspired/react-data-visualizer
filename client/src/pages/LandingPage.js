@@ -3,7 +3,7 @@ import '../App.css';
 import '../components/GlobeAndCalendar.css'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import {Globe} from '../components/Globe.js'
+import {Globe, markers} from '../components/Globe.js'
 import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
@@ -30,20 +30,6 @@ export class LandingPage extends React.Component {
             //Used to indicate whether new data is being processed or not
             fetchingData: false,
             clicked: "none",
-            globe_markers: [
-                {
-                    id: 'ElSalvador',
-                },
-                {
-                    id: 'Nicaragua',
-                },
-                {
-                    id: 'Mexico',
-                },
-                {
-                    id: 'CostaRica',
-                }
-            ],
             country_data: {
                 "ElSalvador" : {
                     "Historic" : null,
@@ -92,7 +78,7 @@ export class LandingPage extends React.Component {
      */
     changeStartDate(date){
         this.setState({startDate: date});
-        this.state.globe_markers.forEach(element => {
+        markers.forEach(element => {
             this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
         });
     }
@@ -103,7 +89,7 @@ export class LandingPage extends React.Component {
      */
     changeEndDate(date){
         this.setState({endDate: date});
-        this.state.globe_markers.forEach(element => {
+        markers.forEach(element => {
             this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
         });
     }

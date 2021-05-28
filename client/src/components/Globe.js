@@ -7,7 +7,7 @@ import ReactGlobe from 'react-globe';
     soooo TL;DR don't let the user pick colors of the globe and we should be okay. 
 */
 
-const markers = [
+export const markers = [
     {
         id: 'ElSalvador',
         country: 'El Salvador',
