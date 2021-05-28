@@ -26,6 +26,7 @@
     "plotly.js": "^1.58.4",
     "react": "^17.0.1",
     "react-audio-player": "^0.17.0",
+    "react-csv": "^2.0.3",
     "react-dates": "^21.8.0",
     "react-dom": "^17.0.1",
     "react-globe": "^5.0.2",
