@@ -76,6 +76,9 @@ exports.CostaRica = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        client.close();
+    }
 }
 
 exports.Nicaragua = async (req, res) => {
@@ -137,6 +140,9 @@ exports.Nicaragua = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({err: err});
+    }
+    if(client.isConnected()){
+        client.close();
     }
 }
 
@@ -200,6 +206,9 @@ exports.ElSalvador = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
+    if(client.isConnected()){
+        client.close();
+    }
 }
 
 exports.Mexico = async (req, res) => {
@@ -250,5 +259,8 @@ exports.Mexico = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({err: err});
+    }
+    if(client.isConnected()){
+        client.close();
     }
 }
