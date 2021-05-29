@@ -1,6 +1,7 @@
   div.date-time-picker{
     position: relative;
     display: flex;
+    width: 580px;
     margin: 10px;
   }
 
@@ -15,14 +16,15 @@
 
   div.date-range{
     display: flex;
-    max-width: 400px;
+    width: 600px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
   }
 
   div.date-range input{
-    margin-right: 100px;
+    margin-right: 25px;
+    width: 150px;
   }
   
   a.nice-dates-navigation_previous::before{
