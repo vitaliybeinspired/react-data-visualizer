@@ -258,9 +258,9 @@ export default class Plot extends React.Component{
 
         pie_types.forEach(pie_type => {
             if(pie_type.data.length >= 0){
-                labels.push(pie_type.label)
-                colors.push(pie_type.color)
-                values.push(pie_type.data[this.state.pie_point_index])
+                labels.unshift(pie_type.label)
+                colors.unshift(pie_type.color)
+                values.unshift(pie_type.data[this.state.pie_point_index])
             }
         });
 
