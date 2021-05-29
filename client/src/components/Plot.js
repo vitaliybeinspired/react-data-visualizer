@@ -1,11 +1,25 @@
 import React from 'react';
 import {str_to_date} from './DateToWeek';
 import './Plot.css';
+import {GoGraph} from "react-icons/go"
 import {FaFileDownload} from 'react-icons/fa'
 import Plotly from 'react-plotly.js';
 import {CSVLink} from "react-csv";
 
 export default class Plot extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            pie_data: null,
+            pie_layout: null,
+            pie_point_index: null,
+            toggle: false,
+        }
+        this.hoverDataHandler = this.hoverDataHandler.bind(this);
+        this.toggleHandler = this.toggleHandler.bind(this);
+    }
+
     getData() {
         this.time = [];
         this.hydro = [];
@@ -211,6 +225,58 @@ export default class Plot extends React.Component{
         }
     }
 
+    toggleHandler(){
+        this.setState({
+            toggle: !this.state.toggle,
+            // pie_data: null,
+            // pie_layout: null,
+        })
+    }
+
+    hoverDataHandler(dataEvent){
+        console.log(dataEvent)
+        if(dataEvent.points.length){
+            let time_stamp = null;
+            let index = null;
+            let values = [];
+            let labels = [];
+            let colors = [];
+            
+            dataEvent.points.forEach(element => {
+                time_stamp = element.x;
+                index = element.pointIndex;
+                values.push(element.y);
+                labels.push(element.data.name);
+                colors.push(element.data.marker.color);
+            });
+
+            this.setState({
+                pie_point_index: index,
+                pie_data: [{
+                    values: values,
+                    labels: labels,
+                    marker: {
+                        colors: colors,
+                    },
+                    type: 'pie',
+                    // set this to true if you want random colors
+                    sort: false,
+                }],
+                pie_layout: {
+                    width: 600, 
+                    height: 400,
+                    plot_bgcolor:"#FFFFFF99",
+                    paper_bgcolor:"#00000000",
+                    font: 
+                        {
+                            color: "#FFFFFF",
+                        },
+                    title: time_stamp
+                },
+            })
+        }
+    }
+
     render() {    
         if(!this.props.data) {
             return <div className="country-plotly">Loading...</div>;
@@ -304,7 +370,7 @@ export default class Plot extends React.Component{
             }
         ]
 
-        if(this.props.showRenewable === true){
+        if(this.state.toggle){
             current_data = [
                 {
                     type: 'line',
@@ -328,6 +394,7 @@ export default class Plot extends React.Component{
         return (
             <div className="country-plotly">
                 <Plotly
+                    onHover={this.hoverDataHandler}
                     data={current_data}
                     layout={{
                         width: 600, 
@@ -351,13 +418,28 @@ export default class Plot extends React.Component{
                         title: this.props.title
                     }}
                 />
-                <div className="plot-options">
-                    {this.props.toggle}
-                    <div className="download-link-container">
-                        <p className="tooltiptext">Download me as a CSV</p>
-                        <FaFileDownload/>
-                        {/* <CSVLink data={this.csvData}/> */}
+                {
+                    this.state.pie_data ? 
+                    <div className="pie-chart">
+                        <Plotly 
+                            data={this.state.pie_data}
+                            layout={this.state.pie_layout}
+                        />
                     </div>
+                    :
+                    null
+                }
+                <div className="plot-options">
+                    <div onClick={this.toggleHandler} class="graph-change-button">
+                        <p class="tooltiptext">change chart labels</p>
+                        <GoGraph/>
+                    </div>
+                    <CSVLink data={this.csvData}>
+                        <div className="download-link-container">
+                            <p className="tooltiptext">download me as CSV</p>
+                            <FaFileDownload/>
+                        </div>
+                    </CSVLink>
                 </div>
             </div>
         );

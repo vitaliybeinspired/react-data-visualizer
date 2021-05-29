@@ -10,11 +10,20 @@
     color: rgb(184, 182, 182);
 }
 
+  div.pie-chart{
+    transform: translate(-25px, -65px);
+    height: 300px;
+  }
+
   div.plot-options{
     display: flex;
     height: 10px;
     flex-direction: row;
     transform: translate(10px, -30px);
+  }
+
+  div.plot-options svg{
+    color:rgb(100, 100, 100);
   }
 
   div.download-link-container{

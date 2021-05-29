@@ -1,7 +1,5 @@
 import {Menu, MenuItem, ProSidebar, SidebarHeader} from "react-pro-sidebar";
 import {VscUnmute, VscMute} from "react-icons/vsc"
-import {MdDashboard} from "react-icons/md"
-import {GoGraph} from "react-icons/go"
 import React from "react";
 import Plot from './Plot';
 import ReactCountryFlag from "react-country-flag"
@@ -26,20 +24,6 @@ export default class SideBar extends React.Component {
     }
 
     render() {
-
-        let forecast_toggle =
-        <div onClick={() => {this.setState({forecast_toggle: !this.state.forecast_toggle})}} class="graph-change-button">
-            <p class="tooltiptext">change chart labels</p>
-            <GoGraph/>
-        </div>
-
-        let hist_toggle = 
-        <div onClick={() => {this.setState({hist_toggle: !this.state.hist_toggle})}} class="graph-change-button">
-            <p class="tooltiptext">change chart labels</p>
-            <GoGraph/>
-        </div>
-
-
         return (
             <ProSidebar collapsed={this.props.collapsed}>
                 <Menu iconShape="circle">
@@ -59,9 +43,8 @@ export default class SideBar extends React.Component {
                         null : 
                         <div className="dashboard-container">
                             {this.props.calendar}
-                            <Plot toggle={hist_toggle} startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
-                            <Plot toggle={forecast_toggle} startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.forecast_toggle} data={this.props.frcst} title={"Forecasted Data"}/>
-                            
+                            <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
+                            <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.forecast_toggle} data={this.props.frcst} title={"Forecasted Data"}/>
                         </div>
                     }
                     {this.props.muted ?

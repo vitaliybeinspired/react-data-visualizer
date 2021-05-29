@@ -53,6 +53,7 @@ div.graph-change-button:hover .tooltiptext {
 
 div.dashboard-container{
   margin-left: 10px;
+  margin-bottom: 10px;
   min-height: 500px;
 }
 
@@ -61,7 +62,7 @@ div.dashboard-container{
   color: #adadad98;
   margin-top: 45px;
   height: calc(100% - 45px);
-  width: 600px;
+  width: 650px;
   min-width: 270px;
   text-align: left;
   transition: width, left, right, 0.3s;
