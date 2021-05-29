@@ -11,13 +11,15 @@ const {date_to_week, date_to_weekUS, date_to_weekJS, date_rangeUS}  = require('.
 //Database UserName: REACT
 //Database password: WattTime2021
 const MONGODB_URI = 'mongodb+srv://REACT:WattTime2021@cluster0.tbh2o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const client = new MongoClient(MONGODB_URI, { 
+function getClient () {
+    return new MongoClient(MONGODB_URI, { 
     useUnifiedTopology: true,
     connectTimeoutMS: 15000,
     socketTimeoutMS: 15000,
-});
+})};
 
 exports.CostaRica = async (req, res) => {
+    let client = getClient();
     if(!client.isConnected()){
         await client.connect();
     }
@@ -82,13 +84,13 @@ exports.CostaRica = async (req, res) => {
 }
 
 exports.Nicaragua = async (req, res) => {
+    let client = getClient();
     if(!client.isConnected()){
         await client.connect();
     }
     try {
         var h_entries = [];
         var f_entries = [];
-        await client.connect();
         const n_client = client.db("Nicaragua");
         const n_historic = n_client.collection("Historic");
         const n_forecast = n_client.collection("Forecast");
@@ -141,19 +143,16 @@ exports.Nicaragua = async (req, res) => {
         console.log(err);
         res.status(500).json({err: err});
     }
-    if(client.isConnected()){
-        client.close();
-    }
 }
 
 exports.ElSalvador = async (req, res) => {
+    let client = getClient();
     if(!client.isConnected()){
         await client.connect();
     }
     try {
         var h_entries = [];
         var f_entries = [];
-        await client.connect();
         const el_client = client.db("El_Salvador");
         const el_historic = el_client.collection("Historic");
         const el_forecast = el_client.collection("Forecast");
@@ -212,12 +211,12 @@ exports.ElSalvador = async (req, res) => {
 }
 
 exports.Mexico = async (req, res) => {
+    let client = getClient();
     if(!client.isConnected()){
         await client.connect();
     }
     try{
         var h_entries = [];
-        await client.connect();
         const m_client = client.db("Mexico");
         const m_historic = m_client.collection("Historic");
         //date range
