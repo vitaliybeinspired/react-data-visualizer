@@ -157,6 +157,13 @@ export class LandingPage extends React.Component {
     }
 
     defocusHandle(){
+        let vol = 0.3;
+        if(this.state.muted){
+            vol = 0;
+        }
+        let audio = new Audio("audio/wind.mp3")
+        audio.volume = vol;
+        audio.play();
         this.setState({
             renderSideBar: false
         });
