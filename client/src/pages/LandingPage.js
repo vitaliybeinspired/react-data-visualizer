@@ -198,6 +198,8 @@ export class LandingPage extends React.Component {
                     calendar={DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
                     hist={hist}
                     frcst={frcst}
+                    start={this.state.startDate}
+                    end={this.state.endDate}
                 />
                 {this.state.globe}
             </div>

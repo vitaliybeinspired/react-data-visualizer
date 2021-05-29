@@ -1,40 +1,55 @@
-import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar, SidebarHeader} from "react-pro-sidebar";
 import React from "react";
 import Plot from './Plot';
 import './Sidebar.css';
-//import Flag from "../images/nicaragua.jpg";
 
 export default class SideBar extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            loading: true,
+            hist_toggle: false,
+            forecast_toggle: false
+        }
+    }
+
     render() {
         return (
-            <div className="pro-side-bar">
-            {/*<h1><img src={Flag} alt="flag" style={{width: '10%'}} /> Nicaragua</h1> */}
             <ProSidebar collapsed={this.props.collapsed}>
+                <SidebarHeader>
+                    <div
+                    style={{
+                        padding: '24px',
+                        textTransform: 'uppercase',
+                        fontWeight: 'bold',
+                        fontSize: 14,
+                        letterSpacing: '1px',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                    }}
+                    >
+                    Electrical Energy Generation
+                    </div>
+                </SidebarHeader>
                 <Menu iconShape="square">
-                    <MenuItem onClick={this.props.toggleCollapseHandle}>Calender</MenuItem>
                     {this.props.collapsed ? 
                         null : 
                         <div className="dashboard-container">
-                        {this.props.calendar}
+                            {this.props.calendar}
+                            <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
+                            <h3 onClick={() => {this.setState({hist_toggle: !this.state.hist_toggle})}}>Switch Graph</h3>
                         </div>
                     }
-                    <MenuItem onClick={this.props.toggleCollapseHandle}>Electrical Data</MenuItem>
-                    {this.props.collapsed ? 
-                        null : 
-                        <div className="dashboard-container">
-                        <Plot data={this.props.hist}/>
-                        </div>
-                    }
-                    <MenuItem onClick={this.props.toggleCollapseHandle}>Forecast</MenuItem>
                     {this.props.collapsed ? 
                         null : 
                         <>
-                        <Plot data={this.props.frcst}/>
+                        <Plot startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
                         </>
                     }
                 </Menu>
             </ProSidebar>
-        </div>
         )
     }
 }
