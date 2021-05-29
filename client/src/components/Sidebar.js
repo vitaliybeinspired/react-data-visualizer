@@ -47,40 +47,26 @@ export default class SideBar extends React.Component {
                         <div className="dashboard-container">
                             {this.props.calendar}
                             <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
-                            <h3 onClick={() => {this.setState({hist_toggle: !this.state.hist_toggle})}}>Switch Graph</h3>
+                            <div onClick={() => {this.setState({hist_toggle: !this.state.hist_toggle})}} class="graph-change-button">
+                                <p class="tooltiptext">change chart labels</p>
+                                <GoGraph/>
+                            </div>
                             <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.forecast_toggle} data={this.props.frcst} title={"Forecasted Data"}/>
-                            <h3 onClick={() => {this.setState({forecast_toggle: !this.state.forecast_toggle})}}>Switch Graph</h3>
+                            <div onClick={() => {this.setState({forecast_toggle: !this.state.forecast_toggle})}} class="graph-change-button">
+                                <p class="tooltiptext">change chart labels</p>
+                                <GoGraph/>
+                            </div>
                         </div>
                     }
                     {this.props.muted ?
                         <MenuItem onClick={this.props.muteHandler} icon={<VscMute/>}>
                             Unmute Audio
                         </MenuItem>
-                        {this.props.collapsed ? 
-                            null : 
-                            <div className="dashboard-container">
-                                {this.props.calendar}
-                                <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
-                                <div onClick={() => {this.setState({hist_toggle: !this.state.hist_toggle})}} class="graph-change-button">
-                                    <p class="tooltiptext">change chart labels</p>
-                                    <GoGraph/>
-                                </div>
-                                <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.forecast_toggle} data={this.props.frcst} title={"Forecasted Data"}/>
-                                <div onClick={() => {this.setState({forecast_toggle: !this.state.forecast_toggle})}} class="graph-change-button">
-                                    <p class="tooltiptext">change chart labels</p>
-                                    <GoGraph/>
-                                </div>
-                            </div>
-                        }
-                        {this.props.muted ?
-                            <MenuItem onClick={this.props.muteHandler} icon={<VscMute/>}>
-                                Unmute Audio
-                            </MenuItem>
-                            :
-                            <MenuItem onClick={this.props.muteHandler} icon={<VscUnmute/>}>
-                                Mute Audio
-                            </MenuItem>
-                        }
+                        :
+                        <MenuItem onClick={this.props.muteHandler} icon={<VscUnmute/>}>
+                            Mute Audio
+                        </MenuItem>
+                    }
                     </Menu>
             </ProSidebar>
         )
