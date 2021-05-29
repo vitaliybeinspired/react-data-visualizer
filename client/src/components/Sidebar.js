@@ -1,4 +1,4 @@
-import {Menu, MenuItem, ProSidebar, SidebarHeader} from "react-pro-sidebar";
+import {Menu, MenuItem, ProSidebar} from "react-pro-sidebar";
 import {VscUnmute, VscMute} from "react-icons/vsc"
 import React from "react";
 import Plot from './Plot';

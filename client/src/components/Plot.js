@@ -253,7 +253,7 @@ export default class Plot extends React.Component{
         ]
 
         let pie_types = types;
-        if(fromToggle && !this.state.toggle || this.state.toggle && !fromToggle)
+        if((fromToggle && !this.state.toggle) || (this.state.toggle && !fromToggle))
             pie_types = alt_types;
 
         pie_types.forEach(pie_type => {

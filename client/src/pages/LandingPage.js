@@ -8,9 +8,8 @@ import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import Sound from 'react-sound';
-import ReactAudioPlayer from 'react-audio-player';
 import Sidebar from '../components/Sidebar';
-const {date_to_string, date_to_stringUS, date_to_week, date_to_weekUS, date_to_weekJS}  = require('../components/DateToWeek');
+const {date_to_stringUS, date_to_weekUS}  = require('../components/DateToWeek');
 const axios = require('axios');
 
 const volume = 40;
@@ -210,7 +209,7 @@ export class LandingPage extends React.Component {
 
         let hist = null;
         let frcst = null;
-        if (this.state.clicked != "none") {
+        if (this.state.clicked !== "none") {
             hist = this.state.country_data[this.state.clicked]['Historic'];
             frcst = this.state.country_data[this.state.clicked]['Forecast'];
         }
