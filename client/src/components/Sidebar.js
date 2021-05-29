@@ -54,8 +54,8 @@ export default class SideBar extends React.Component {
                         null : 
                         <div className="dashboard-container">
                             {this.props.calendar}
-                            <Plot startDate={this.props.start} endDate={this.state.end} data={this.props.hist} title={"Historical Data"}/>
-                            <Plot startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
+                            <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.hist} title={"Historical Data"}/>
+                            <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
                         </div>
                     }
                     {this.props.muted ?

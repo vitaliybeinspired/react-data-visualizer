@@ -17,6 +17,7 @@ export default class Plot extends React.Component{
             pie_point_index: null,
             toggle: false,
             relayout: null,
+            country: null,
         }
         this.hoverDataHandler = this.hoverDataHandler.bind(this);
         this.toggleHandler = this.toggleHandler.bind(this);
@@ -235,6 +236,10 @@ export default class Plot extends React.Component{
     }
 
     updateGraph(fromToggle=false){
+        if(this.props.data) {
+            this.getData();
+            this.setState({country: this.props.country})
+        }
         let current_data = [
             {
                 type: 'line',
@@ -340,65 +345,40 @@ export default class Plot extends React.Component{
                 },
             ]
         }
+        let layout = 
+            {
+                width: 600, 
+                height: 400,
+                yaxis:{
+                    title: "MWh",
+                    // showticklabels: false,
+                    gridcolor: "#FFFFFF55"
+                },
+                xaxis:{
+                    title: "Time",
+                    showticklabels: false,
+                    gridcolor: "#FFFFFF55"
+                },
+                plot_bgcolor:"#FFFFFF99",
+                paper_bgcolor:"#00000000",
+                font: 
+                    {
+                        color: "#FFFFFF",
+                    },
+                title: this.props.title
+            }
 
-        if(fromToggle){
-            console.log(this.mergeDictionaries(
-                {
-                    width: 600, 
-                    height: 400,
-                    yaxis:{
-                        title: "MWh",
-                        // showticklabels: false,
-                        gridcolor: "#FFFFFF55"
-                    },
-                    xaxis:{
-                        title: "Time",
-                        showticklabels: false,
-                        gridcolor: "#FFFFFF55"
-                    },
-                    plot_bgcolor:"#FFFFFF99",
-                    paper_bgcolor:"#00000000",
-                    font: 
-                        {
-                            color: "#FFFFFF",
-                        },
-                    title: this.props.title
-                }, this.state.relayout))
+        if(this.state.relayout){
+            layout = this.mergeDictionaries(layout, this.state.relayout);
         }
+
         let graph = <Plotly
             onHover={this.hoverDataHandler}
-            onRelayout={(e) => {this.setState({relayout: e}); console.log(e)}}
+            onRelayout={(e) => {this.setState({relayout: e})}}
             data={current_data}
-            layout={
-                this.mergeDictionaries(
-                {
-                    width: 600, 
-                    height: 400,
-                    yaxis:{
-                        title: "MWh",
-                        // showticklabels: false,
-                        gridcolor: "#FFFFFF55"
-                    },
-                    xaxis:{
-                        title: "Time",
-                        showticklabels: false,
-                        gridcolor: "#FFFFFF55"
-                    },
-                    plot_bgcolor:"#FFFFFF99",
-                    paper_bgcolor:"#00000000",
-                    font: 
-                        {
-                            color: "#FFFFFF",
-                        },
-                    title: this.props.title
-                }, this.state.relayout)
-            }
+            layout={layout}
         />
         this.setState({plot: graph});
-    }
-
-    componentDidMount(){
-        this.updateGraph();
     }
 
     setNewPieChart(fromToggle=false){
@@ -502,13 +482,21 @@ export default class Plot extends React.Component{
         return obj1;
     }
 
+    componentDidMount(){
+        this.setState({
+            country: this.props.country
+        });
+    }
+
     render() {    
         if(!this.props.data) {
             return <div className="country-plotly">Loading...</div>;
         } else {
             this.getData();
         }
-        
+        if(!this.state.plot || this.state.country !== this.props.country){
+            this.updateGraph();
+        }
         return (
             <div className="country-plotly">
                 {this.state.plot}
@@ -525,7 +513,7 @@ export default class Plot extends React.Component{
                 }
                 <div className="plot-options">
                     <div onClick={this.toggleHandler} class="graph-change-button">
-                        <p class="tooltiptext">change chart labels</p>
+                        <p className="tooltiptext">change chart labels</p>
                         <GoGraph/>
                     </div>
                     <CSVLink data={this.csvData}>
