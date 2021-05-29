@@ -4,8 +4,15 @@ import {MdDashboard} from "react-icons/md"
 import {GoGraph} from "react-icons/go"
 import React from "react";
 import Plot from './Plot';
-import ExampleComponent from './example';
+import ReactCountryFlag from "react-country-flag"
 import './Sidebar.css';
+
+const country_code = {
+    "CostaRica" : "CR",
+    "ElSalvador": "SV",
+    "Mexico" : "MX",
+    "Nicaragua" : "NI"
+}
 
 export default class SideBar extends React.Component {
     constructor(props){
@@ -21,26 +28,18 @@ export default class SideBar extends React.Component {
     render() {
         return (
             <ProSidebar collapsed={this.props.collapsed}>
-                <SidebarHeader>
-                    <ExampleComponent country="NI"></ExampleComponent>
-                    <div
-                    style={{
-                        padding: '24px',
-                        textTransform: 'uppercase',
-                        fontWeight: 'bold',
-                        fontSize: 14,
-                        letterSpacing: '1px',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                    }}
-                    >
-                    Nicaragua
-                    </div>
-                </SidebarHeader>
                 <Menu iconShape="circle">
-                    <MenuItem onClick={this.props.toggleCollapseHandle} icon={<MdDashboard/>}>
-                        Dashboard
+                    <MenuItem onClick={this.props.toggleCollapseHandle} icon={<ReactCountryFlag
+                        className="emojiFlag"
+                        countryCode={country_code[this.props.country]}
+                        svg
+                        style={{
+                            width: '2em',
+                            height: '2em',
+                            borderRadius: "1em"
+                        }}
+                    />}>
+                        {this.props.country}
                     </MenuItem>
                     {this.props.collapsed ? 
                         null : 
