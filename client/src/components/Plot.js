@@ -226,54 +226,81 @@ export default class Plot extends React.Component{
     }
 
     toggleHandler(){
+        this.setNewPieChart(true);
+    }
+
+    setNewPieChart(fromToggle=false){
+        let values = [];
+        let labels = [];
+        let colors = [];
+
+        let types = [
+            {label: 'Combustion', color: 'maroon', data: this.internal_combustion},
+            {label: 'Gas Turbo', color: 'fuchsia', data: this.turbo_gas},
+            {label: 'Nuclear', color: 'olive', data: this.nuclear},
+            {label: 'Other', color: 'silver', data: this.other},
+            {label: 'Solar', color: 'yellow', data: this.solar},
+            {label: 'Geothermal', color: 'orange', data: this.geothermal},
+            {label: 'Biomass', color: 'lime', data: this.biomass},
+            {label: 'Wind', color: 'cyan', data: this.wind},
+            {label: 'Thermal', color: 'red', data: this.thermal},
+            {label: 'Hydroelectric', color: 'blue', data: this.hydro}
+        ]
+
+        let alt_types = [
+            {label: 'Renewable', color: 'green', data: this.renewable},
+            {label: 'Non-renewable', color: 'red', data: this.not_renewable}
+        ]
+
+        let pie_types = types;
+        if(fromToggle && !this.state.toggle || this.state.toggle && !fromToggle)
+            pie_types = alt_types;
+
+        pie_types.forEach(pie_type => {
+            if(pie_type.data.length >= 0){
+                labels.push(pie_type.label)
+                colors.push(pie_type.color)
+                values.push(pie_type.data[this.state.pie_point_index])
+            }
+        });
+
         this.setState({
-            toggle: !this.state.toggle,
-            // pie_data: null,
-            // pie_layout: null,
+            pie_data: [{
+                values: values,
+                labels: labels,
+                marker: {
+                    colors: colors,
+                },
+                type: 'pie',
+                // set this to true if you want random colors
+                sort: false,
+            }],
+            pie_layout: {
+                width: 600, 
+                height: 400,
+                plot_bgcolor:"#FFFFFF99",
+                paper_bgcolor:"#00000000",
+                font: 
+                    {
+                        color: "#FFFFFF",
+                    },
+                title: this.time[this.state.pie_point_index]
+            },
         })
+        if(fromToggle){
+            this.setState({
+                toggle: !this.state.toggle,
+            })
+        }
     }
 
     hoverDataHandler(dataEvent){
         console.log(dataEvent)
         if(dataEvent.points.length){
-            let time_stamp = null;
-            let index = null;
-            let values = [];
-            let labels = [];
-            let colors = [];
+            let index = dataEvent.points[0].pointIndex;
             
-            dataEvent.points.forEach(element => {
-                time_stamp = element.x;
-                index = element.pointIndex;
-                values.push(element.y);
-                labels.push(element.data.name);
-                colors.push(element.data.marker.color);
-            });
-
-            this.setState({
-                pie_point_index: index,
-                pie_data: [{
-                    values: values,
-                    labels: labels,
-                    marker: {
-                        colors: colors,
-                    },
-                    type: 'pie',
-                    // set this to true if you want random colors
-                    sort: false,
-                }],
-                pie_layout: {
-                    width: 600, 
-                    height: 400,
-                    plot_bgcolor:"#FFFFFF99",
-                    paper_bgcolor:"#00000000",
-                    font: 
-                        {
-                            color: "#FFFFFF",
-                        },
-                    title: time_stamp
-                },
-            })
+            this.setState({pie_point_index: index})
+            this.setNewPieChart();
         }
     }
 
