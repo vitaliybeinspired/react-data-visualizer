@@ -1,6 +1,7 @@
 import React from 'react';
 import {str_to_date} from './DateToWeek';
 import './Plot.css';
+import {FaFileDownload} from 'react-icons/fa'
 import Plotly from 'react-plotly.js';
 import {CSVLink} from "react-csv";
 
@@ -350,7 +351,14 @@ export default class Plot extends React.Component{
                         title: this.props.title
                     }}
                 />
-                <CSVLink data={this.csvData}>Download me</CSVLink>;
+                <div className="plot-options">
+                    {this.props.toggle}
+                    <div className="download-link-container">
+                        <p className="tooltiptext">Download me as a CSV</p>
+                        <FaFileDownload/>
+                        {/* <CSVLink data={this.csvData}/> */}
+                    </div>
+                </div>
             </div>
         );
     }

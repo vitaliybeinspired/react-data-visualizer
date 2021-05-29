@@ -42,7 +42,7 @@ div.graph-change-button .tooltiptext {
   padding: 5px 0;
 
   /* Position the tooltip */
-  transform: translate(35px,-55px);
+  transform: translate(27px,-72px);
   position: absolute;
   z-index: 10;
 }
