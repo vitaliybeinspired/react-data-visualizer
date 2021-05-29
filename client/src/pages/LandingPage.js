@@ -8,9 +8,12 @@ import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import Sound from 'react-sound';
+import ReactAudioPlayer from 'react-audio-player';
 import Sidebar from '../components/Sidebar';
 const {date_to_string, date_to_stringUS, date_to_week, date_to_weekUS, date_to_weekJS}  = require('../components/DateToWeek');
 const axios = require('axios');
+
+const volume = 40;
 
 export class LandingPage extends React.Component {
 
@@ -27,6 +30,7 @@ export class LandingPage extends React.Component {
 
         this.state = {
             loading: true,
+            muted: false,
             //Used to indicate whether new data is being processed or not
             fetchingData: false,
             clicked: "none",
@@ -56,7 +60,14 @@ export class LandingPage extends React.Component {
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
         this.defocusHandle = this.defocusHandle.bind(this);
+        this.muteHandler = this.muteHandler.bind(this);
         this.toggleSidebarHandle = this.toggleSidebarHandle.bind(this)
+    }
+
+    muteHandler(){
+        this.setState({
+            muted: !this.state.muted
+        });
     }
 
     onClickMarker(marker, markerObject, event) {
@@ -64,8 +75,12 @@ export class LandingPage extends React.Component {
             fetchingData: true,
             renderSideBar: true
         })
+        let vol = 0.3;
+        if(this.state.muted){
+            vol = 0;
+        }
         let audio = new Audio("audio/wind.mp3")
-        audio.volume = 0.1
+        audio.volume = vol;
         audio.play();
         const country_id = marker['id'];
         // this.queryData(country_id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate))
@@ -154,7 +169,17 @@ export class LandingPage extends React.Component {
     }
 
     componentDidMount() {
-
+        this.setState({
+            // bgm: <ReactAudioPlayer
+            //     src="audio/Distant-Mountains.mp3"
+            //     controls
+            //     autoPlay
+            //     loop
+            //     muted={false}
+            //     volume={this.state.volume}
+            //     onVolumeChanged={(e) => {e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}}
+            // />
+        });
         this.queryData('ElSalvador', this.state.startDate, this.state.endDate)
         this.queryData('Mexico', this.state.startDate, this.state.endDate)
         this.queryData('CostaRica', this.state.startDate, this.state.endDate)
@@ -182,6 +207,11 @@ export class LandingPage extends React.Component {
             hist = this.state.country_data[this.state.clicked]['Historic'];
             frcst = this.state.country_data[this.state.clicked]['Forecast'];
         }
+
+        let vol = volume;
+        if(this.state.muted){
+            vol = 0;
+        }
         
         return (
             <div className="globe">
@@ -189,11 +219,13 @@ export class LandingPage extends React.Component {
                 <Sound
                     url="audio/Distant-Mountains.mp3"
                     playStatus={Sound.status.PLAYING}
-                    volume={0}
+                    volume={vol}
                     loop={true}
                 />
                 <Sidebar 
                     toggleCollapseHandle={this.toggleSidebarHandle}
+                    muted={this.state.muted}
+                    muteHandler={this.muteHandler}
                     collapsed={!this.state.renderSideBar}
                     calendar={DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
                     hist={hist}

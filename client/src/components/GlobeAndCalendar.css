@@ -1,18 +1,15 @@
-audio{
-    position: absolute;
-    right: 0;
-    margin-top: 3.5em;
-    margin-right: 1em;
-  }
-  
   div.date-time-picker{
     position: relative;
     display: flex;
     margin: 10px;
   }
 
+  div.smallAudio{
+    width: 150px;
+  }
+
   audio{
-    width: 250px;
+    width: 135px;
     height: 40px;
   }
 
@@ -22,6 +19,10 @@ audio{
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+  }
+
+  div.date-range input{
+    margin-right: 100px;
   }
   
   a.nice-dates-navigation_previous::before{

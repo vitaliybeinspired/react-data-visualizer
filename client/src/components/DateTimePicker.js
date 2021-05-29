@@ -31,7 +31,7 @@ function DateRangePickerExample(startDate, endDate, changeStartDate, changeEndDa
                         {...startDateInputProps}
                         placeholder='Start date'
                     />
-                    <span className='date-range' />
+                    <span/>
                     <input
                         className={'input' + (focus === END_DATE ? ' -focused' : '')}
                         {...endDateInputProps}

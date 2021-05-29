@@ -7,7 +7,22 @@ import { NavLink } from 'react-router-dom';
 function NavBar() {
     return (
         <div className="NavBar">
-            <h1>CFV</h1>    
+            <div
+                style={{
+                    paddingLeft: '24px',
+                    paddingRight: '24px',
+                    marginTop: "10px",
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                    fontSize: 20,
+                    letterSpacing: '1px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                }}
+                >
+                Electrical Energy Generation
+            </div>
             <div className="nav-bar">
                 <NavLink
                     className="nav-link"
