@@ -1,6 +1,7 @@
   div.date-time-picker{
     position: relative;
     display: flex;
+    width: 580px;
     margin: 10px;
   }
 
@@ -15,7 +16,7 @@
 
   div.date-range{
     display: flex;
-    max-width: 400px;
+    width: 600px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
