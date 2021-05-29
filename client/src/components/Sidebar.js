@@ -11,9 +11,13 @@ export default class SideBar extends React.Component {
             {/*<h1><img src={Flag} alt="flag" style={{width: '10%'}} /> Nicaragua</h1> */}
             <ProSidebar collapsed={this.props.collapsed}>
                 <Menu iconShape="square">
-                    <SubMenu title="Select Date Range" >
+                    <MenuItem onClick={this.props.toggleCollapseHandle}>Calender</MenuItem>
+                    {this.props.collapsed ? 
+                        null : 
+                        <div className="dashboard-container">
                         {this.props.calendar}
-                    </SubMenu>
+                        </div>
+                    }
                     <MenuItem onClick={this.props.toggleCollapseHandle}>Electrical Data</MenuItem>
                     {this.props.collapsed ? 
                         null : 
