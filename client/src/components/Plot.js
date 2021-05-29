@@ -129,6 +129,7 @@ export default class Plot extends React.Component{
                 geothermal_energy +
                 turbo_gas_energy
             )
+
             this.not_renewable.push(
                 thermal_energy +
                 other_energy +
@@ -137,39 +138,38 @@ export default class Plot extends React.Component{
             )
         }
         
-        const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        if(!this.hydro.some((item) => {return item !== 0})){
-            this.hydro = null;
+        if(!this.hydro.some((el)=>{return el !== 0})){
+            this.hydro = [];
         }
-        if(!this.wind.some((item) => {return item !== 0})){
-            this.wind = null;
+        if(!this.wind.some((el)=>{return el !== 0})){
+            this.wind = [];
         }
-        if(!this.solar.some((item) => {return item !== 0})){
-            this.solar = null;
+        if(!this.solar.some((el)=>{return el !== 0})){
+            this.solar = [];
         }
-        if(!this.thermal.some((item) => {return item !== 0})){
-            this.thermal = null;
+        if(!this.thermal.some((el)=>{return el !== 0})){
+            this.thermal = [];
         }
-        if(!this.other.some((item) => {return item !== 0})){
-            this.other = null;
+        if(!this.other.some((el)=>{return el !== 0})){
+            this.other = [];
         }
-        if(!this.interchange.some((item) => {return item !== 0})){
-            this.interchange = null;
+        if(!this.interchange.some((el)=>{return el !== 0})){
+            this.interchange = [];
         }
-        if(!this.biomass.some((item) => {return item !== 0})){
-            this.biomass = null;
+        if(!this.biomass.some((el)=>{return el !== 0})){
+            this.biomass = [];
         }
-        if(!this.geothermal.some((item) => {return item !== 0})){
-            this.geothermal = null;
+        if(!this.geothermal.some((el)=>{return el !== 0})){
+            this.geothermal = [];
         }
-        if(!this.internal_combustion.some((item) => {return item !== 0})){
-            this.internal_combustion = null;
+        if(!this.internal_combustion.some((el)=>{return el !== 0})){
+            this.internal_combustion = [];
         }
-        if(!this.turbo_gas.some((item) => {return item !== 0})){
-            this.turbo_gas = null;
+        if(!this.turbo_gas.some((el)=>{return el !== 0})){
+            this.turbo_gas = [];
         }
-        if(!this.nuclear.some((item) => {return item !== 0})){
-            this.nuclear = null;
+        if(!this.nuclear.some((el)=>{return el !== 0})){
+            this.nuclear = [];
         }
     }
 
