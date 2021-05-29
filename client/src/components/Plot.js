@@ -2,6 +2,7 @@ import React from 'react';
 import {str_to_date} from './DateToWeek';
 import './Plot.css';
 import Plotly from 'react-plotly.js';
+import {CSVLink} from "react-csv";
 
 export default class Plot extends React.Component{
     getData() {
@@ -137,7 +138,43 @@ export default class Plot extends React.Component{
                 nuclear_energy
             )
         }
+
+        // FORMAT CSV DATA
+        this.csvData = [[
+            "time",
+            "HydoElectric",
+            "Wind",
+            "Solar",
+            "Thermal",
+            "Biomass",
+            "Geothermal",
+            "Internal Combustion",
+            "Gas Turbine",
+            "Nuclear",
+            "Interchange",
+            "Unidentified"
+        ]];
+
+        let i = -1;
+        while (this.time[++i]) { 
+            this.csvData.push( [
+                this.time[i],
+                this.hydro[i],
+                this.wind[i],
+                this.solar[i],
+                this.thermal[i],
+                this.biomass[i],
+                this.geothermal[i],
+                this.internal_combustion[i],
+                this.turbo_gas[i],
+                this.nuclear[i],
+                this.interchange[i],
+                this.other[i]
+            ] );
+        }
         
+        // replace empty sets with empty array
+        // this way they arent graphed
         if(!this.hydro.some((el)=>{return el !== 0})){
             this.hydro = [];
         }
@@ -313,6 +350,7 @@ export default class Plot extends React.Component{
                         title: this.props.title
                     }}
                 />
+                <CSVLink data={this.csvData}>Download me</CSVLink>;
             </div>
         );
     }

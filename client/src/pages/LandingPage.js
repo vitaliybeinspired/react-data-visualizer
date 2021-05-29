@@ -232,6 +232,7 @@ export class LandingPage extends React.Component {
                     frcst={frcst}
                     start={this.state.startDate}
                     end={this.state.endDate}
+                    country={this.state.clicked}
                 />
                 {this.state.globe}
             </div>
