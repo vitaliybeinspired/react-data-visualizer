@@ -235,10 +235,12 @@ export default class Plot extends React.Component{
         this.setNewPieChart(true);
     }
 
-    updateGraph(fromToggle=false){
+    updateGraph(fromToggle=false, nolayout=false){
         if(this.props.data) {
             this.getData();
-            this.setState({country: this.props.country})
+            this.setState({
+                country: this.props.country
+            })
         }
         let current_data = [
             {
@@ -368,7 +370,7 @@ export default class Plot extends React.Component{
                 title: this.props.title
             }
 
-        if(this.state.relayout){
+        if(this.state.relayout && !nolayout){
             layout = this.mergeDictionaries(layout, this.state.relayout);
         }
 
@@ -379,6 +381,7 @@ export default class Plot extends React.Component{
             layout={layout}
         />
         this.setState({plot: graph});
+        this.setNewPieChart();
     }
 
     setNewPieChart(fromToggle=false){
@@ -494,8 +497,12 @@ export default class Plot extends React.Component{
         } else {
             this.getData();
         }
-        if(!this.state.plot || this.state.country !== this.props.country){
+        if(!this.state.plot){
             this.updateGraph();
+        }
+        if(this.state.country !== this.props.country){
+            // set the 2nd bool to false if we want persistance between countries
+            this.updateGraph(false, true);
         }
         return (
             <div className="country-plotly">
