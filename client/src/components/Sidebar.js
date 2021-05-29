@@ -1,5 +1,6 @@
 import {Menu, MenuItem, ProSidebar} from "react-pro-sidebar";
 import {VscUnmute, VscMute} from "react-icons/vsc"
+import {MdDashboard} from 'react-icons/md'
 import React from "react";
 import Plot from './Plot';
 import ReactCountryFlag from "react-country-flag"
@@ -18,8 +19,6 @@ export default class SideBar extends React.Component {
 
         this.state = {
             loading: true,
-            hist_toggle: false,
-            forecast_toggle: false
         }
     }
 
@@ -27,24 +26,36 @@ export default class SideBar extends React.Component {
         return (
             <ProSidebar collapsed={this.props.collapsed}>
                 <Menu iconShape="circle">
-                    <MenuItem onClick={this.props.toggleCollapseHandle} icon={<ReactCountryFlag
-                        className="emojiFlag"
-                        countryCode={country_code[this.props.country]}
-                        svg
-                        style={{
-                            width: '2em',
-                            height: '2em',
-                            borderRadius: "1em"
-                        }}
-                    />}>
-                        {this.props.country}
+                    <MenuItem 
+                        onClick={this.props.toggleCollapseHandle} 
+                        icon={
+                            this.props.country === "none" ? 
+                            <MdDashboard/> 
+                            : 
+                            <ReactCountryFlag
+                                className="emojiFlag"
+                                countryCode={country_code[this.props.country]}
+                                svg
+                                style={{
+                                    width: '2em',
+                                    height: '2em',
+                                    borderRadius: "1em"
+                            }}/>
+                        }
+                    >
+                    {
+                        this.props.country === "none" ? 
+                        "Click on a country!" 
+                        : 
+                        this.props.country
+                    }
                     </MenuItem>
-                    {this.props.collapsed ? 
+                    {this.props.collapsed || this.props.country === "none" ? 
                         null : 
                         <div className="dashboard-container">
                             {this.props.calendar}
-                            <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.hist_toggle} data={this.props.hist} title={"Historical Data"}/>
-                            <Plot startDate={this.props.start} endDate={this.state.end} showRenewable={this.state.forecast_toggle} data={this.props.frcst} title={"Forecasted Data"}/>
+                            <Plot startDate={this.props.start} endDate={this.state.end} data={this.props.hist} title={"Historical Data"}/>
+                            <Plot startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
                         </div>
                     }
                     {this.props.muted ?
