@@ -11,13 +11,17 @@ export default class Plot extends React.Component{
         super(props);
 
         this.state = {
+            plot: null,
             pie_data: null,
             pie_layout: null,
             pie_point_index: null,
             toggle: false,
+            relayout: null,
         }
         this.hoverDataHandler = this.hoverDataHandler.bind(this);
         this.toggleHandler = this.toggleHandler.bind(this);
+        this.mergeDictionaries = this.mergeDictionaries.bind(this);
+        this.updateGraph = this.updateGraph.bind(this);
     }
 
     getData() {
@@ -226,91 +230,11 @@ export default class Plot extends React.Component{
     }
 
     toggleHandler(){
+        this.updateGraph(true);
         this.setNewPieChart(true);
     }
 
-    setNewPieChart(fromToggle=false){
-        let values = [];
-        let labels = [];
-        let colors = [];
-
-        let types = [
-            {label: 'Combustion', color: 'maroon', data: this.internal_combustion},
-            {label: 'Gas Turbo', color: 'fuchsia', data: this.turbo_gas},
-            {label: 'Nuclear', color: 'olive', data: this.nuclear},
-            {label: 'Other', color: 'silver', data: this.other},
-            {label: 'Solar', color: 'yellow', data: this.solar},
-            {label: 'Geothermal', color: 'orange', data: this.geothermal},
-            {label: 'Biomass', color: 'lime', data: this.biomass},
-            {label: 'Wind', color: 'cyan', data: this.wind},
-            {label: 'Thermal', color: 'red', data: this.thermal},
-            {label: 'Hydroelectric', color: 'blue', data: this.hydro}
-        ]
-
-        let alt_types = [
-            {label: 'Renewable', color: 'green', data: this.renewable},
-            {label: 'Non-renewable', color: 'red', data: this.not_renewable}
-        ]
-
-        let pie_types = types;
-        if((fromToggle && !this.state.toggle) || (this.state.toggle && !fromToggle))
-            pie_types = alt_types;
-
-        pie_types.forEach(pie_type => {
-            if(pie_type.data.length >= 0){
-                labels.unshift(pie_type.label)
-                colors.unshift(pie_type.color)
-                values.unshift(pie_type.data[this.state.pie_point_index])
-            }
-        });
-
-        this.setState({
-            pie_data: [{
-                values: values,
-                labels: labels,
-                marker: {
-                    colors: colors,
-                },
-                type: 'pie',
-                // set this to true if you want random colors
-                sort: false,
-            }],
-            pie_layout: {
-                width: 600, 
-                height: 400,
-                plot_bgcolor:"#FFFFFF99",
-                paper_bgcolor:"#00000000",
-                font: 
-                    {
-                        color: "#FFFFFF",
-                    },
-                title: this.time[this.state.pie_point_index]
-            },
-        })
-        if(fromToggle){
-            this.setState({
-                toggle: !this.state.toggle,
-            })
-        }
-    }
-
-    hoverDataHandler(dataEvent){
-        console.log(dataEvent)
-        if(dataEvent.points.length){
-            let index = dataEvent.points[0].pointIndex;
-            
-            this.setState({pie_point_index: index})
-            this.setNewPieChart();
-        }
-    }
-
-    render() {    
-        if(!this.props.data) {
-            return <div className="country-plotly">Loading...</div>;
-        } else {
-            this.getData();
-        }
-
+    updateGraph(fromToggle=false){
         let current_data = [
             {
                 type: 'line',
@@ -378,7 +302,6 @@ export default class Plot extends React.Component{
                 y: this.wind
             },
             {
-
                 type: 'line',
                 stackgroup: 'one',
                 marker: {color: 'red'},
@@ -397,7 +320,7 @@ export default class Plot extends React.Component{
             }
         ]
 
-        if(this.state.toggle){
+        if((fromToggle && !this.state.toggle) || (this.state.toggle && !fromToggle)){
             current_data = [
                 {
                     type: 'line',
@@ -417,34 +340,178 @@ export default class Plot extends React.Component{
                 },
             ]
         }
+
+        if(fromToggle){
+            console.log(this.mergeDictionaries(
+                {
+                    width: 600, 
+                    height: 400,
+                    yaxis:{
+                        title: "MWh",
+                        // showticklabels: false,
+                        gridcolor: "#FFFFFF55"
+                    },
+                    xaxis:{
+                        title: "Time",
+                        showticklabels: false,
+                        gridcolor: "#FFFFFF55"
+                    },
+                    plot_bgcolor:"#FFFFFF99",
+                    paper_bgcolor:"#00000000",
+                    font: 
+                        {
+                            color: "#FFFFFF",
+                        },
+                    title: this.props.title
+                }, this.state.relayout))
+        }
+        let graph = <Plotly
+            onHover={this.hoverDataHandler}
+            onRelayout={(e) => {this.setState({relayout: e}); console.log(e)}}
+            data={current_data}
+            layout={
+                this.mergeDictionaries(
+                {
+                    width: 600, 
+                    height: 400,
+                    yaxis:{
+                        title: "MWh",
+                        // showticklabels: false,
+                        gridcolor: "#FFFFFF55"
+                    },
+                    xaxis:{
+                        title: "Time",
+                        showticklabels: false,
+                        gridcolor: "#FFFFFF55"
+                    },
+                    plot_bgcolor:"#FFFFFF99",
+                    paper_bgcolor:"#00000000",
+                    font: 
+                        {
+                            color: "#FFFFFF",
+                        },
+                    title: this.props.title
+                }, this.state.relayout)
+            }
+        />
+        this.setState({plot: graph});
+    }
+
+    componentDidMount(){
+        this.updateGraph();
+    }
+
+    setNewPieChart(fromToggle=false){
+        let values = [];
+        let labels = [];
+        let colors = [];
+
+        let types = [
+            {label: 'Combustion', color: 'maroon', data: this.internal_combustion},
+            {label: 'Gas Turbo', color: 'fuchsia', data: this.turbo_gas},
+            {label: 'Nuclear', color: 'olive', data: this.nuclear},
+            {label: 'Other', color: 'silver', data: this.other},
+            {label: 'Solar', color: 'yellow', data: this.solar},
+            {label: 'Geothermal', color: 'orange', data: this.geothermal},
+            {label: 'Biomass', color: 'lime', data: this.biomass},
+            {label: 'Wind', color: 'cyan', data: this.wind},
+            {label: 'Thermal', color: 'red', data: this.thermal},
+            {label: 'Hydroelectric', color: 'blue', data: this.hydro}
+        ]
+
+        let alt_types = [
+            {label: 'Renewable', color: 'green', data: this.renewable},
+            {label: 'Non-renewable', color: 'red', data: this.not_renewable}
+        ]
+
+        let pie_types = types;
+        if((fromToggle && !this.state.toggle) || (this.state.toggle && !fromToggle))
+            pie_types = alt_types;
+
+        pie_types.forEach(pie_type => {
+            if(pie_type.data.length >= 0){
+                labels.unshift(pie_type.label)
+                colors.unshift(pie_type.color)
+                values.unshift(pie_type.data[this.state.pie_point_index])
+            }
+        });
+
+        this.setState({
+            pie_data: [{
+                values: values,
+                labels: labels,
+                marker: {
+                    colors: colors,
+                },
+                type: 'pie',
+                // set this to true if you want random colors
+                sort: false,
+            }],
+            pie_layout: {
+                width: 600, 
+                height: 400,
+                plot_bgcolor:"#FFFFFF99",
+                paper_bgcolor:"#00000000",
+                font: 
+                    {
+                        color: "#FFFFFF",
+                    },
+                title: this.time[this.state.pie_point_index]
+            },
+        })
+        if(fromToggle){
+            this.setState({
+                toggle: !this.state.toggle,
+            })
+        }
+
+    }
+
+    hoverDataHandler(dataEvent){
+        if(dataEvent.points.length){
+            let index = dataEvent.points[0].pointIndex;
+            
+            this.setState({pie_point_index: index})
+            this.setNewPieChart();
+        }
+    }
+
+    mergeDictionaries(obj1, obj2){
+        for (var key in obj2){
+            if(obj2.hasOwnProperty(key)){
+                if(key.includes(".")){
+                    let parts = key.split(".")
+                    if(key.includes(".range")){
+                        if(obj1[parts[0]].hasOwnProperty('range')){
+                            let which_end = parseInt(key.charAt(key.length - 2));
+                            obj1[parts[0]]['range'][which_end] = obj2[key];
+                        }else{
+                            let new_range = [0, 0]
+                            let which_end = parseInt(key.charAt(key.length - 2));
+                            new_range[which_end] = obj2[key];
+                            obj1[parts[0]]['range'] = new_range;
+                        }
+                    }else{
+                        obj1[parts[0]][parts[1]] = obj2[key];
+                    }
+                }else{
+                    obj1[key] = obj2[key];
+                }
+            }
+        }
+        return obj1;
+    }
+
+    render() {    
+        if(!this.props.data) {
+            return <div className="country-plotly">Loading...</div>;
+        } else {
+            this.getData();
+        }
         
         return (
             <div className="country-plotly">
-                <Plotly
-                    onHover={this.hoverDataHandler}
-                    data={current_data}
-                    layout={{
-                        width: 600, 
-                        height: 400,
-                        yaxis:{
-                            title: "MWh",
-                            // showticklabels: false,
-                            gridcolor: "#FFFFFF55"
-                        },
-                        xaxis:{
-                            title: "Time",
-                            showticklabels: false,
-                            gridcolor: "#FFFFFF55"
-                        },
-                        plot_bgcolor:"#FFFFFF99",
-                        paper_bgcolor:"#00000000",
-                        font: 
-                            {
-                                color: "#FFFFFF",
-                            },
-                        title: this.props.title
-                    }}
-                />
+                {this.state.plot}
                 {
                     this.state.pie_data ? 
                     <div className="pie-chart">
