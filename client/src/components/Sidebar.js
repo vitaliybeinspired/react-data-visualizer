@@ -3,6 +3,7 @@ import {VscUnmute, VscMute} from "react-icons/vsc"
 import {MdDashboard} from 'react-icons/md'
 import React from "react";
 import Plot from './Plot';
+import Accuracy from './Accuracy'
 import ReactCountryFlag from "react-country-flag"
 import './Sidebar.css';
 
@@ -56,6 +57,7 @@ export default class SideBar extends React.Component {
                             {this.props.calendar}
                             <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.hist} title={"Historical Data"}/>
                             <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
+                            <Accuracy startDate={this.props.start} endDate={this.state.end} hist={this.props.hist} frcst={this.props.frcst}/>
                         </div>
                     }
                     {this.props.muted ?

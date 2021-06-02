@@ -35,6 +35,12 @@ function NavBar() {
                 <NavLink
                     className="nav-link"
                     activeClassName="nav-link-active"
+                    to="/learn">Learn More
+                </NavLink>
+
+                <NavLink
+                    className="nav-link"
+                    activeClassName="nav-link-active"
                     to="/about">About
                 </NavLink>
             </div>

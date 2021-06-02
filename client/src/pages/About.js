@@ -1,8 +1,9 @@
 import '../index.css';
 import '../App.css';
 import React from 'react';
-import Max from "../images/Max.jpg";
 import NavBar from "../components/NavBar"
+// images
+import Max from "../images/Max.jpg";
 import Vitaliy from "../images/Vitaliy.jpeg";
 import Andre from "../images/Andre.jpeg";
 import Naoki from "../images/Naoki.jpg";
@@ -11,7 +12,7 @@ export class About extends React.Component {
   render() {
   	return (
 			<div>
-			<NavBar />
+				<NavBar />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/*
 				I got rid of this bc it was messing with nav bar
