@@ -33,6 +33,7 @@ export class LandingPage extends React.Component {
             //Used to indicate whether new data is being processed or not
             fetchingData: false,
             clicked: "none",
+            country: "none",
             country_data: {
                 "ElSalvador" : {
                     "Historic" : null,
@@ -82,8 +83,12 @@ export class LandingPage extends React.Component {
         audio.volume = vol;
         audio.play();
         const country_id = marker['id'];
+        const country = marker['country']
         // this.queryData(country_id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate))
-        this.setState({clicked: country_id});
+        this.setState({
+            clicked: country_id,
+            country: country
+        });
     }
 
     /**
@@ -175,22 +180,28 @@ export class LandingPage extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            // bgm: <ReactAudioPlayer
-            //     src="audio/Distant-Mountains.mp3"
-            //     controls
-            //     autoPlay
-            //     loop
-            //     muted={false}
-            //     volume={this.state.volume}
-            //     onVolumeChanged={(e) => {e['path'][0].muted ? this.volumeChangeEvent(0) : this.volumeChangeEvent(e['path'][0].volume)}}
-            // />
-        });
         this.queryData('ElSalvador', this.state.startDate, this.state.endDate)
         this.queryData('Mexico', this.state.startDate, this.state.endDate)
         this.queryData('CostaRica', this.state.startDate, this.state.endDate)
         this.queryData('Nicaragua', this.state.startDate, this.state.endDate)
         
+        // this.state.markers.forEach(element => {
+        //     if (this.state.country_data[element.id]["Historic"] !== null) {
+        //         let i = 0;
+        //         let sum = 0;
+        //         for (let day of this.state.country_data[element.id]["Historic"]) {
+        //             for (let hour of day) {
+        //                 for (let energy of hour) {
+        //                     i++;
+        //                     sum += energy;
+        //                 }
+        //             }
+        //         }
+        //         let mean = (sum/i);
+        //         element.value = mean/40;
+        //     }
+        // });
+
         this.setState({
             globe: new Globe(
                 {
@@ -238,7 +249,7 @@ export class LandingPage extends React.Component {
                     frcst={frcst}
                     start={this.state.startDate}
                     end={this.state.endDate}
-                    country={this.state.clicked}
+                    country={this.state.country}
                 />
                 {this.state.globe}
             </div>

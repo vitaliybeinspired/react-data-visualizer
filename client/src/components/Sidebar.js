@@ -7,8 +7,8 @@ import ReactCountryFlag from "react-country-flag"
 import './Sidebar.css';
 
 const country_code = {
-    "CostaRica" : "CR",
-    "ElSalvador": "SV",
+    "Costa Rica" : "CR",
+    "El Salvador": "SV",
     "Mexico" : "MX",
     "Nicaragua" : "NI"
 }
