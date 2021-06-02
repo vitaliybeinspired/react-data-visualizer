@@ -11,30 +11,30 @@ export const markers = [
     {
         id: 'ElSalvador',
         country: 'El Salvador',
-        color: 'red',
+        color: 'yellow',
         coordinates: [13.598871, -88.909731],
         value: 20,
     },
     {
         id: 'Nicaragua',
         country: 'Nicaragua',
-        color: 'gold',
+        color: 'yellow',
         coordinates: [12.793830, -84.854074],
-        value: 20,
+        value: 10,
     },
     {
         id: 'Mexico',
         country: 'Mexico',
-        color: 'orange',
+        color: 'yellow',
         coordinates: [23.502654, -102.227797],
-        value: 20,
+        value: 80,
     },
     {
         id: 'CostaRica',
         country: 'Costa Rica',
-        color: 'green',
+        color: 'yellow',
         coordinates: [10.031846, -83.896692],
-        value: 20,
+        value: 40,
     }
 ];
 

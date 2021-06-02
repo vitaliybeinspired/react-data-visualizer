@@ -1,11 +1,11 @@
 .NavBar {
     box-sizing: border-box;
     width: 100%;
-    height: 45px;
+    height: 50px;
     display: flex;
     align-items: top;
-    background-color: rgb(24, 196, 167);
-    color: rgb(0, 0, 0);
+    background-color: rgb(78, 78, 78);
+    color: rgb(92, 198, 147);
 }
 
 h1 {
@@ -17,8 +17,8 @@ h1 {
 .NavBar .nav-link {
     display: inline-block;
     padding-top: 0.65em;
-    padding-right: 1em;
-    padding-left: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
     padding-bottom: 0.5em;
     color: rgba(255, 255, 255, 0.712);
     font-weight: bold;
@@ -32,7 +32,7 @@ h1 {
 }
 
 .NavBar .nav-link-active {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     color: #fff;
 }
