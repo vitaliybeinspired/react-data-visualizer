@@ -61,7 +61,7 @@ div.dashboard-container{
 .pro-sidebar {
   color: #adadad98;
   margin-top: 50px;
-  height: calc(100% - 45px);
+  height: calc(100% - 50px);
   width: 650px;
   min-width: 270px;
   text-align: left;
