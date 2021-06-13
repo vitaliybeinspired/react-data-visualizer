@@ -4,6 +4,15 @@ import './Plot.css';
 import Plotly from 'react-plotly.js';
 
 export class Accuracy extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            empty: false,
+            p_empty: false,
+        }
+    }
+
     getData() {
         let start = this.props.startDate;
         let end = this.props.endDate;
@@ -32,6 +41,11 @@ export class Accuracy extends React.Component{
                 continue;
             }
             hour.push(data[k]);
+        }
+        if(hour.length < 1 && !this.state.empty){
+            this.setState({empty: true})
+        }else if(hour.length > 1 && this.state.empty){
+            this.setState({empty: false})
         }
 
         let hydro_energy = 0;
@@ -114,6 +128,11 @@ export class Accuracy extends React.Component{
                 continue;
             }
             p_hour.push(pred[p_k]);
+        }
+        if(p_hour.length < 1 && !this.state.p_empty){
+            this.setState({p_empty: true})
+        }else if(p_hour.length > 1 && this.state.p_empty){
+            this.setState({p_empty: false})
         }
 
         let p_hydro_energy = 0;
@@ -285,6 +304,10 @@ export class Accuracy extends React.Component{
                 type: 'bar'
             }
         ];
+
+        if(this.state.empty || this.state.p_empty){
+            return null
+        }
 
         return (
             <div className="country-plotly">
