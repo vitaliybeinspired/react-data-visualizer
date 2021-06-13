@@ -2,6 +2,7 @@ import {Menu, MenuItem, ProSidebar} from "react-pro-sidebar";
 import {VscUnmute, VscMute} from "react-icons/vsc"
 import {MdDashboard} from 'react-icons/md'
 import React from "react";
+import DateTimePicker from '../components/DateTimePicker'
 import Plot from './Plot';
 import Accuracy from './Accuracy'
 import ReactCountryFlag from "react-country-flag"
@@ -20,10 +21,36 @@ export default class SideBar extends React.Component {
 
         this.state = {
             loading: true,
+            updating: false,
         }
+        this.changeEndDate = this.changeEndDate.bind(this)
+        this.changeStartDate = this.changeStartDate.bind(this)
+        this.updateLoading = this.updateLoading.bind(this)
+        this.updateCompleted = this.updateCompleted.bind(this)
+    }
+
+    changeStartDate(date){
+        this.props.changeStartDate(date, this.updateLoading)
+    }
+
+    changeEndDate(date){
+        this.props.changeEndDate(date, this.updateLoading);
+    }
+
+    updateLoading(){
+        this.setState({updating: true})
+    }
+
+    updateCompleted(){
+        this.setState({updating: false})
     }
 
     render() {
+
+        if(this.state.loading !== this.props.loading){
+            this.setState({loading: this.props.loading})
+        }
+
         return (
             <ProSidebar collapsed={this.props.collapsed}>
                 <Menu iconShape="circle">
@@ -54,10 +81,28 @@ export default class SideBar extends React.Component {
                     {this.props.collapsed || this.props.country === "none" ? 
                         null : 
                         <div className="dashboard-container">
-                            {this.props.calendar}
-                            <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.hist} title={"Historical Data"}/>
-                            <Plot country={this.props.country} startDate={this.props.start} endDate={this.state.end} data={this.props.frcst} title={"Forecasted Data"}/>
-                            <Accuracy startDate={this.props.start} endDate={this.state.end} hist={this.props.hist} frcst={this.props.frcst}/>
+                            {DateTimePicker(this.props.start, this.props.end, this.changeStartDate, this.changeEndDate)}
+                            <Plot 
+                                loading={this.state.loading}
+                                country={this.props.country}
+                                startDate={this.props.start}
+                                endDate={this.props.end}
+                                data={this.props.hist}
+                                title={"Historical Data"}
+                                updating={this.state.updating}
+                                updateCallback={this.updateCompleted}
+                            />
+                            <Plot 
+                                loading={this.state.loading}
+                                country={this.props.country}
+                                startDate={this.props.start}
+                                endDate={this.props.end}
+                                data={this.props.frcst}
+                                title={"Forecasted Data"}
+                                updating={this.state.updating}
+                                updateCallback={this.updateCompleted}
+                            />
+                            <Accuracy loading={this.props.loading} startDate={this.props.start} endDate={this.props.end} hist={this.props.hist} frcst={this.props.frcst}/>
                         </div>
                     }
                     {this.props.muted ?
