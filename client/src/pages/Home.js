@@ -3,7 +3,7 @@ import '../App.css';
 import './Home.css';
 import React from 'react';
 import NavBar from "../components/NavBar"
-// import DropDownButton from "../components/DropDownButton";
+import DropDownButton from "../components/DropDownButton";
 // images
 import Logo from "../images/logo.png";
 import System from "../images/system.PNG";
@@ -17,7 +17,6 @@ export class Home extends React.Component {
   	return (
 		<div>
             <NavBar />
-			{/*<DropDownButton/>*/}
             <div className='title'>
                 <img src={Logo} alt="logo" style={{width:'20%', display:'inline-block'}} />
                 <div style={{paddingRight:'100px', display:'inline-block'}}>
@@ -58,6 +57,7 @@ export class Home extends React.Component {
                     Our Team
                 </div>
             </div>
+			<DropDownButton/>
 
             <div className="row">
 				<div className="column">
