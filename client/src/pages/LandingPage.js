@@ -4,7 +4,6 @@ import '../components/GlobeAndCalendar.css'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 import {Globe, markers} from '../components/Globe.js'
-import DateTimePicker from '../components/DateTimePicker'
 import NavBar from '../components/NavBar'
 import React from 'react';
 import Sound from 'react-sound';
@@ -54,6 +53,8 @@ export class LandingPage extends React.Component {
             },
             startDate: start,
             endDate: end,
+            eval_start: date_to_stringUS(start),
+            eval_end: date_to_stringUS(end),
             renderSideBar: false,
         }
         this.onClickMarker = this.onClickMarker.bind(this);
@@ -72,7 +73,6 @@ export class LandingPage extends React.Component {
 
     onClickMarker(marker, markerObject, event) {
         this.setState({
-            fetchingData: true,
             renderSideBar: true
         })
         let vol = 0.3;
@@ -95,10 +95,12 @@ export class LandingPage extends React.Component {
      * event passing for datepicker
      * @param {*} date 
      */
-    changeStartDate(date){
-        this.setState({startDate: date});
+    changeStartDate(date, callback=null){
+        this.setState({
+            startDate: date
+        });
         markers.forEach(element => {
-            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate), callback);
         });
     }
 
@@ -106,15 +108,24 @@ export class LandingPage extends React.Component {
      * event passing for datepicker
      * @param {*} date 
      */
-    changeEndDate(date){
-        this.setState({endDate: date});
+    changeEndDate(date, callback=null){
+        this.setState({
+            endDate: date
+        });
         markers.forEach(element => {
-            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate));
+            this.queryData(element.id, date_to_stringUS(this.state.startDate), date_to_stringUS(this.state.endDate), callback);
         });
     }
 
-    async queryData(country_string, start_date, end_date)
+    async queryData(country_string, start_date, end_date, callback=null)
     {
+        //We already have the data
+        if( this.state.eval_start === start_date && this.state.eval_end === end_date){
+            this.setState({fetchingData: false})
+            return
+        }else{
+            this.setState({fetchingData: true})
+        }
         const config = {
             'Content-Type':'application/json'
         }
@@ -154,10 +165,17 @@ export class LandingPage extends React.Component {
             let forecast = res.data['Forecast'];
             copy[country_string]['Historic'] = hist;
             copy[country_string]['Forecast'] = forecast;
-            this.setState({country_data: copy});
+            this.setState({
+                country_data: copy,
+                eval_start: start_date,
+                eval_end: end_date
+            });
             console.log(this.state.country_data)
+            this.setState({fetchingData: false})
         }
-        this.setState({fetchingData: false})
+        if(callback !== null){
+            callback()
+        }
     }
 
     defocusHandle(){
@@ -239,12 +257,14 @@ export class LandingPage extends React.Component {
                     volume={vol}
                     loop={true}
                 />
-                <Sidebar 
+                <Sidebar
                     toggleCollapseHandle={this.toggleSidebarHandle}
                     muted={this.state.muted}
                     muteHandler={this.muteHandler}
                     collapsed={!this.state.renderSideBar}
-                    calendar={DateTimePicker(this.state.startDate, this.state.endDate, this.changeStartDate, this.changeEndDate)}
+                    loading={this.state.fetchingData}
+                    changeEndDate={this.changeEndDate}
+                    changeStartDate={this.changeStartDate}
                     hist={hist}
                     frcst={frcst}
                     start={this.state.startDate}

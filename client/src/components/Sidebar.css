@@ -113,8 +113,8 @@ div.dashboard-container{
     z-index: 100;
     display: none; }
   .pro-sidebar.collapsed {
-    width: 0px;
-    min-width: 0px; }
+    width: 80px;
+    min-width: 80px; }
   .pro-sidebar.rtl {
     text-align: right;
     direction: rtl; }

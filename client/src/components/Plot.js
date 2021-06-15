@@ -5,6 +5,7 @@ import {GoGraph} from "react-icons/go"
 import {FaFileDownload} from 'react-icons/fa'
 import Plotly from 'react-plotly.js';
 import {CSVLink} from "react-csv";
+import { update } from 'plotly.js';
 
 export default class Plot extends React.Component{
     constructor(props){
@@ -12,6 +13,9 @@ export default class Plot extends React.Component{
 
         this.state = {
             plot: null,
+            start: this.props.startDate,
+            loading: this.props.loading,
+            end: this.props.endDate,
             pie_data: null,
             pie_layout: null,
             pie_point_index: null,
@@ -45,8 +49,8 @@ export default class Plot extends React.Component{
         let hour = [];
         let data = this.props.data;
 
-        let start = this.props.startDate;
-        let end = this.props.endDate;
+        let start = this.state.start;
+        let end = this.state.end;
 
         delete data['_id'];
 
@@ -55,24 +59,23 @@ export default class Plot extends React.Component{
             return str_to_date(a) - str_to_date(b);
         });
 
-        for(let i = 0; i < keys.length; ++i){
-            let dateVal = str_to_date(keys[i]);
-            if (dateVal < start || dateVal > end){
-                continue;
-            }
-            this.time.push(keys[i]);
-        }
-
         for(let k of keys){
             let dateVal = str_to_date(k);
             if (dateVal < start || dateVal > end){
                 continue;
             }
             hour.push(data[k]);
+            this.time.push(k)
+        }
+        console.log()
+        if (hour.length < 1){
+            if(this.state.plot !== undefined){
+                this.setState({plot: undefined})
+                return
+            }
         }
 
         for(let h of hour){
-
             let hydro_energy = 0;
             let wind_energy = 0;
             let solar_energy = 0;
@@ -490,7 +493,7 @@ export default class Plot extends React.Component{
         });
     }
 
-    render() {    
+    render() {
         if(!this.props.data) {
             return <div/>;
         } else {
@@ -499,18 +502,72 @@ export default class Plot extends React.Component{
                 return <div/>;
             }
         }
-        if(!this.state.plot){
+        if(this.state.plot === null){
             this.updateGraph();
         }
         if(this.state.country !== this.props.country){
             // comment out this setstate if we want persistance between countries
             this.setState({
-                relayout: null
+                relayout: null,
+                plot: null
             })
             this.updateGraph(false);
         }
+        if(this.state.start !== this.props.startDate){
+            this.setState({
+                start: this.props.startDate,
+                end: this.props.endDate,
+                plot: null,
+            })
+            this.updateGraph()
+        }
+        if(this.state.end !== this.props.endDate){
+            this.setState({
+                start: this.props.startDate,
+                end: this.props.endDate,
+                plot: null,
+            })
+            this.updateGraph()
+        }
+
+        if(this.state.loading !== this.props.loading){
+            this.setState({
+                start: this.props.startDate,
+                end: this.props.endDate,
+                loading: this.props.loading,
+                plot: null,
+            })
+            this.updateGraph()
+        }
+
+        if(this.props.updating){
+            this.getData();
+            this.updateGraph();
+            this.props.updateCallback()
+        }
+        
+        if(this.state.plot === undefined && !(this.props.loading || this.state.loading)){
+            return <div className="country-plotly">No {this.props.title} for selected date range.</div>;
+        }
+
+        var buttons = null
+        if(this.csvData !== undefined && this.csvData !== null){
+            buttons = <div className="plot-options">
+                <div onClick={this.toggleHandler} className="graph-change-button">
+                    <p className="tooltiptext">change chart labels</p>
+                    <GoGraph/>
+                </div>
+                <CSVLink data={this.csvData}>
+                    <div className="download-link-container">
+                        <p className="tooltiptext">download me as CSV</p>
+                        <FaFileDownload/>
+                    </div>
+                </CSVLink>
+            </div>
+        }
         return (
             <div className="country-plotly">
+                {this.props.loading || this.props.updating ? <>loading...</> : null}
                 {this.state.plot}
                 {
                     this.state.pie_data ? 
@@ -523,18 +580,7 @@ export default class Plot extends React.Component{
                     :
                     null
                 }
-                <div className="plot-options">
-                    <div onClick={this.toggleHandler} class="graph-change-button">
-                        <p className="tooltiptext">change chart labels</p>
-                        <GoGraph/>
-                    </div>
-                    <CSVLink data={this.csvData}>
-                        <div className="download-link-container">
-                            <p className="tooltiptext">download me as CSV</p>
-                            <FaFileDownload/>
-                        </div>
-                    </CSVLink>
-                </div>
+                {buttons}
             </div>
         );
     }
