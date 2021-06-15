@@ -4,9 +4,29 @@ body {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 5vw;
+    font-weight: bold;
     text-transform: uppercase;
-    color: rgb(255, 255, 255);
+    color: white;
+    padding-left: 30px;
+    margin: 0;
+}
+
+h2 {
+    padding-left: 30px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 2vw;
+    color: white;
+}
+
+h3 {
+    padding: 0;
+    padding-top: 50px;
+    margin: 0;
+    font-weight: 300;
+    font-size: 30px;
+    color: #006784;
 }
 
 html {
@@ -28,10 +48,46 @@ html {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
 }
-    
-.about-section {
-    padding: 50px;
+
+.title {
+    padding: 100px;
+    padding-right: 0;
+    padding-left: 15vw;
+    padding-bottom: 0;
     text-align: left;
+}
+
+.about-section {
+    padding: 100px;
+    padding-bottom: 0;
+    padding-left: 15vw;
+    width: 90vw;
+    max-width: 1000px;
+    text-align: left;
+    color: white;
+    font-size: large;
+}
+
+.about-section .subtitle {
+    box-sizing: content-box;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #51ae9aff;
+    color:white;
+    font-size: 2vw;
+    position: relative;
+    display: inline-block;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.footer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70vw;
+    border-top: 5px solid #51ae9aff ;
 }
 
 .container {
@@ -42,10 +98,6 @@ html {
     content: \"\";
     clear: both;
     display: table;
-}
-
-.title {
-    color: grey;
 }
 
 .button {

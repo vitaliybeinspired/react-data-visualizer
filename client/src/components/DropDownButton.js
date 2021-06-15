@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from "react-bootstrap/Dropdown";
 import { NavLink } from 'react-router-dom';
 

@@ -15,7 +15,7 @@ const axios = require('axios');
 
 const volume = 40;
 
-export class LandingPage extends React.Component {
+export class Map extends React.Component {
 
     constructor(props) {
         super(props);
@@ -280,4 +280,4 @@ export class LandingPage extends React.Component {
     }
 }
 
-export default LandingPage
+export default Map

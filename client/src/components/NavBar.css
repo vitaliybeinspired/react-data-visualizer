@@ -6,6 +6,7 @@
     align-items: top;
     background-color: rgb(78, 78, 78);
     color: rgb(92, 198, 147);
+    padding-left: 100px;
 }
 
 h1 {
@@ -20,12 +21,12 @@ h1 {
     padding-right: 2em;
     padding-left: 2em;
     padding-bottom: 0.5em;
-    color: rgba(255, 255, 255, 0.712);
+    color: rgba(165, 165, 165, 0.712);
     font-weight: bold;
     text-decoration: none;
 }
 .NavBar .nav-link:hover{
-    color: #fff;
+    color: white;
     border-bottom: 2px solid;
     font-weight: bold;
     text-decoration: none;
@@ -34,5 +35,6 @@ h1 {
 .NavBar .nav-link-active {
     padding-left: 2em;
     padding-right: 2em;
-    color: #fff;
+    color: white;
+
 }
