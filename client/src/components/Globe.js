@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactGlobe from 'react-globe';
+import logo from '../images/logo.png';
 
 /*  IMPORTANT
     it is worth noting that this demo only works with Three.js 0.118 thru 0.124
@@ -8,7 +9,9 @@ import ReactGlobe from 'react-globe';
 */
 
 export const markers = [
+
     {
+
         id: 'ElSalvador',
         country: 'El Salvador',
         color: 'yellow',
