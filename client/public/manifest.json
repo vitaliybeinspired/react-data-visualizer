@@ -1,6 +1,6 @@
 {
-  "short_name": "CFV",
-  "name": "Collect Forecast Visualize",
+  "short_name": "GET",
+  "name": "Global Energy Transparency",
   "icons": [
     {
       "src": "favicon.ico",
