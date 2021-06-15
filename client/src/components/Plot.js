@@ -495,9 +495,12 @@ export default class Plot extends React.Component{
 
     render() {
         if(!this.props.data) {
-            return <div className="country-plotly">Loading...</div>;
+            return <div/>;
         } else {
             this.getData();
+            if(this.time.length === 0) {
+                return <div/>;
+            }
         }
         if(this.state.plot === null){
             this.updateGraph();

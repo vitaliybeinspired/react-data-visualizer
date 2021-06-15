@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
-import logo from "../images/logo192.png"
+import logo from "../images/logo.png"
 
 
 function NavBar() {
@@ -22,7 +22,7 @@ function NavBar() {
                 }}
                 >
                 <img src={logo} alt="logo" width={45} height={35}/>
-                FV
+                GET
             </div>
             <div className="nav-bar">
                 <NavLink
@@ -35,7 +35,7 @@ function NavBar() {
                 <NavLink
                     className="nav-link"
                     activeClassName="nav-link-active"
-                    to="/about">About
+                    to="/map">Map
                 </NavLink>
             </div>
         </div>
