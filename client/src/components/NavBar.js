@@ -22,7 +22,6 @@ function NavBar() {
                 }}
                 >
                 <img src={logo} alt="logo" width={45} height={35}/>
-                GET
             </div>
             <div className="nav-bar">
                 <NavLink

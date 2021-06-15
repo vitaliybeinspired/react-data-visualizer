@@ -108,11 +108,11 @@ export default class SideBar extends React.Component {
                     }
                     {this.props.muted ?
                         <MenuItem onClick={this.props.muteHandler} icon={<VscMute/>}>
-                            Unmute Audio
+                            unmute
                         </MenuItem>
                         :
                         <MenuItem onClick={this.props.muteHandler} icon={<VscUnmute/>}>
-                            Mute Audio
+                            mute
                         </MenuItem>
                     }
                     </Menu>
