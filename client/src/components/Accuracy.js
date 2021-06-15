@@ -183,14 +183,14 @@ export class Accuracy extends React.Component{
         this.e_biomass = [];
         this.e_geothermal = [];
 
-        this.mape_hydro = 0;
-        this.mape_wind = 0;
-        this.mape_solar = 0;
-        this.mape_thermal = 0;
-        this.mape_other = 0;
-        this.mape_interchange = 0;
-        this.mape_biomass = 0;
-        this.mape_geothermal = 0;
+        this.mae_hydro = 0;
+        this.mae_wind = 0;
+        this.mae_solar = 0;
+        this.mae_thermal = 0;
+        this.mae_other = 0;
+        this.mae_interchange = 0;
+        this.mae_biomass = 0;
+        this.mae_geothermal = 0;
 
         let e_h = 0;
         let e_w = 0;
@@ -201,86 +201,118 @@ export class Accuracy extends React.Component{
 
         let n = hour.length
         for(let m = 0; m < n; m++) {
-            e_h += Math.abs((this.p_hydro[m] - this.hydro[m])/this.hydro[m])
-            e_w += Math.abs((this.p_wind[m] - this.wind[m])/this.wind[m])
-            e_s += Math.abs((this.p_solar[m] - this.solar[m])/this.solar[m])
-            e_t += Math.abs((this.p_thermal[m] - this.thermal[m])/this.thermal[m])
-            e_b += Math.abs((this.p_biomass[m] - this.biomass[m])/this.biomass[m])
-            e_g += Math.abs((this.p_geothermal[m] - this.geothermal[m])/this.geothermal[m])
+            e_h = Math.abs(this.p_hydro[m] - this.hydro[m])
+            e_w = Math.abs(this.p_wind[m] - this.wind[m])
+            e_s = Math.abs(this.p_solar[m] - this.solar[m])
+            e_t = Math.abs(this.p_thermal[m] - this.thermal[m])
+            e_b = Math.abs(this.p_biomass[m] - this.biomass[m])
+            e_g = Math.abs(this.p_geothermal[m] - this.geothermal[m])
+
+            this.mae_hydro += e_h
+            this.mae_wind += e_w
+            this.mae_solar += e_s
+            this.mae_thermal += e_t
+            this.mae_biomass += e_b
+            this.mae_geothermal += e_g
             
-            this.e_hydro.push(this.p_hydro[m]-this.hydro[m])
-            this.e_wind.push(this.p_wind[m] - this.wind[m])
-            this.e_solar.push(this.p_solar[m] - this.solar[m])
-            this.e_thermal.push(this.p_thermal[m] - this.thermal[m])
-            this.e_biomass.push(this.p_biomass[m] - this.biomass[m])
-            this.e_geothermal.push(this.p_geothermal[m] - this.geothermal[m])
+            this.e_hydro.push(e_h)
+            this.e_wind.push(e_w)
+            this.e_solar.push(e_s)
+            this.e_thermal.push(e_t)
+            this.e_biomass.push(e_b)
+            this.e_geothermal.push(e_g)
         }
         
-        this.mape_hydro = e_h/n
-        this.mape_wind = e_w/n
-        this.mape_solar = e_s/n
-        this.mape_thermal = e_t/n
-        this.mape_biomass = e_b/n
-        this.mape_geothermal = e_g/n
+        this.mae_hydro /= n
+        this.mae_wind /= n
+        this.mae_solar /= n
+        this.mae_thermal /= n
+        this.mae_biomass /= n
+        this.mae_geothermal /= n
 
     }
 
     render() {    
         if(!this.props.hist || !this.props.frcst) {
-            return <div className="country-plotly">Loading...</div>;
+            return <div className="message">No data yet.</div>;
         } else {
             this.getData();
+            if(this.thermal.length === 0) {
+                return <div/>
+            }
         }
 
-        let error_data = [
-            {
-                type: 'bar',
+        let error_data = []
+        let t = 'line'
+        if(this.e_solar) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'yellow'},
                 name: 'Solar',
                 y: this.e_solar
-            },
-            {
-                type: 'bar',
+            })
+        }
+        if(this.e_geothermal) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'orange'},
                 name: 'Geothermal',
                 y: this.e_geothermal
-            },
-            {
-                type: 'bar',
+            })
+        }
+        if(this.e_biomass) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'lime'},
                 name: 'Biomass',
                 y: this.e_biomass
-            },
-            {
-                type: 'bar',
+            })
+        }
+        if(this.e_wind) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'cyan'},
                 name: 'Wind',
                 y: this.e_wind
-            },
-            {
-                type: 'bar',
+            })
+        }
+        if(this.e_thermal) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'red'},
                 name: 'Thermal',
                 y: this.e_thermal
-            },
-            {
-                type: 'bar',
+            })
+        }
+        if(this.e_hydro) {
+            error_data.push({
+                type: {t},
+                stackgroup: 'one',
                 marker: {color: 'blue'},
                 name: 'Hydroelectric',
                 y: this.e_hydro
-            }
-        ];
+            })
+        }
 
-        let mape_data = [
+        let x = []
+        let y = []
+
+
+        let mae_data = [
             {
                 x: ['solar', 'wind', 'hydro', 'thermal', 'biomass', 'geothermal',],
                 y: [
-                    this.mape_solar,
-                    this.mape_wind,
-                    this.mape_hydro,
-                    this.mape_thermal,
-                    this.mape_biomass,
-                    this.mape_geothermal
+                    this.mae_solar,
+                    this.mae_wind,
+                    this.mae_hydro,
+                    this.mae_thermal,
+                    this.mae_biomass,
+                    this.mae_geothermal
                 ],
                 type: 'bar'
             }
@@ -294,7 +326,7 @@ export class Accuracy extends React.Component{
                         width: 600, 
                         height: 400,
                         yaxis:{
-                            title: "Error)",
+                            title: "MWh",
                             gridcolor: "#FFFFFF55"
                         },
                         xaxis:{
@@ -313,12 +345,12 @@ export class Accuracy extends React.Component{
                 />
 
                 <Plotly
-                    data={mape_data}
+                    data={mae_data}
                     layout={{
                         width: 600, 
                         height: 400,
                         yaxis:{
-                            title: "Percentage Error",
+                            title: "MWh",
                             gridcolor: "#FFFFFF55"
                         },
                         plot_bgcolor:"#FFFFFF99",
@@ -327,7 +359,7 @@ export class Accuracy extends React.Component{
                             {
                                 color: "#FFFFFF",
                             },
-                        title: "Forecast MAPE"
+                        title: "Forecast MAE"
                     }}
                 />
             </div>

@@ -22,7 +22,7 @@ function NavBar() {
                 }}
                 >
                 <img src={logo} alt="logo" width={45} height={35}/>
-                FV
+                GET
             </div>
             <div className="nav-bar">
                 <NavLink
@@ -35,13 +35,7 @@ function NavBar() {
                 <NavLink
                     className="nav-link"
                     activeClassName="nav-link-active"
-                    to="/learn">Learn More
-                </NavLink>
-
-                <NavLink
-                    className="nav-link"
-                    activeClassName="nav-link-active"
-                    to="/about">About
+                    to="/map">Map
                 </NavLink>
             </div>
         </div>
