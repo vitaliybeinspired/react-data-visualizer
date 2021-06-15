@@ -29,13 +29,13 @@ function NavBar() {
                     className="nav-link"
                     activeClassName="nav-link-active"
                     exact
-                    to="/">Home
+                    to="/">Map
                 </NavLink>
 
                 <NavLink
                     className="nav-link"
                     activeClassName="nav-link-active"
-                    to="/map">Map
+                    to="/map">About
                 </NavLink>
             </div>
         </div>

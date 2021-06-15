@@ -2,6 +2,7 @@ import '../index.css';
 import '../App.css';
 import React from 'react';
 import NavBar from "../components/NavBar"
+import DropDownButton from "../components/DropDownButton";
 // images
 import Max from "../images/Max.jpg";
 import Vitaliy from "../images/Vitaliy.jpeg";
@@ -14,7 +15,6 @@ export class About extends React.Component {
   render() {
   	return (
 			<div>
-				<NavBar />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/*
 				I got rid of this bc it was messing with nav bar
@@ -38,12 +38,16 @@ export class About extends React.Component {
 						"background-color: #555;\n}\n\n@media screen and (max-width: 650px) {\n  .column {\n    width: 100%;\n    " +
 						"display: block;\n  }\n}\n" }} />
 
+				<NavBar />
 				<div className="row">
 					<div className="card">
 						<img src={Poster} alt="Poster" style={{width: '100%'
 						}} />
 					</div>
 				</div>
+
+				<DropDownButton/>
+
 				<h2 style={{textAlign: 'center'}}>Our Team</h2>
 				<div className="row">
 					<div className="column">
@@ -96,6 +100,7 @@ export class About extends React.Component {
 						</div>
 					</div>
 				</div>
+
 			</div>
     );
   }
