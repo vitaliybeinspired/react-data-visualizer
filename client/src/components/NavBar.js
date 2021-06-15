@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
-import logo from "../images/logo.png"
+import logo from "../images/logo192.png"
 
 
 function NavBar() {
@@ -30,12 +30,6 @@ function NavBar() {
                     activeClassName="nav-link-active"
                     exact
                     to="/">Home
-                </NavLink>
-
-                <NavLink
-                    className="nav-link"
-                    activeClassName="nav-link-active"
-                    to="/learn">Learn More
                 </NavLink>
 
                 <NavLink
