@@ -8,11 +8,9 @@ import NavBar from '../components/NavBar'
 import React from 'react';
 import Sound from 'react-sound';
 import Sidebar from '../components/Sidebar';
-import Dropdown from '../components/DropDownButton';
+
 const {date_to_stringUS, date_to_weekUS}  = require('../components/DateToWeek');
 const axios = require('axios');
-
-
 const volume = 40;
 
 export class Map extends React.Component {

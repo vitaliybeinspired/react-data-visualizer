@@ -70,7 +70,7 @@ export default class SideBar extends React.Component {
                                     borderRadius: "1em"
                             }}/>
                         }
-                        style={{textTransform: "uppercase",fontSize: "60px", fontWeight: 900}}
+                        style={{textTransform: "uppercase",fontSize: "40px", fontWeight: 400}}
                     >   
                     {
                         this.props.country === "none" ? 
