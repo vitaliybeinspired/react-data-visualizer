@@ -9,6 +9,10 @@ import BC from "../images/BC.png";
 import WT from "../images/WattTime.png";
 import Logo from "../images/logo.png";
 import System from "../images/system.PNG";
+import Sara from "../images/SaraFarag.jpg";
+import Connor from "../images/Connor.png";
+import Gabriela from "../images/Gabby.PNG";
+import Ishan from "../images/Ishan.PNG";
 import Max from "../images/Max.jpg";
 import Vitaliy from "../images/Vitaliy.jpeg";
 import Andre from "../images/Andre.jpeg";
@@ -65,9 +69,8 @@ export class Home extends React.Component {
 					<div className="card">
 						<img src={Max} alt="Max"/>
 						<div className="container">
-							<h4>Max Ayala</h4>
+							<h2>Max Ayala</h2>
 							<p>Software Engineer</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
 						</div>
 					</div>
 					<div className="card">
@@ -75,15 +78,6 @@ export class Home extends React.Component {
 						<div className="container">
 							<h2>Vitaliy Stepanov</h2>
 							<p>Software Engineer</p>
-							<p>
-								Vitaliy Stepanov is a computer science student who changed
-								majors from business. He has skills in machine learning, data
-								science, software engineering, and many programming languages.
-								He has industry experience as an intern as a data analyst for
-								his capstone. He was in an artificial intelligence program as
-								a trainee and won 2nd place in the makeathon. He's interested
-								in AI, finance, and creating innovative products.
-							</p>
 						</div>
 					</div>
 					<div className="card">
@@ -91,7 +85,6 @@ export class Home extends React.Component {
 						<div className="container">
 							<h2>Naoki Lucas</h2>
 							<p>Software Engineer</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
 						</div>
 					</div>
 					<div className="card">
@@ -99,14 +92,41 @@ export class Home extends React.Component {
 						<div className="container">
 							<h2>Andre Weertman</h2>
 							<p>Software Engineer</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+						</div>
+					</div>
+                    <div className="card">
+						<img src={Sara} alt="Sara"/>
+						<div className="container">
+							<h2>Dr. Sara Farag</h2>
+							<p>CS Project Advisor</p>
+						</div>
+					</div>
+                    <div className="card">
+						<img src={Connor} alt="Connor"/>
+						<div className="container">
+							<h2>Connor Guest</h2>
+							<p>WattTime Mentor</p>
+						</div>
+					</div>
+                    <div className="card">
+						<img src={Gabriela} alt="Gabriela"/>
+						<div className="container">
+							<h2>Gabriela Volpato</h2>
+							<p>WattTime Mentor</p>
+						</div>
+					</div>
+                    <div className="card">
+						<img src={Ishan} alt="Ishan"/>
+						<div className="container">
+							<h2>Ishan Saraswat</h2>
+							<p>WattTime Advisor</p>
 						</div>
 					</div>
 				</div>
 			</div>
             <div className='footer'>
                 <img src={WT} alt="logo" style={{padding:'10px', width:'20%', display:'inline-block'}} />
-                <img src={BC} alt="logo" style={{padding:'10px', marginLeft:'20px', width:'20%', display:'inline-block'}} />
+                <img src={BC} alt="logo" style={{padding:'10px', marginLeft:'50px', width:'20%', display:'inline-block'}} />
             </div>
 		</div>
     );
