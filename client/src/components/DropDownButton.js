@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function DropDownButton() {
     return (
         <div className="dropdown">
-            <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown >
+                <Dropdown.Toggle style={{'background-color': "#51ae9aff"}} id="dropdown-basic">
                     View Documents
                 </Dropdown.Toggle>
 
