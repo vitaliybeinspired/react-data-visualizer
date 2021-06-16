@@ -318,8 +318,8 @@ export class Accuracy extends React.Component{
             })
         }
 
-        let x = []
-        let y = []
+        // let x = []
+        // let y = []
 
 
         let mae_data = [
