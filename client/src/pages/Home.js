@@ -106,7 +106,7 @@ export class Home extends React.Component {
 			</div>
             <div className='footer'>
                 <img src={WT} alt="logo" style={{padding:'10px', width:'20%', display:'inline-block'}} />
-                <img src={BC} alt="logo" style={{paddingRight:'50vw', padding:'10px', width:'20%', display:'inline-block'}} />
+                <img src={BC} alt="logo" style={{padding:'10px', marginLeft:'20px', width:'20%', display:'inline-block'}} />
             </div>
 		</div>
     );
