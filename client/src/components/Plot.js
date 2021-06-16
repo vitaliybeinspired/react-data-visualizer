@@ -5,7 +5,6 @@ import {GoGraph} from "react-icons/go"
 import {FaFileDownload} from 'react-icons/fa'
 import Plotly from 'react-plotly.js';
 import {CSVLink} from "react-csv";
-import { update } from 'plotly.js';
 
 export default class Plot extends React.Component{
     constructor(props){

@@ -14,49 +14,11 @@
   80% {
     transform: rotate(-5deg); } }
 
-div.graph-change-button{
-  padding: 10px;
-  background-color: #2b2b2b;
-  align-items: center;
-  border-radius: 50px;
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-}
-
-div.graph-change-button:hover{
-  background-color: #ffffff2a;
-}
-
-div.graph-change-button svg{
-  margin-left: 3px;
-}
-
-div.graph-change-button .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: rgba(0, 0, 0, 0.849);
-  color: rgba(255, 255, 255, 0.795);
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  transform: translate(27px,-72px);
-  position: absolute;
-  z-index: 10;
-}
-
-div.graph-change-button:hover .tooltiptext {
-  visibility: visible;
-}
-
 div.dashboard-container{
   margin-left: 10px;
   margin-bottom: 10px;
   min-height: 500px;
 }
-
 
 .pro-sidebar {
   color: #adadad98;

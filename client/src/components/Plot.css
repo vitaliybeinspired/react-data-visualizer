@@ -26,14 +26,54 @@
     color:rgb(100, 100, 100);
   }
 
+  div.graph-change-button{
+    display: inline-block;
+    padding: 10px;
+    background-color: #2b2b2b;
+    align-items: center;
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    margin-left: 20px;
+  }
+  
+  div.graph-change-button:hover{
+    display: inline-block;
+    background-color: #ffffff2a;
+  }
+  
+  div.graph-change-button svg{
+    margin-left: 5px;
+    margin-bottom: 2px;
+  }
+  
+  div.graph-change-button .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.849);
+    color: rgba(255, 255, 255, 0.795);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    transform: translate(27px,-72px);
+    position: absolute;
+    z-index: 10;
+  }
+  
+  div.graph-change-button:hover .tooltiptext {
+    visibility: visible;
+  }
+
   div.download-link-container{
     display: inline-block;
     padding: 10px;
     background-color: #2b2b2b;
     align-items: center;
     border-radius: 50px;
-    width: 20px;
-    height: 20px;
+    width: 45px;
+    height: 45px;
     margin-left: 20px;
   }
   
@@ -43,7 +83,8 @@
   }
   
   div.download-link-container svg{
-    margin-left: 3px;
+    margin-left: 4px;
+    margin-bottom: 2px;
   }
   
   div.download-link-container .tooltiptext {
