@@ -5,6 +5,8 @@ import React from 'react';
 import NavBar from "../components/NavBar"
 import DropDownButton from "../components/DropDownButton";
 // images
+import BC from "../images/BC.png";
+import WT from "../images/WattTime.png";
 import Logo from "../images/logo.png";
 import System from "../images/system.PNG";
 import Max from "../images/Max.jpg";
@@ -15,12 +17,12 @@ import Naoki from "../images/Naoki.jpg";
 export class Home extends React.Component {
   render() {
   	return (
-		<div>
+		<div className='about'>
             <NavBar />
             <div className='title'>
-                <img src={Logo} alt="logo" style={{width:'20%', display:'inline-block'}} />
-                <div style={{paddingRight:'100px', display:'inline-block'}}>
-                    <h1>G . E . T .</h1>
+                <img src={Logo} alt="logo" style={{width:'20%'}} />
+                <div style={{flexDirection:'column'}}>
+                    <h1>G E T</h1>
                     <h2>Global Energy Transparency</h2>
                 </div>
             </div>
@@ -49,70 +51,62 @@ export class Home extends React.Component {
                 <div className='subtitle'>
                     Architechture
                 </div>
-                <img src={System} alt="system" style={{paddingTop: '50px', width:'70vw', maxWidth:'150%', display:'block'}} />
+                <img src={System} alt="system" style={{paddingTop: '50px', width:'70vw', maxWidth:'1000px', display:'block'}} />
+                <DropDownButton/>
             </div>
 
-            <div className='about-section' style={{paddingBottom:'200px'}}>
+            <div className='about-section' style={{paddingBottom:'50px'}}>
                 <div className='subtitle'>
                     Our Team
                 </div>
             </div>
-			<DropDownButton/>
-
-            <div className="row">
-				<div className="column">
+			<div className="contacts">
+                <div className='row'>
 					<div className="card">
-						<img src={Max} alt="Max" style={{width: '25%'}} />
+						<img src={Max} alt="Max"/>
 						<div className="container">
-							<h2>Max Ayala</h2>
-							<p className="title">Software Engineer</p>
+							<h4>Max Ayala</h4>
+							<p>Software Engineer</p>
 							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>max@email.edu</p>
-							<p><button className="button">Contact</button></p>
 						</div>
 					</div>
-				</div>
-				<div className="column">
 					<div className="card">
-						<img src={Vitaliy} alt="Vitaliy" style={{width: '25%'}} />
+						<img src={Vitaliy} alt="Vitaliy"/>
 						<div className="container">
 							<h2>Vitaliy Stepanov</h2>
-							<p className="title">Software Engineer</p>
-							<p>Vitaliy Stepanov is a computer science student who changed majors from business. He has skills in machine learning, data science, software engineering, and many programming languages. He has industry experience as an intern as a data analyst for his capstone. He was in an artificial intelligence program as a trainee and won 2nd place in the makeathon. He's interested in AI, finance, and creating innovative products.
+							<p>Software Engineer</p>
+							<p>
+								Vitaliy Stepanov is a computer science student who changed
+								majors from business. He has skills in machine learning, data
+								science, software engineering, and many programming languages.
+								He has industry experience as an intern as a data analyst for
+								his capstone. He was in an artificial intelligence program as
+								a trainee and won 2nd place in the makeathon. He's interested
+								in AI, finance, and creating innovative products.
 							</p>
-							<p>vitaliybeinspired@gmail.com</p>
-							<p><button className="button">Contact</button></p>
 						</div>
 					</div>
-				</div>
-				<div className="column">
 					<div className="card">
-						<img src={Naoki} alt="Naoki" style={{width: '25%'}} />
+						<img src={Naoki} alt="Naoki"/>
 						<div className="container">
 							<h2>Naoki Lucas</h2>
-							<p className="title">Software Engineer</p>
+							<p>Software Engineer</p>
 							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>naoki@email.edu</p>
-							<p><button className="button">Contact</button></p>
 						</div>
 					</div>
-				</div>
-				<div className="column">
 					<div className="card">
-						<img src={Andre} alt="Andre" style={{width: '25%'}} />
+						<img src={Andre} alt="Andre"/>
 						<div className="container">
 							<h2>Andre Weertman</h2>
-							<p className="title">Software Engineer</p>
+							<p>Software Engineer</p>
 							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>andre@email.com</p>
-							<p><button className="button">Contact</button></p>
 						</div>
 					</div>
 				</div>
 			</div>
-
             <div className='footer'>
-                
+                <img src={WT} alt="logo" style={{padding:'10px', width:'20%', display:'inline-block'}} />
+                <img src={BC} alt="logo" style={{paddingRight:'50vw', padding:'10px', width:'20%', display:'inline-block'}} />
             </div>
 		</div>
     );

@@ -1,9 +1,18 @@
-body {
+.about {
     margin: 0;
     background-color: #2b2b2b;
 }
 
-h1 {
+.about .title {
+    padding: 100px;
+    padding-right: 0;
+    padding-left: 15vw;
+    padding-bottom: 0;
+    text-align: left;
+    display: flex;
+}
+
+.about .title h1 {
     font-size: 5vw;
     font-weight: bold;
     text-transform: uppercase;
@@ -12,7 +21,7 @@ h1 {
     margin: 0;
 }
 
-h2 {
+.about .title h2 {
     padding-left: 30px;
     margin: 0;
     font-weight: 400;
@@ -20,13 +29,47 @@ h2 {
     color: white;
 }
 
-h3 {
+.about .about-section {
+    padding: 100px;
+    padding-bottom: 0;
+    padding-left: 15vw;
+    width: 90vw;
+    max-width: 1000px;
+    text-align: left;
+    color: white;
+    font-size: large;
+}
+
+.about .about-section .subtitle {
+    box-sizing: content-box;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #51ae9aff;
+    color:white;
+    font-size: 2vw;
+    position: relative;
+    display: inline-block;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.about .footer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70vw;
+    border-top: 5px solid #51ae9aff ;
+}
+
+.about .about-section h3 {
     padding: 0;
     padding-top: 50px;
+    padding-bottom: 20px;
     margin: 0;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 30px;
-    color: #006784;
+    color: #037b9c;
 }
 
 html {
@@ -45,75 +88,34 @@ html {
 }
 
 .card {
+    width: 35vw;
+    max-width: 350px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 8px;
-}
-
-.title {
-    padding: 100px;
-    padding-right: 0;
-    padding-left: 15vw;
-    padding-bottom: 0;
-    text-align: left;
-}
-
-.about-section {
-    padding: 100px;
-    padding-bottom: 0;
-    padding-left: 15vw;
-    width: 90vw;
-    max-width: 1000px;
-    text-align: left;
-    color: white;
-    font-size: large;
-}
-
-.about-section .subtitle {
-    box-sizing: content-box;
-    padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background-color: #51ae9aff;
-    color:white;
-    font-size: 2vw;
-    position: relative;
-    display: inline-block;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
-.footer {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70vw;
-    border-top: 5px solid #51ae9aff ;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
+    width: 20vw;
     padding: 0 16px;
+}
+
+.contacts {
+    padding-left: 15vw;
+    padding-bottom: 200px;
+}
+
+.row {
+    clear: both;
+    justify-content: left;
+    display: flex;
 }
 
 .container::after, .row::after {
     content: \"\";
     clear: both;
     display: table;
-}
-
-.button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-}
-
-.button:hover {
-    background-color: #555;
 }
 
 @media screen and (max-width: 650px) {

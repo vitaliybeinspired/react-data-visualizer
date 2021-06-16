@@ -6,7 +6,7 @@ function DropDownButton() {
     return (
         <div className="dropdown">
             <Dropdown >
-                <Dropdown.Toggle style={{'background-color': "#51ae9aff"}} id="dropdown-basic">
+                <Dropdown.Toggle style={{marginLeft: '50px', marginTop: '50px', borderRadius:'10px', backgroundColor: "#006784"}} id="dropdown-basic">
                     View Documents
                 </Dropdown.Toggle>
 
