@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { enGB } from 'date-fns/locale'
 import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates'
 import 'react-nice-dates/build/style.css'
@@ -24,21 +24,21 @@ function DateRangePickerExample(startDate, endDate, changeStartDate, changeEndDa
                 format='MMMMMMMMMM dd, yyyy'
                 locale={enGB}
             >
-                {({ startDateInputProps, endDateInputProps, focus }) => (
-                    <div className='date-range'>
-                        <input
-                            className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                            {...startDateInputProps}
-                            placeholder='Start date'
-                        />
-                        <span className='date-range_arrow' />
-                        <input
-                            className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                            {...endDateInputProps}
-                            placeholder='End date'
-                        />
-                    </div>
-                )}
+            {({ startDateInputProps, endDateInputProps, focus }) => (
+                <div className='date-range'>
+                    <input
+                        className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                        {...startDateInputProps}
+                        placeholder='Start date'
+                    />
+                    <span/>
+                    <input
+                        className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                        {...endDateInputProps}
+                        placeholder='End date'
+                    />
+                </div>
+            )}
             </DateRangePicker>
         </div>
     )

@@ -1,0 +1,60 @@
+  div.date-time-picker{
+    position: relative;
+    display: flex;
+    width: 580px;
+    margin: 10px;
+  }
+
+  div.smallAudio{
+    width: 150px;
+  }
+
+  audio{
+    width: 135px;
+    height: 40px;
+  }
+
+  div.date-range{
+    display: flex;
+    width: 600px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  div.date-range input{
+    margin-right: 25px;
+    width: 150px;
+  }
+  
+  a.nice-dates-navigation_previous::before{
+    margin-left: 50%;
+    margin-top: 40%;
+  }
+
+  a.nice-dates-navigation_next::before{
+    margin-left: 10%;
+    margin-top: 40%;
+  }
+  
+  div.country-plotly{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  div.globe {
+    position: relative;
+    width: 100vh - 4vh;
+    height: 100vh;
+  }
+  
+  .NavBar {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: top;
+    background-color: rgb(24, 196, 167);
+    color: rgb(0, 0, 0);
+  }

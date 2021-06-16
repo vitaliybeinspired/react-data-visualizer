@@ -1,0 +1,119 @@
+.e-gen-plot {
+    background-color: rgb(44, 44, 44);
+}
+
+.country-plotly h1 {
+    background-color: rgb(44, 44, 44);
+    margin-top: 10px;
+    padding-right: 0.5em;
+    padding-left: 10px;
+    color: rgb(184, 182, 182);
+}
+
+  div.pie-chart{
+    transform: translate(-25px, -65px);
+    height: 300px;
+  }
+
+  div.plot-options{
+    display: flex;
+    height: 10px;
+    flex-direction: row;
+    transform: translate(10px, -30px);
+  }
+
+  div.plot-options svg{
+    color:rgb(100, 100, 100);
+  }
+
+  div.graph-change-button{
+    display: inline-block;
+    padding: 10px;
+    background-color: #2b2b2b;
+    align-items: center;
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    margin-left: 20px;
+  }
+  
+  div.graph-change-button:hover{
+    display: inline-block;
+    background-color: #ffffff2a;
+  }
+  
+  div.graph-change-button svg{
+    margin-left: 5px;
+    margin-bottom: 2px;
+  }
+  
+  div.graph-change-button .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.849);
+    color: rgba(255, 255, 255, 0.795);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    transform: translate(27px,-72px);
+    position: absolute;
+    z-index: 10;
+  }
+  
+  div.graph-change-button:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  div.download-link-container{
+    display: inline-block;
+    padding: 10px;
+    background-color: #2b2b2b;
+    align-items: center;
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    margin-left: 20px;
+  }
+  
+  div.download-link-container:hover{
+    display: inline-block;
+    background-color: #ffffff2a;
+  }
+  
+  div.download-link-container svg{
+    margin-left: 4px;
+    margin-bottom: 2px;
+  }
+  
+  div.download-link-container .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.849);
+    color: rgba(255, 255, 255, 0.795);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    transform: translate(27px,-72px);
+    position: absolute;
+    z-index: 10;
+  }
+  
+  div.download-link-container:hover .tooltiptext {
+    visibility: visible;
+  }
+
+.country-plotly {
+  display: flex;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+.message {
+  margin-top: 80px;
+  margin-left: 80px;
+  font-size: x-large;
+}

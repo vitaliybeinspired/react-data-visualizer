@@ -1,8 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {LandingPage} from './pages/LandingPage';
-import {About} from './pages/About';
-import {ExportData} from './pages/ExportData';
+import {Map} from './pages/Map';
+import {Home} from './pages/Home';
 import axios from 'axios';
 
 // These will be our proxies
@@ -14,9 +13,8 @@ function App() {
     <div className='App'>
         <Router>
           <Switch>
-            <Route exact path ='/' component = {LandingPage}/>
-            <Route exact path ='/about' component = {About}/>
-            <Route exact path ='/exportdata' component = {ExportData}/>
+            <Route exact path ='/' component = {Home}/>
+            <Route exact path ='/map' component = {Map}/>
           </Switch>
         </Router>
     </div>    
