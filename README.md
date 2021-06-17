@@ -10,3 +10,5 @@ Run the client and server seperately with:
  - `npm run server`
  - `npm run client`
  
+You can view the heroku deployment here:
+https://cfv-client.herokuapp.com/
