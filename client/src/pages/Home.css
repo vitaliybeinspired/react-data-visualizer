@@ -95,6 +95,10 @@ html {
     flex-direction: column;
 }
 
+.card img{
+    height: 350px;
+}
+
 .container {
     width: 20vw;
     padding: 0 16px;
