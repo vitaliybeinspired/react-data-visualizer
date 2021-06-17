@@ -57,7 +57,7 @@ export class Home extends React.Component {
                 </div>
                 <img src={System} alt="system" style={{paddingTop: '50px', width:'70vw', maxWidth:'1000px', display:'block'}} />
                 <DropDownButton/>
-				<h3>Repositories for this project:</h3>
+				<h3>Repositories for this project</h3>
                 <p>Our website and back-end service is located in this reposittory: <a href="https://github.com/vitaliybeinspired/react-data-visualizer">React Viszualizer</a></p>
 				<p>Our scrapers, forecasters, and 'manager' is in this reposittory: <a href="https://github.com/Naoki95957/Collect-Forecast-Visualize">Collect and Forcast</a></p>
 			</div>
