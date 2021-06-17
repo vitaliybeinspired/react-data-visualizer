@@ -377,6 +377,7 @@ export default class Plot extends React.Component{
 
         let graph = <Plotly
             onHover={this.hoverDataHandler}
+            onClick={this.hoverDataHandler}
             onRelayout={(e) => {this.setState({relayout: e})}}
             data={current_data}
             layout={layout}

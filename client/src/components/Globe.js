@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactGlobe from 'react-globe';
+import ReactGlobe from './globe-lib/component';
 // import logo from '../images/logo.png';
 
 /*  IMPORTANT
@@ -75,6 +75,7 @@ export class Globe extends React.Component {
                 markers={markers}
                 options={options}
                 onClickMarker={this.props.markerClick}
+                onTouchMarker={this.props.markerClick}
                 onDefocus={this.props.defocusHandler}
                 // onGetGlobe={(globe) => this.setState({globe: globe})}
                 // onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
