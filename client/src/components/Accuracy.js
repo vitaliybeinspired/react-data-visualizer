@@ -249,6 +249,7 @@ export class Accuracy extends React.Component{
         this.mae_biomass /= n
         this.mae_geothermal /= n
 
+        this.hour = keys
     }
 
     render() {    
@@ -269,6 +270,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'yellow'},
                 name: 'Solar',
+                x: this.hour,
                 y: this.e_solar
             })
         }
@@ -278,6 +280,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'orange'},
                 name: 'Geothermal',
+                x: this.hour,
                 y: this.e_geothermal
             })
         }
@@ -287,6 +290,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'lime'},
                 name: 'Biomass',
+                x: this.hour,
                 y: this.e_biomass
             })
         }
@@ -296,6 +300,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'cyan'},
                 name: 'Wind',
+                x: this.hour,
                 y: this.e_wind
             })
         }
@@ -305,6 +310,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'red'},
                 name: 'Thermal',
+                x: this.hour,
                 y: this.e_thermal
             })
         }
@@ -314,6 +320,7 @@ export class Accuracy extends React.Component{
                 stackgroup: 'one',
                 marker: {color: 'blue'},
                 name: 'Hydroelectric',
+                x: this.hour,
                 y: this.e_hydro
             })
         }
@@ -353,7 +360,7 @@ export class Accuracy extends React.Component{
                             gridcolor: "#FFFFFF55"
                         },
                         xaxis:{
-                            title: "time",
+                            title: "Time",
                             showticklabels: false,
                             gridcolor: "#FFFFFF55"
                         },

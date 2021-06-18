@@ -319,7 +319,6 @@ export default class Plot extends React.Component{
                 y: this.thermal
             },
             {
-
                 type: 'line',
                 stackgroup: 'one',
                 marker: {color: 'blue'},
